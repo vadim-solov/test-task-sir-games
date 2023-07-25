@@ -1,30 +1,49 @@
-﻿using Game.Scripts.Services;
+﻿using Game.Scripts.Player.States;
+using Game.Scripts.Services;
 using UnityEngine;
 
 namespace Game.Scripts.Player
 {
-    [RequireComponent(typeof(RequireComponent))]
     public class Player : MonoBehaviour
     {
-        private CharacterController _characterController;
+        [SerializeField]
+        private PlayerAttackState _idleState;
+        [SerializeField]
+        private PlayerAttackState _attackState;
+        [SerializeField]
+        private PlayerMovementState _movementState;
 
         private IInputService _inputService;
+        private StateMachine _stateMachine;
 
         public void Init(IInputService inputService)
         {
             _inputService = inputService;
-        }
-
-        private void Awake()
-        {
-            _characterController = GetComponent<CharacterController>();
+            _stateMachine = new StateMachine();
+            _stateMachine.Init(_idleState);
         }
 
         private void Update()
         {
-            Vector3 nexPosition = new Vector3(_inputService.Axis.x, transform.position.y, _inputService.Axis.z);
-            nexPosition.Normalize();
-            _characterController.SimpleMove(_inputService.Axis * 5000f * Time.deltaTime);
+            TryChangeState();
+            _stateMachine.CurrentState.Run();
+        }
+
+        private void TryChangeState()
+        {
+            if (IsMove())
+            {
+                _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
+            }
+            else
+            {
+                _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
+            }
+        }
+
+        private bool IsMove()
+        {
+            return _inputService.Axis != Vector3.zero;
         }
     }
 }
