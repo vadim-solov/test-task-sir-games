@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Player
 {
-    public class Player : MonoBehaviour
+    public class PlayerStatesChanger : MonoBehaviour
     {
         [SerializeField]
         private PlayerIdleState _idleState;
