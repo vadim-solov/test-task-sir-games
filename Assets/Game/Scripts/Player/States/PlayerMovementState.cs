@@ -1,4 +1,4 @@
-using Game.Scripts.Services;
+using Game.Scripts.Services.Input;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States

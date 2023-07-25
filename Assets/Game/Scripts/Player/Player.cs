@@ -1,5 +1,5 @@
 ﻿using Game.Scripts.Player.States;
-using Game.Scripts.Services;
+using Game.Scripts.Services.Input;
 using UnityEngine;
 
 namespace Game.Scripts.Player
@@ -7,7 +7,7 @@ namespace Game.Scripts.Player
     public class Player : MonoBehaviour
     {
         [SerializeField]
-        private PlayerAttackState _idleState;
+        private PlayerIdleState _idleState;
         [SerializeField]
         private PlayerAttackState _attackState;
         [SerializeField]

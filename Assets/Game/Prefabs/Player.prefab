@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8255b28b9fc4fbbbdcba83796a7de4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleState: {fileID: 5685905889383936344}
+  _idleState: {fileID: 2534959054739236141}
   _attackState: {fileID: 5685905889383936344}
   _movementState: {fileID: 2013623227001815413}
 --- !u!114 &2534959054739236141
@@ -297,4 +297,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4b848876174f5a8011b77788cb7ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterController: {fileID: 143702530743972091}

@@ -1,4 +1,4 @@
-﻿using Game.Scripts.Services;
+﻿using Game.Scripts.Services.Input;
 using UnityEngine;
 
 namespace Game.Scripts.CompositeRoot
@@ -12,7 +12,7 @@ namespace Game.Scripts.CompositeRoot
 
         private void Awake()
         {
-            _inputService = new InputService();
+            _inputService = new DesktopInput();
             _player.Init(_inputService);
         }
 
