@@ -1,6 +1,5 @@
 ﻿using Game.Scripts.App.States;
 using Game.Scripts.Configs;
-using UnityEngine;
 
 namespace Game.Scripts.App
 {
@@ -9,6 +8,7 @@ namespace Game.Scripts.App
         private readonly AppLoadingState _appLoadingState;
         private readonly LevelLoaderState _levelLoaderState;
         private readonly CountdownState _countdownState;
+        private readonly GameplayState _gameplayState;
         private readonly StateMachine.StateMachine _stateMachine;
 
         public AppStateChanger(GameObjectFactory gameObjectFactory, GameConfig gameConfig)
@@ -16,6 +16,7 @@ namespace Game.Scripts.App
             _appLoadingState = new AppLoadingState();
             _levelLoaderState = new LevelLoaderState(gameObjectFactory);
             _countdownState = new CountdownState(gameConfig);
+            _gameplayState = new GameplayState();
             _stateMachine = new StateMachine.StateMachine();
             _countdownState.CountdownIsOver += OnCountdownIsOver;
         }
@@ -39,7 +40,7 @@ namespace Game.Scripts.App
 
         private void OnCountdownIsOver()
         {
-            Debug.Log("OnCountdownIsOver");
+            _stateMachine.ChangeStateIfNewStateDifferent(_gameplayState);
         }
     }
 }
