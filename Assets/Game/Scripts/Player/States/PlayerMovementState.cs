@@ -1,10 +1,11 @@
 using Game.Scripts.Services.Input;
+using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
     [RequireComponent(typeof(RequireComponent))]
-    public class PlayerMovementState : State
+    public class PlayerMovementState : MonoBehaviourState
     {
         private CharacterController _characterController;
         //TODO Fix this

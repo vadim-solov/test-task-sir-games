@@ -9,17 +9,17 @@ namespace Game.Scripts.Player
         [SerializeField]
         private PlayerIdleState _idleState;
         [SerializeField]
-        private PlayerAttackState _attackState;
+        private PlayerAttackState _attacState;
         [SerializeField]
         private PlayerMovementState _movementState;
 
         private IInputService _inputService;
-        private StateMachine _stateMachine;
+        private StateMachine.StateMachine _stateMachine;
 
         public void Init(IInputService inputService)
         {
             _inputService = inputService;
-            _stateMachine = new StateMachine();
+            _stateMachine = new StateMachine.StateMachine();
             _stateMachine.Init(_idleState);
         }
 
@@ -37,7 +37,7 @@ namespace Game.Scripts.Player
             }
             else
             {
-                _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
+                _stateMachine.ChangeStateIfNewStateDifferent(_attacState);
             }
         }
 

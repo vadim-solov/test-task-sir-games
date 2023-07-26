@@ -1,16 +1,16 @@
-﻿namespace Game.Scripts
+﻿namespace Game.Scripts.StateMachine
 {
     public class StateMachine
     {
-        public State CurrentState { get; private set; }
+        public IState CurrentState { get; private set; }
 
-        public void Init(State startState)
+        public void Init(IState startState)
         {
             CurrentState = startState;
             CurrentState.Enter();
         }
 
-        public void ChangeStateIfNewStateDifferent(State newState)
+        public void ChangeStateIfNewStateDifferent(IState newState)
         {
             if (newState.GetType() == CurrentState.GetType())
             {

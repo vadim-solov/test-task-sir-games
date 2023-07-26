@@ -1,8 +1,9 @@
+using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    public class PlayerAttackState : State
+    public class PlayerAttackState : MonoBehaviourState
     {
         public override void Enter()
         {

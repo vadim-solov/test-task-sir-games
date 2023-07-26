@@ -1,8 +1,9 @@
+using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    public class PlayerIdleState : State
+    public class PlayerIdleState : MonoBehaviourState
     {
         public override void Enter()
         {

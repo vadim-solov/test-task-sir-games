@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace Game.Scripts
+﻿namespace Game.Scripts.StateMachine
 {
-    public abstract class State : MonoBehaviour
+    public abstract class State : IState
     {
         public virtual void Enter()
         {
