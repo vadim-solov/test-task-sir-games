@@ -2,10 +2,10 @@
 {
     public interface IState
     {
-        public void Enter();
+        public abstract void Enter();
 
-        public void Run();
+        public abstract void Run();
 
-        public void Exit();
+        public abstract void Exit();
     }
 }

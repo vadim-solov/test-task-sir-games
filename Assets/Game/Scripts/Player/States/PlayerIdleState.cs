@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    public class PlayerIdleState : MonoBehaviourState
+    public class PlayerIdleState : MonoBehaviour, IState
     {
-        public override void Enter()
+        public void Enter()
         {
             Debug.Log("enter in idle state");
         }
 
-        public override void Run()
+        public void Run()
         {
             Debug.Log("idle state");
         }
 
-        public override void Exit()
+        public void Exit()
         {
             Debug.Log("exit on idle state");
         }

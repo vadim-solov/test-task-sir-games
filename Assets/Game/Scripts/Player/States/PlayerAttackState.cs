@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    public class PlayerAttackState : MonoBehaviourState
+    public class PlayerAttackState : MonoBehaviour, IState
     {
-        public override void Enter()
+        public void Enter()
         {
             Debug.Log("enter in attack state");
         }
 
-        public override void Run()
+        public void Run()
         {
             Debug.Log("attack state");
         }
 
-        public override void Exit()
+        public void Exit()
         {
             Debug.Log("exit on attack state");
         }

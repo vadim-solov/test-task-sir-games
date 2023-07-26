@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Scripts.Player.States
 {
     [RequireComponent(typeof(RequireComponent))]
-    public class PlayerMovementState : MonoBehaviourState
+    public class PlayerMovementState : MonoBehaviour, IState
     {
         private CharacterController _characterController;
         //TODO Fix this
@@ -16,12 +16,12 @@ namespace Game.Scripts.Player.States
             _characterController = GetComponent<CharacterController>();
         }
 
-        public override void Enter()
+        public void Enter()
         {
             Debug.Log("enter in movement  state");
         }
 
-        public override void Run()
+        public void Run()
         {
             Vector3 nexPosition =
                 new Vector3(Input.GetAxis("Horizontal"), transform.position.y, Input.GetAxis("Vertical"));
@@ -29,7 +29,7 @@ namespace Game.Scripts.Player.States
             _characterController.SimpleMove(nexPosition * 5000f * Time.deltaTime);
         }
 
-        public override void Exit()
+        public void Exit()
         {
             Debug.Log("exit on movement state");
         }

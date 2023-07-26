@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleState: {fileID: 2534959054739236141}
-  _attackState: {fileID: 5685905889383936344}
+  _attacState: {fileID: 5685905889383936344}
   _movementState: {fileID: 2013623227001815413}
 --- !u!114 &2534959054739236141
 MonoBehaviour:
