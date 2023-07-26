@@ -7,6 +7,8 @@ namespace Game.Scripts.Configs
     public class GameConfig : ScriptableObject
     {
         [SerializeField]
+        private float _waitingTimeForLevelActivation = 3f;
+        [SerializeField]
         private Camera _cameraPrefab;
         [SerializeField]
         private Player.Player _playerPrefab;
@@ -16,5 +18,6 @@ namespace Game.Scripts.Configs
         public Player.Player PlayerPrefab => _playerPrefab;
         public List<Level> AllLevels => _allLevels;
         public Camera CameraPrefab => _cameraPrefab;
+        public float WaitingTimeForLevelActivation => _waitingTimeForLevelActivation;
     }
 }

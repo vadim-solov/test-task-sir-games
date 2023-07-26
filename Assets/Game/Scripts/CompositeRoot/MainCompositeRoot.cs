@@ -11,6 +11,7 @@ namespace Game.Scripts.CompositeRoot
         [SerializeField]
         private GameConfig _gameConfig;
 
+        private AppStateChanger _appStateChanger;
         private IInputService _inputService;
 
         private void Awake()
@@ -19,12 +20,18 @@ namespace Game.Scripts.CompositeRoot
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             GameObjectFactory gameObjectFactory =
                 new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection);
-            AppStateChanger appStateChanger = new AppStateChanger(gameObjectFactory);
-            appStateChanger.StartApp();
+            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig);
+            _appStateChanger.StartApp();
+        }
+
+        private void OnDisable()
+        {
+            _appStateChanger.Disable();
         }
 
         private void Update()
         {
+            _appStateChanger.Update();
             _inputService.Update();
         }
     }
