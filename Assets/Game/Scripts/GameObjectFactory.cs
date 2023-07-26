@@ -16,9 +16,11 @@ namespace Game.Scripts
             _inputService = inputService;
         }
 
-        public Camera CreateCamera()
+        public Camera CreateCamera(Transform cameraTargetTransform)
         {
             Camera camera = Object.Instantiate(_gameConfig.CameraPrefab);
+            CameraFollowing cameraFollowing = camera.GetComponent<CameraFollowing>();
+            cameraFollowing.Init(cameraTargetTransform.transform);
             return camera;
         }
 
