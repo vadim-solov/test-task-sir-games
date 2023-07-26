@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStatesChanger: {fileID: 0}
+  _gameConfig: {fileID: 11400000, guid: c6544182d25c1ae4abde6ec39fca5028, type: 2}
 --- !u!4 &690805507
 Transform:
   m_ObjectHideFlags: 0

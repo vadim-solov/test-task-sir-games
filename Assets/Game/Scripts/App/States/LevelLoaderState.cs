@@ -13,6 +13,9 @@ namespace Game.Scripts.App.States
 
         public void Enter()
         {
+            _gameObjectFactory.CreateLevel();
+            _gameObjectFactory.CreatePlayerAndSetPosition();
+            _gameObjectFactory.CreateEnemies();
         }
 
         public void Run()

@@ -9,12 +9,9 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private Player.Player _playerPrefab;
         [SerializeField]
-        private List<Enemy.Enemy> _enemiesPrefabs;
-        [SerializeField]
-        private List<Level> _allLevelsPrefabs;
+        private List<Level> _allLevels;
 
         public Player.Player PlayerPrefab => _playerPrefab;
-        public List<Enemy.Enemy> EnemiesPrefabs => _enemiesPrefabs;
-        public List<Level> AllLevelsPrefabs => _allLevelsPrefabs;
+        public List<Level> AllLevels => _allLevels;
     }
 }
