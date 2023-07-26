@@ -1,4 +1,4 @@
-namespace Game.Scripts.Game.States
+namespace Game.Scripts.App.States
 {
     public class GameObjectFactory
     {

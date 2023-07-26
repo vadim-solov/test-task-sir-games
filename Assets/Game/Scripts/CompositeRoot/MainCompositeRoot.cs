@@ -1,5 +1,5 @@
-﻿using Game.Scripts.Game;
-using Game.Scripts.Game.States;
+﻿using Game.Scripts.App;
+using Game.Scripts.App.States;
 using Game.Scripts.Player;
 using Game.Scripts.Services.Input;
 using UnityEngine;

@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Game.States;
+﻿using Game.Scripts.App.States;
 
-namespace Game.Scripts.Game
+namespace Game.Scripts.App
 {
     public class AppStateChanger
     {

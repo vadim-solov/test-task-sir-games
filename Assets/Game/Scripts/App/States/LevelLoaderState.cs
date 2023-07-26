@@ -1,6 +1,6 @@
 ﻿using Game.Scripts.StateMachine;
 
-namespace Game.Scripts.Game.States
+namespace Game.Scripts.App.States
 {
     public class LevelLoaderState : IState
     {

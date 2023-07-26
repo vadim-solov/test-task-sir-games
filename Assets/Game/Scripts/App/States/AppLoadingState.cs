@@ -1,7 +1,7 @@
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
-namespace Game.Scripts.Game.States
+namespace Game.Scripts.App.States
 {
     public class AppLoadingState : IState
     {
