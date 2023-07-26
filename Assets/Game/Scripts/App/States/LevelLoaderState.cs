@@ -15,7 +15,7 @@ namespace Game.Scripts.App.States
         {
             _gameObjectFactory.CreateLevel();
             _gameObjectFactory.CreatePlayerAndSetPosition();
-            _gameObjectFactory.CreateEnemies();
+            _gameObjectFactory.CreateEnemiesAndSetPositions();
         }
 
         public void Run()
