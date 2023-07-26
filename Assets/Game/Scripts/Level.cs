@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
 
-namespace Game.Scripts.Configs
+namespace Game.Scripts
 {
     public class Level : MonoBehaviour
     {

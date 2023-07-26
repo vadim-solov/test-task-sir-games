@@ -7,11 +7,14 @@ namespace Game.Scripts.Configs
     public class GameConfig : ScriptableObject
     {
         [SerializeField]
+        private Camera _cameraPrefab;
+        [SerializeField]
         private Player.Player _playerPrefab;
         [SerializeField]
         private List<Level> _allLevels;
 
         public Player.Player PlayerPrefab => _playerPrefab;
         public List<Level> AllLevels => _allLevels;
+        public Camera CameraPrefab => _cameraPrefab;
     }
 }

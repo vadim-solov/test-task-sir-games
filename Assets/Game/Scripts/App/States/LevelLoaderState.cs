@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.StateMachine;
+using UnityEngine;
 
 namespace Game.Scripts.App.States
 {
@@ -13,8 +14,13 @@ namespace Game.Scripts.App.States
 
         public void Enter()
         {
+            Player.Player player = _gameObjectFactory.CreatePlayerAndSetPosition();
+
+            Camera camera = _gameObjectFactory.CreateCamera();
+            CameraFollowing cameraFollowing = camera.GetComponent<CameraFollowing>();
+            cameraFollowing.Init(player.transform);
+
             _gameObjectFactory.CreateLevel();
-            _gameObjectFactory.CreatePlayerAndSetPosition();
             _gameObjectFactory.CreateEnemiesAndSetPositions();
         }
 
