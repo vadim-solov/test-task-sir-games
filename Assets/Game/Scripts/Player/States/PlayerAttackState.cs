@@ -1,4 +1,4 @@
-using Game.Scripts.Enemy;
+using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ namespace Game.Scripts.Player.States
 {
     public class PlayerAttackState : MonoBehaviour, IState
     {
-        private AllEnemiesCollection _allEnemiesCollection;
+        private IAllEnemiesCollection _allEnemiesCollection;
 
-        public void Init(AllEnemiesCollection allEnemiesCollection)
+        public void Init(IAllEnemiesCollection allEnemiesCollection)
         {
             _allEnemiesCollection = allEnemiesCollection;
         }

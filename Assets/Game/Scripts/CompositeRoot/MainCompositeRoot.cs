@@ -1,6 +1,6 @@
 ﻿using Game.Scripts.App;
 using Game.Scripts.Configs;
-using Game.Scripts.Enemy;
+using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace Game.Scripts.CompositeRoot
         private void Awake()
         {
             _inputService = new DesktopInput();
-            AllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
+            IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             GameObjectFactory gameObjectFactory =
                 new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection);
             AppStateChanger appStateChanger = new AppStateChanger(gameObjectFactory);

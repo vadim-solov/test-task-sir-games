@@ -1,5 +1,5 @@
 using Game.Scripts.Configs;
-using Game.Scripts.Enemy;
+using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
@@ -10,10 +10,10 @@ namespace Game.Scripts
     {
         private readonly GameConfig _gameConfig;
         private readonly IInputService _inputService;
-        private readonly AllEnemiesCollection _allEnemiesCollection;
+        private readonly IAllEnemiesCollection _allEnemiesCollection;
 
         public GameObjectFactory(GameConfig gameConfig, IInputService inputService,
-            AllEnemiesCollection allEnemiesCollection)
+            IAllEnemiesCollection allEnemiesCollection)
         {
             _gameConfig = gameConfig;
             _inputService = inputService;

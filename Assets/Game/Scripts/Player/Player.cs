@@ -1,5 +1,5 @@
-﻿using Game.Scripts.Enemy;
-using Game.Scripts.Player.States;
+﻿using Game.Scripts.Player.States;
+using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Game.Scripts.Player
         private IInputService _inputService;
         private StateMachine.StateMachine _stateMachine;
 
-        public void Init(IInputService inputService, AllEnemiesCollection allEnemiesCollection)
+        public void Init(IInputService inputService, IAllEnemiesCollection allEnemiesCollection)
         {
             _inputService = inputService;
             _stateMachine = new StateMachine.StateMachine();
