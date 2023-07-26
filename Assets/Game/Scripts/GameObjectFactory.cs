@@ -42,7 +42,7 @@ namespace Game.Scripts
             Player.Player player = Object.Instantiate(_gameConfig.PlayerPrefab, playerPosition.transform.position,
                 Quaternion.identity);
             player.GetComponent<Player.Player>();
-            player.Init(_inputService, _allEnemiesCollection);
+            player.Init(_inputService, _allEnemiesCollection, _gameConfig);
             _playerGameObject.SetPlayer(player);
             return player;
         }

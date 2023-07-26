@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a89f6857784047b5bd05d5fa757c46, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
+  _waitingTimeForLevelActivation: 3
   _cameraPrefab: {fileID: 4928798379214481035, guid: aa6affde84972e74597abee19b3e7447, type: 3}
   _playerPrefab: {fileID: 3267587022310214094, guid: f1b778def46283b49a87a414c2dcab88, type: 3}
+  _playerWeaponsPrefabs:
+  - {fileID: 7722925941066958692, guid: fa54249d3a64f4a4e9344b86b20adfbb, type: 3}
+  - {fileID: 2770178017358380753, guid: b7ac9460898a6a746b1657eed6c08f22, type: 3}
   _allLevels:
   - {fileID: 8605206317570716812, guid: c98578bdd17be284cb7f9ec5e872cd78, type: 3}

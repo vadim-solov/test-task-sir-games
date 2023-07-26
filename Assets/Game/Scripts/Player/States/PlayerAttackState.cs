@@ -1,3 +1,5 @@
+using Game.Scripts.Configs;
+using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -7,10 +9,12 @@ namespace Game.Scripts.Player.States
     public class PlayerAttackState : MonoBehaviour, IState
     {
         private IAllEnemiesCollection _allEnemiesCollection;
+        private PlayerWeapon _playerWeapon;
 
-        public void Init(IAllEnemiesCollection allEnemiesCollection)
+        public void Init(IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
         {
             _allEnemiesCollection = allEnemiesCollection;
+            _playerWeapon = gameConfig.PlayerWeaponsPrefabs[0];
         }
 
         public void Enter()
@@ -21,6 +25,7 @@ namespace Game.Scripts.Player.States
         public void Run()
         {
             TurnToClosestEnemy();
+            _playerWeapon.Fire();
         }
 
         public void Exit()
