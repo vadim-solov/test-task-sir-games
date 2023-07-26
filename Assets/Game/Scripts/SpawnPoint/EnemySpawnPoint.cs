@@ -4,5 +4,14 @@ namespace Game.Scripts.SpawnPoint
 {
     public class EnemySpawnPoint : MonoBehaviour
     {
+        [SerializeField]
+        private EnemyType _enemyType;
+
+        public EnemyType EnemyType => _enemyType;
+    }
+
+    public enum EnemyType
+    {
+        ShootingEnemy,
     }
 }
