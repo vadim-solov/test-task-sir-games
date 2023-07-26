@@ -1,3 +1,4 @@
+using Game.Scripts.Enemy;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
@@ -5,6 +6,13 @@ namespace Game.Scripts.Player.States
 {
     public class PlayerAttackState : MonoBehaviour, IState
     {
+        private AllEnemiesCollection _allEnemiesCollection;
+
+        public void Init(AllEnemiesCollection allEnemiesCollection)
+        {
+            _allEnemiesCollection = allEnemiesCollection;
+        }
+
         public void Enter()
         {
             Debug.Log("enter in attack state");
@@ -12,12 +20,21 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            Debug.Log("attack state");
+            TurnToClosestEnemy();
         }
 
         public void Exit()
         {
             Debug.Log("exit on attack state");
+        }
+
+        private void TurnToClosestEnemy()
+        {
+            Enemy.Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
+            Vector3 directionToTarget = closestEnemy.transform.position - transform.position;
+            directionToTarget.y = 0f;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
     }
 }

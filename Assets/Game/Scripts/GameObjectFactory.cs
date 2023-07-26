@@ -1,4 +1,5 @@
 using Game.Scripts.Configs;
+using Game.Scripts.Enemy;
 using Game.Scripts.Services.Input;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
@@ -9,11 +10,14 @@ namespace Game.Scripts
     {
         private readonly GameConfig _gameConfig;
         private readonly IInputService _inputService;
+        private readonly AllEnemiesCollection _allEnemiesCollection;
 
-        public GameObjectFactory(GameConfig gameConfig, IInputService inputService)
+        public GameObjectFactory(GameConfig gameConfig, IInputService inputService,
+            AllEnemiesCollection allEnemiesCollection)
         {
             _gameConfig = gameConfig;
             _inputService = inputService;
+            _allEnemiesCollection = allEnemiesCollection;
         }
 
         public Camera CreateCamera(Transform cameraTargetTransform)
@@ -35,7 +39,7 @@ namespace Game.Scripts
             Player.Player player = Object.Instantiate(_gameConfig.PlayerPrefab, playerPosition.transform.position,
                 Quaternion.identity);
             player.GetComponent<Player.Player>();
-            player.Init(_inputService);
+            player.Init(_inputService, _allEnemiesCollection);
             return player;
         }
 
@@ -43,8 +47,9 @@ namespace Game.Scripts
         {
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
-                Object.Instantiate(enemySpawnPoint.EnemyPrefab, enemySpawnPoint.transform.position,
+                Enemy.Enemy enemy = Object.Instantiate(enemySpawnPoint.EnemyPrefab, enemySpawnPoint.transform.position,
                     Quaternion.identity);
+                _allEnemiesCollection.AddEnemyToList(enemy);
             }
         }
     }
