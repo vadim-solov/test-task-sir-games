@@ -31,8 +31,18 @@ namespace Game.Scripts.Player
             _stateMachine.CurrentState.Run();
         }
 
+        public void SetAttackState()
+        {
+            _stateMachine.ChangeStateIfNewStateDifferent(_attacState);
+        }
+
         private void TryChangeState()
         {
+            if (_stateMachine.CurrentState.GetType() == typeof(PlayerIdleState))
+            {
+                return;
+            }
+
             if (IsMove())
             {
                 _stateMachine.ChangeStateIfNewStateDifferent(_movementState);

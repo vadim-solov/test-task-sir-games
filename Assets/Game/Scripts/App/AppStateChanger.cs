@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.App.States;
 using Game.Scripts.Configs;
+using Game.Scripts.Services.PlayerInstance;
 
 namespace Game.Scripts.App
 {
@@ -11,12 +12,13 @@ namespace Game.Scripts.App
         private readonly GameplayState _gameplayState;
         private readonly StateMachine.StateMachine _stateMachine;
 
-        public AppStateChanger(GameObjectFactory gameObjectFactory, GameConfig gameConfig)
+        public AppStateChanger(GameObjectFactory gameObjectFactory, GameConfig gameConfig,
+            IPlayerGameObject playerGameObject)
         {
             _appLoadingState = new AppLoadingState();
             _levelLoaderState = new LevelLoaderState(gameObjectFactory);
             _countdownState = new CountdownState(gameConfig);
-            _gameplayState = new GameplayState();
+            _gameplayState = new GameplayState(playerGameObject);
             _stateMachine = new StateMachine.StateMachine();
             _countdownState.CountdownIsOver += OnCountdownIsOver;
         }

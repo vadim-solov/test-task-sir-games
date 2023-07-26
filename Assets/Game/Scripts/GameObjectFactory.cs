@@ -1,6 +1,7 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
+using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
 
@@ -11,13 +12,15 @@ namespace Game.Scripts
         private readonly GameConfig _gameConfig;
         private readonly IInputService _inputService;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
+        private readonly IPlayerGameObject _playerGameObject;
 
         public GameObjectFactory(GameConfig gameConfig, IInputService inputService,
-            IAllEnemiesCollection allEnemiesCollection)
+            IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject)
         {
             _gameConfig = gameConfig;
             _inputService = inputService;
             _allEnemiesCollection = allEnemiesCollection;
+            _playerGameObject = playerGameObject;
         }
 
         public Camera CreateCamera(Transform cameraTargetTransform)
@@ -40,6 +43,7 @@ namespace Game.Scripts
                 Quaternion.identity);
             player.GetComponent<Player.Player>();
             player.Init(_inputService, _allEnemiesCollection);
+            _playerGameObject.SetPlayer(player);
             return player;
         }
 

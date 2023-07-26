@@ -2,6 +2,7 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
+using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 
 namespace Game.Scripts.CompositeRoot
@@ -18,9 +19,10 @@ namespace Game.Scripts.CompositeRoot
         {
             _inputService = new DesktopInput();
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
+            IPlayerGameObject playerGameObject = new PlayerGameObject();
             GameObjectFactory gameObjectFactory =
-                new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection);
-            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig);
+                new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection, playerGameObject);
+            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject);
             _appStateChanger.StartApp();
         }
 
