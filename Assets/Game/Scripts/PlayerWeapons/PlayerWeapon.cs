@@ -24,18 +24,18 @@ namespace Game.Scripts.PlayerWeapons
             _attackSpeed = gameConfig.PlayerConfig.AttackSpeed;
         }
 
-        protected abstract void Fire();
+        protected abstract void Fire(Transform targetTransform);
 
         private void Update()
         {
             _timer += Time.deltaTime;
         }
 
-        public void FireIfReloaded()
+        public void FireIfReloaded(Transform targetTransform)
         {
             if (_timer >= ReloadTime)
             {
-                Fire();
+                Fire(targetTransform);
                 _timer = 0f;
             }
         }

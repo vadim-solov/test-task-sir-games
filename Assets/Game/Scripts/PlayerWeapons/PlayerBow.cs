@@ -4,11 +4,12 @@ namespace Game.Scripts.PlayerWeapons
 {
     public class PlayerBow : PlayerWeapon
     {
-        protected override void Fire()
+        protected override void Fire(Transform targetTransform)
         {
-            Debug.Log("PlayerDefaultBow shoot!");
-            PlayerWeaponProjectile projectile = _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab);
-            projectile.transform.position = _attackPoint.position;
+            PlayerWeaponProjectile projectile =
+                _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab, _attackPoint.position);
+            projectile.Init(targetTransform, _attackSpeed, _attackPower);
+            projectile.MoveToTarget();
         }
     }
 }

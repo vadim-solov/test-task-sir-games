@@ -28,18 +28,18 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            TurnToClosestEnemy();
-            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded();
+            Enemy.Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
+            TurnToClosestEnemy(closestEnemy.transform.position);
+            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform);
         }
 
         public void Exit()
         {
         }
 
-        private void TurnToClosestEnemy()
+        private void TurnToClosestEnemy(Vector3 enemyPosition)
         {
-            Enemy.Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
-            Vector3 directionToTarget = closestEnemy.transform.position - transform.position;
+            Vector3 directionToTarget = enemyPosition - transform.position;
             directionToTarget.y = 0f;
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
