@@ -19,11 +19,11 @@ namespace Game.Scripts.Enemies.States
 
         public void Enter()
         {
-            _navMeshAgent.Move(_target.Instance.transform.position);
         }
 
         public void Run()
         {
+            _navMeshAgent.SetDestination(_target.Instance.transform.position);
         }
 
         public void Exit()

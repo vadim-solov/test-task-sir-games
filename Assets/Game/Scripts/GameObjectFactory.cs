@@ -61,7 +61,7 @@ namespace Game.Scripts
             {
                 EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
                 Enemy enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
-                    Quaternion.identity);
+                    enemySpawnPoint.transform.rotation);
                 Health healthComponent = enemy.GetComponent<Health>();
                 healthComponent.Init(enemyConfig.MaxHP);
                 enemy.Init(_allEnemiesCollection, _playerGameObject);
