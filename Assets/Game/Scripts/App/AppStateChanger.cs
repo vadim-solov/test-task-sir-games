@@ -16,7 +16,7 @@ namespace Game.Scripts.App
             IPlayerGameObject playerGameObject)
         {
             _appLoadingState = new AppLoadingState();
-            _levelLoaderState = new LevelLoaderState(gameObjectFactory);
+            _levelLoaderState = new LevelLoaderState(gameObjectFactory, gameConfig);
             _countdownState = new CountdownState(gameConfig);
             _gameplayState = new GameplayState(playerGameObject);
             _stateMachine = new StateMachine.StateMachine();

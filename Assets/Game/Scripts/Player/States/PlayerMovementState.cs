@@ -13,6 +13,8 @@ namespace Game.Scripts.Player.States
         private IInputService _inputService;
         private float _movementSpeed;
 
+        private const float RotationSpeed = 10f;
+
         public void Init(GameConfig gameConfig)
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
@@ -25,7 +27,6 @@ namespace Game.Scripts.Player.States
 
         public void Enter()
         {
-            Debug.Log("enter in movement  state");
         }
 
         public void Run()
@@ -36,7 +37,6 @@ namespace Game.Scripts.Player.States
 
         public void Exit()
         {
-            Debug.Log("exit on movement state");
         }
 
         private void MoveToNextPosition()
@@ -51,7 +51,7 @@ namespace Game.Scripts.Player.States
         {
             Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
         }
     }
 }

@@ -1,4 +1,6 @@
+using System.Linq;
 using Game.Scripts.Configs;
+using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Input;
@@ -59,6 +61,15 @@ namespace Game.Scripts
                     enemySpawnPoint.transform.position,
                     Quaternion.identity);
                 _allEnemiesCollection.AddEnemyToList(enemy);
+            }
+        }
+
+        public void CreatePlayerWeapon(PlayerWeapon playerWeapon, Transform weaponPoint)
+        {
+            foreach (PlayerWeapon playerWeaponPrefab in _gameConfig.PlayerWeaponsPrefabs
+                         .Where(playerWeaponPrefab => playerWeapon == playerWeaponPrefab))
+            {
+                Object.Instantiate(playerWeaponPrefab, weaponPoint);
             }
         }
     }

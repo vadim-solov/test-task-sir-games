@@ -11,6 +11,8 @@ namespace Game.Scripts.Player.States
         private IAllEnemiesCollection _allEnemiesCollection;
         private PlayerWeapon _playerWeapon;
 
+        private const float RotationSpeed = 10f;
+
         public void Init(IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
         {
             _allEnemiesCollection = allEnemiesCollection;
@@ -19,7 +21,6 @@ namespace Game.Scripts.Player.States
 
         public void Enter()
         {
-            Debug.Log("enter in attack state");
         }
 
         public void Run()
@@ -30,7 +31,6 @@ namespace Game.Scripts.Player.States
 
         public void Exit()
         {
-            Debug.Log("exit on attack state");
         }
 
         private void TurnToClosestEnemy()
@@ -39,7 +39,7 @@ namespace Game.Scripts.Player.States
             Vector3 directionToTarget = closestEnemy.transform.position - transform.position;
             directionToTarget.y = 0f;
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
         }
     }
 }
