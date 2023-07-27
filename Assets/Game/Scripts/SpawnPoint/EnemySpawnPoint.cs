@@ -1,4 +1,4 @@
-using Game.Scripts.Enemy;
+using Game.Scripts.Enemies;
 using UnityEngine;
 
 namespace Game.Scripts.SpawnPoint

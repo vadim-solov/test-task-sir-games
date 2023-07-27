@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Game.Scripts.Enemies;
 using UnityEngine;
 
 namespace Game.Scripts.Services.EnemiesCollection
 {
     public class AllEnemiesCollection : IAllEnemiesCollection
     {
-        private readonly List<Enemy.Enemy> _allEnemies = new List<Enemy.Enemy>();
+        private readonly List<Enemy> _allEnemies = new List<Enemy>();
 
-        public void AddEnemyToList(Enemy.Enemy enemy)
+        public void AddEnemyToList(Enemy enemy)
         {
             _allEnemies.Add(enemy);
         }
 
-        public Enemy.Enemy FindClosestEnemy(Vector3 position)
+        public Enemy FindClosestEnemy(Vector3 position)
         {
             return _allEnemies.Count == 0
                 ? null

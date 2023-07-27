@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Game.Scripts.Configs;
-using Game.Scripts.Enemy;
+using Game.Scripts.Enemies;
 
 namespace Game.Scripts.Services.EnemiesGetter
 {
@@ -13,7 +13,7 @@ namespace Game.Scripts.Services.EnemiesGetter
             _gameConfig = gameConfig;
         }
 
-        public Enemy.Enemy GetEnemyByType(EnemyType enemyType)
+        public Enemy GetEnemyByType(EnemyType enemyType)
         {
             return _gameConfig.EnemiesConfig
                 .Where(enemyConfig => enemyConfig.EnemyType == enemyType)

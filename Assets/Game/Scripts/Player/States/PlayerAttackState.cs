@@ -1,3 +1,4 @@
+using Game.Scripts.Enemies;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            Enemy.Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
+            Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
             TurnToClosestEnemy(closestEnemy.transform.position);
             _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform);
         }

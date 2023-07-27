@@ -1,9 +1,9 @@
-﻿using Game.Scripts.Enemy;
+﻿using Game.Scripts.Enemies;
 
 namespace Game.Scripts.Services.EnemiesGetter
 {
     public interface IEnemyGetter
     {
-        public Enemy.Enemy GetEnemyByType(EnemyType enemyType);
+        public Enemy GetEnemyByType(EnemyType enemyType);
     }
 }
