@@ -64,7 +64,7 @@ namespace Game.Scripts
                     Quaternion.identity);
                 Health healthComponent = enemy.GetComponent<Health>();
                 healthComponent.Init(enemyConfig.MaxHP);
-                enemy.Init(_allEnemiesCollection);
+                enemy.Init(_allEnemiesCollection, _playerGameObject);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }
