@@ -7,6 +7,8 @@ namespace Game.Scripts.PlayerWeapons
         protected override void Fire()
         {
             Debug.Log("PlayerDefaultBow shoot!");
+            PlayerWeaponProjectile projectile = _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab);
+            projectile.transform.position = _attackPoint.position;
         }
     }
 }

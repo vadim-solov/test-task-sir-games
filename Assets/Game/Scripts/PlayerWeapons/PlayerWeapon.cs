@@ -5,14 +5,21 @@ namespace Game.Scripts.PlayerWeapons
 {
     public abstract class PlayerWeapon : MonoBehaviour
     {
-        private float _attackPower;
-        private float _attackSpeed;
-        private float _timer;
+        [SerializeField]
+        protected PlayerWeaponProjectile _projectilePrefab;
+        [SerializeField]
+        protected Transform _attackPoint;
 
+        private protected float _attackSpeed;
+        protected float _attackPower;
+        protected GameObjectFactory _gameObjectFactory;
+
+        private float _timer;
         private const float ReloadTime = 0.5f;
 
-        public void Init(GameConfig gameConfig)
+        public void Init(GameObjectFactory gameObjectFactory, GameConfig gameConfig)
         {
+            _gameObjectFactory = gameObjectFactory;
             _attackPower = gameConfig.PlayerConfig.AttackPower;
             _attackSpeed = gameConfig.PlayerConfig.AttackSpeed;
         }
@@ -26,8 +33,6 @@ namespace Game.Scripts.PlayerWeapons
 
         public void FireIfReloaded()
         {
-            _timer += Time.deltaTime;
-
             if (_timer >= ReloadTime)
             {
                 Fire();

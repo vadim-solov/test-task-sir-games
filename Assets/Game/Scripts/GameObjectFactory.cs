@@ -64,11 +64,17 @@ namespace Game.Scripts
             }
         }
 
-        public void CreatePlayerWeapon(Player.Player player)
+        public void CreateAndSetPlayerWeapon(Player.Player player)
         {
             PlayerWeapon playerWeapon = Object.Instantiate(_gameConfig.PlayerWeaponsPrefabs[0]);
+            playerWeapon.Init(this, _gameConfig);
             CurrentPlayerWeapon playerWeaponComponent = player.GetComponent<CurrentPlayerWeapon>();
             playerWeaponComponent.SetWeapon(playerWeapon);
+        }
+
+        public PlayerWeaponProjectile CreateProjectilePlayerWeapon(PlayerWeaponProjectile playerWeaponProjectile)
+        {
+            return Object.Instantiate(playerWeaponProjectile);
         }
     }
 }
