@@ -23,10 +23,11 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private List<EnemyConfig> _enemiesConfig;
 
+        public Camera CameraPrefab => _cameraPrefab;
+        public List<Level> AllLevels => _allLevels;
         public PlayerConfig PlayerConfig => _playerConfig;
         public List<PlayerWeapon> PlayerWeaponsPrefabs => _playerWeaponsPrefabs;
-        public List<Level> AllLevels => _allLevels;
-        public Camera CameraPrefab => _cameraPrefab;
         public float WaitingTimeForLevelActivation => _waitingTimeForLevelActivation;
+        public List<EnemyConfig> EnemiesConfig => _enemiesConfig;
     }
 }

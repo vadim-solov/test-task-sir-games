@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Enemy;
 using UnityEngine;
 
 namespace Game.Scripts.Configs
@@ -7,8 +8,14 @@ namespace Game.Scripts.Configs
     public class EnemyConfig
     {
         [SerializeField]
+        private EnemyType _enemyType;
+        [SerializeField]
         private Enemy.Enemy _enemyPrefab;
         [SerializeField]
         private float _movementSpeed;
+
+        public EnemyType EnemyType => _enemyType;
+        public Enemy.Enemy EnemyPrefab => _enemyPrefab;
+        public float MovementSpeed => _movementSpeed;
     }
 }

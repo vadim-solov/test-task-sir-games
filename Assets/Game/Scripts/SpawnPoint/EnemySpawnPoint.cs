@@ -1,3 +1,4 @@
+using Game.Scripts.Enemy;
 using UnityEngine;
 
 namespace Game.Scripts.SpawnPoint
@@ -5,8 +6,8 @@ namespace Game.Scripts.SpawnPoint
     public class EnemySpawnPoint : MonoBehaviour
     {
         [SerializeField]
-        private Enemy.Enemy _enemyPrefab;
+        private EnemyType _enemyType;
 
-        public Enemy.Enemy EnemyPrefab => _enemyPrefab;
+        public EnemyType EnemyType => _enemyType;
     }
 }
