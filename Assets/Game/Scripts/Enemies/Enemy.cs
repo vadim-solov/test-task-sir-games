@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Enemies.States;
+﻿using Game.Scripts.Configs;
+using Game.Scripts.Enemies.States;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
@@ -18,12 +19,13 @@ namespace Game.Scripts.Enemies
         private Health _health;
         private StateMachine.StateMachine _stateMachine;
 
-        public void Init(IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject)
+        public void Init(IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
+            EnemyConfig enemyConfig)
         {
             _health = GetComponent<Health>();
             _stateMachine = new StateMachine.StateMachine();
             _dieState.Init(this, allEnemiesCollection);
-            _movementState.Init(playerGameObject);
+            _movementState.Init(playerGameObject, enemyConfig.MovementSpeed);
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
         }

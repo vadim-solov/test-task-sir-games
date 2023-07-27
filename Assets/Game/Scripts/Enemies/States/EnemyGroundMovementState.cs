@@ -8,9 +8,10 @@ namespace Game.Scripts.Enemies.States
     {
         private NavMeshAgent _navMeshAgent;
 
-        public void Awake()
+        public void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.speed = _movementSpeed;
         }
 
         public override void Enter()

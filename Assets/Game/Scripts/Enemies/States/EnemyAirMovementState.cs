@@ -23,7 +23,7 @@ namespace Game.Scripts.Enemies.States
             Vector3 directionToPlayer = _target.Instance.transform.position - transform.position;
             directionToPlayer.y = 0f;
             directionToPlayer.Normalize();
-            transform.position += directionToPlayer * 1f * Time.deltaTime;
+            transform.position += directionToPlayer * _movementSpeed * Time.deltaTime;
         }
     }
 }

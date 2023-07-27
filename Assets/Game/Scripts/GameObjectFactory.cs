@@ -64,7 +64,7 @@ namespace Game.Scripts
                     enemySpawnPoint.transform.rotation);
                 Health healthComponent = enemy.GetComponent<Health>();
                 healthComponent.Init(enemyConfig.MaxHP);
-                enemy.Init(_allEnemiesCollection, _playerGameObject);
+                enemy.Init(_allEnemiesCollection, _playerGameObject, enemyConfig);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }
