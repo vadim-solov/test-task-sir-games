@@ -2038,6 +2038,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3670347562378218309, guid: 9b3df78f6a367de47a9d59a401304f3d, type: 3}
     - target: {fileID: 5328219503258170095, guid: c33a7e24005f2f24db511d722d9934a0, type: 3}
+      propertyPath: _enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328219503258170095, guid: c33a7e24005f2f24db511d722d9934a0, type: 3}
       propertyPath: _enemyPrefab
       value: 
       objectReference: {fileID: 3670347562378218309, guid: 9b3df78f6a367de47a9d59a401304f3d, type: 3}

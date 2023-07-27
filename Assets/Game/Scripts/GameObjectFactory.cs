@@ -60,6 +60,7 @@ namespace Game.Scripts
             {
                 Enemy enemy = Object.Instantiate(_enemyGetter.GetEnemyByType(enemySpawnPoint.EnemyType),
                     enemySpawnPoint.transform.position, Quaternion.identity);
+                enemy.Init();
                 _allEnemiesCollection.AddEnemyToList(enemy);
             }
         }

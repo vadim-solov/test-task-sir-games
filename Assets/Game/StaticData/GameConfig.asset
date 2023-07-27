@@ -29,3 +29,6 @@ MonoBehaviour:
   - _enemyType: 0
     _enemyPrefab: {fileID: 3670347562378218309, guid: 9b3df78f6a367de47a9d59a401304f3d, type: 3}
     _movementSpeed: 10
+  - _enemyType: 1
+    _enemyPrefab: {fileID: 4932913199257032519, guid: ca37bb2deb21ce54bae119d320523eda, type: 3}
+    _movementSpeed: 10
