@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _idleState: {fileID: 664945683569011114}
   _dieState: {fileID: -3294286929755135700}
-  _movementState: {fileID: 9178764462130381337}
+  _groundMovementState: {fileID: 9178764462130381337}
 --- !u!114 &664945683569011114
 MonoBehaviour:
   m_ObjectHideFlags: 0
