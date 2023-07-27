@@ -1,5 +1,5 @@
-using System.Linq;
 using Game.Scripts.Configs;
+using Game.Scripts.Player;
 using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
@@ -64,13 +64,11 @@ namespace Game.Scripts
             }
         }
 
-        public void CreatePlayerWeapon(PlayerWeapon playerWeapon, Transform weaponPoint)
+        public void CreatePlayerWeapon(Player.Player player)
         {
-            foreach (PlayerWeapon playerWeaponPrefab in _gameConfig.PlayerWeaponsPrefabs
-                         .Where(playerWeaponPrefab => playerWeapon == playerWeaponPrefab))
-            {
-                Object.Instantiate(playerWeaponPrefab, weaponPoint);
-            }
+            PlayerWeapon playerWeapon = Object.Instantiate(_gameConfig.PlayerWeaponsPrefabs[0]);
+            CurrentPlayerWeapon playerWeaponComponent = player.GetComponent<CurrentPlayerWeapon>();
+            playerWeaponComponent.SetWeapon(playerWeapon);
         }
     }
 }

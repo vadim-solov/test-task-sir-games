@@ -14,20 +14,16 @@ namespace Game.Scripts.Player
         private PlayerAttackState _attacState;
         [SerializeField]
         private PlayerMovementState _movementState;
-        [SerializeField]
-        private Transform _weaponPoint;
 
         private IInputService _inputService;
         private StateMachine.StateMachine _stateMachine;
-
-        public Transform WeaponPoint => _weaponPoint;
 
         public void Init(IInputService inputService, IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
         {
             _inputService = inputService;
             _stateMachine = new StateMachine.StateMachine();
             _stateMachine.Init(_idleState);
-            _attacState.Init(allEnemiesCollection, gameConfig);
+            _attacState.Init(allEnemiesCollection);
             _movementState.Init(gameConfig);
         }
 

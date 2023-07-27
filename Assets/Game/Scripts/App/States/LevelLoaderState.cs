@@ -18,8 +18,8 @@ namespace Game.Scripts.App.States
         {
             _gameObjectFactory.CreateLevel();
             Player.Player player = _gameObjectFactory.CreatePlayerAndSetPosition();
+            _gameObjectFactory.CreatePlayerWeapon(player);
             _gameObjectFactory.CreateCamera(player.transform);
-            _gameObjectFactory.CreatePlayerWeapon(_gameConfig.PlayerWeaponsPrefabs[0], player.WeaponPoint);
             _gameObjectFactory.CreateEnemiesAndSetPositions();
         }
 

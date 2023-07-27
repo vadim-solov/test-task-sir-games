@@ -1,22 +1,25 @@
-using Game.Scripts.Configs;
-using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
+    [RequireComponent(typeof(CurrentPlayerWeapon))]
     public class PlayerAttackState : MonoBehaviour, IState
     {
         private IAllEnemiesCollection _allEnemiesCollection;
-        private PlayerWeapon _playerWeapon;
+        private CurrentPlayerWeapon _currentPlayerWeapon;
 
         private const float RotationSpeed = 10f;
 
-        public void Init(IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
+        private void Awake()
+        {
+            _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
+        }
+
+        public void Init(IAllEnemiesCollection allEnemiesCollection)
         {
             _allEnemiesCollection = allEnemiesCollection;
-            _playerWeapon = gameConfig.PlayerWeaponsPrefabs[0];
         }
 
         public void Enter()
@@ -26,7 +29,7 @@ namespace Game.Scripts.Player.States
         public void Run()
         {
             TurnToClosestEnemy();
-            _playerWeapon.Fire();
+            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded();
         }
 
         public void Exit()
