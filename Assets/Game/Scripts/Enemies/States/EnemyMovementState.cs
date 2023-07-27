@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Services.PlayerInstance;
+﻿using Game.Scripts.Configs;
+using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
@@ -8,15 +9,17 @@ namespace Game.Scripts.Enemies.States
     {
         protected IPlayerGameObject _target;
         protected float _movementSpeed;
+        protected float _stoppingDistance;
 
         public abstract void Enter();
         public abstract void Run();
         public abstract void Exit();
 
-        public void Init(IPlayerGameObject target, float movementSpeed)
+        public void Init(IPlayerGameObject target, EnemyConfig enemyConfig)
         {
             _target = target;
-            _movementSpeed = movementSpeed;
+            _movementSpeed = enemyConfig.MovementSpeed;
+            _stoppingDistance = enemyConfig.StoppingDistance;
         }
 
         protected void RotateToTarget()

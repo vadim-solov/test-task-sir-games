@@ -12,6 +12,7 @@ namespace Game.Scripts.Enemies.States
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _navMeshAgent.speed = _movementSpeed;
+            _navMeshAgent.stoppingDistance = _stoppingDistance;
         }
 
         public override void Enter()

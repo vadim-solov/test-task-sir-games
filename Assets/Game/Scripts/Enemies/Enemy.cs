@@ -25,7 +25,7 @@ namespace Game.Scripts.Enemies
             _health = GetComponent<Health>();
             _stateMachine = new StateMachine.StateMachine();
             _dieState.Init(this, allEnemiesCollection);
-            _movementState.Init(playerGameObject, enemyConfig.MovementSpeed);
+            _movementState.Init(playerGameObject, enemyConfig);
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
         }

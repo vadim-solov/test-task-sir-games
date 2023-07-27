@@ -15,10 +15,13 @@ namespace Game.Scripts.Configs
         private float _movementSpeed;
         [SerializeField]
         private float _maxHP;
+        [SerializeField]
+        private float _stoppingDistance;
 
         public EnemyType EnemyType => _enemyType;
         public Enemy EnemyPrefab => _enemyPrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;
+        public float StoppingDistance => _stoppingDistance;
     }
 }

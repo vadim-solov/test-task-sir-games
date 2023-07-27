@@ -21,7 +21,7 @@ MonoBehaviour:
     _movementSpeed: 5000
     _maxHP: 100
     _attackSpeed: 10
-    _attackPower: 10
+    _attackPower: 0.1
   _playerWeaponsPrefabs:
   - {fileID: 7722925941066958692, guid: fa54249d3a64f4a4e9344b86b20adfbb, type: 3}
   - {fileID: 2770178017358380753, guid: b7ac9460898a6a746b1657eed6c08f22, type: 3}
@@ -30,7 +30,9 @@ MonoBehaviour:
     _enemyPrefab: {fileID: 3670347562378218309, guid: 9b3df78f6a367de47a9d59a401304f3d, type: 3}
     _movementSpeed: 4
     _maxHP: 100
+    _stoppingDistance: 3
   - _enemyType: 1
     _enemyPrefab: {fileID: 4932913199257032519, guid: ca37bb2deb21ce54bae119d320523eda, type: 3}
     _movementSpeed: 1.5
     _maxHP: 70
+    _stoppingDistance: 5
