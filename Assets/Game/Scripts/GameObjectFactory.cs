@@ -39,7 +39,8 @@ namespace Game.Scripts
         public Player.Player CreatePlayerAndSetPosition()
         {
             PlayerSpawnPoint playerPosition = _gameConfig.AllLevels[0].PlayerSpawnPoint;
-            Player.Player player = Object.Instantiate(_gameConfig.PlayerPrefab, playerPosition.transform.position,
+            Player.Player player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
+                playerPosition.transform.position,
                 Quaternion.identity);
             player.GetComponent<Player.Player>();
             player.Init(_inputService, _allEnemiesCollection, _gameConfig);

@@ -24,6 +24,7 @@ namespace Game.Scripts.Player
             _stateMachine = new StateMachine.StateMachine();
             _stateMachine.Init(_idleState);
             _attacState.Init(allEnemiesCollection, gameConfig);
+            _movementState.Init(gameConfig);
         }
 
         private void Update()

@@ -7,18 +7,23 @@ namespace Game.Scripts.Configs
     [CreateAssetMenu(menuName = "Configs/GameConfig", fileName = "GameConfig")]
     public class GameConfig : ScriptableObject
     {
+        [Header("Game")]
         [SerializeField]
         private float _waitingTimeForLevelActivation = 3f;
         [SerializeField]
         private Camera _cameraPrefab;
         [SerializeField]
-        private Player.Player _playerPrefab;
+        private List<Level> _allLevels;
+        [Header("Player")]
+        [SerializeField]
+        private PlayerConfig _playerConfig;
         [SerializeField]
         private List<PlayerWeapon> _playerWeaponsPrefabs;
+        [Header("Enemies")]
         [SerializeField]
-        private List<Level> _allLevels;
+        private List<EnemyConfig> _enemiesConfig;
 
-        public Player.Player PlayerPrefab => _playerPrefab;
+        public PlayerConfig PlayerConfig => _playerConfig;
         public List<PlayerWeapon> PlayerWeaponsPrefabs => _playerWeaponsPrefabs;
         public List<Level> AllLevels => _allLevels;
         public Camera CameraPrefab => _cameraPrefab;

@@ -1,3 +1,4 @@
+using Game.Scripts.Configs;
 using Game.Scripts.Services.Input;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -10,6 +11,12 @@ namespace Game.Scripts.Player.States
         private CharacterController _characterController;
         //TODO Fix this
         private IInputService _inputService;
+        private float _movementSpeed;
+
+        public void Init(GameConfig gameConfig)
+        {
+            _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
+        }
 
         private void Awake()
         {
@@ -37,7 +44,7 @@ namespace Game.Scripts.Player.States
             Vector3 nexPosition =
                 new Vector3(Input.GetAxis("Horizontal"), transform.position.y, Input.GetAxis("Vertical"));
             nexPosition.Normalize();
-            _characterController.SimpleMove(nexPosition * 5000f * Time.deltaTime); //TODO set speed in config
+            _characterController.SimpleMove(nexPosition * _movementSpeed * Time.deltaTime);
         }
 
         private void TurnToDirectionMovement()
