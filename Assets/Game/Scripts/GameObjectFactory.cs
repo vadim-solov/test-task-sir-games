@@ -17,16 +17,17 @@ namespace Game.Scripts
         private readonly IInputService _inputService;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
-        private readonly IEnemyGetter _enemyGetter;
+        private readonly IEnemyConfigGetter _enemyConfigGetter;
 
         public GameObjectFactory(GameConfig gameConfig, IInputService inputService,
-            IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject, IEnemyGetter enemyGetter)
+            IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
+            IEnemyConfigGetter enemyConfigGetter)
         {
             _gameConfig = gameConfig;
             _inputService = inputService;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
-            _enemyGetter = enemyGetter;
+            _enemyConfigGetter = enemyConfigGetter;
         }
 
         public Camera CreateCamera(Transform cameraTargetTransform)
@@ -58,8 +59,11 @@ namespace Game.Scripts
         {
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
-                Enemy enemy = Object.Instantiate(_enemyGetter.GetEnemyByType(enemySpawnPoint.EnemyType),
-                    enemySpawnPoint.transform.position, Quaternion.identity);
+                EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
+                Enemy enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
+                    Quaternion.identity);
+                Health healthComponent = enemy.GetComponent<Health>();
+                healthComponent.Init(enemyConfig.MaxHP);
                 enemy.Init();
                 _allEnemiesCollection.AddEnemyToList(enemy);
             }

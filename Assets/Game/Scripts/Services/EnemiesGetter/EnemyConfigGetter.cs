@@ -4,20 +4,20 @@ using Game.Scripts.Enemies;
 
 namespace Game.Scripts.Services.EnemiesGetter
 {
-    public class EnemyGetter : IEnemyGetter
+    public class EnemyConfigGetter : IEnemyConfigGetter
     {
         private readonly GameConfig _gameConfig;
 
-        public EnemyGetter(GameConfig gameConfig)
+        public EnemyConfigGetter(GameConfig gameConfig)
         {
             _gameConfig = gameConfig;
         }
 
-        public Enemy GetEnemyByType(EnemyType enemyType)
+        public EnemyConfig GetEnemyConfigByType(EnemyType enemyType)
         {
             return _gameConfig.EnemiesConfig
                 .Where(enemyConfig => enemyConfig.EnemyType == enemyType)
-                .Select(enemyConfig => enemyConfig.EnemyPrefab).FirstOrDefault();
+                .Select(enemyConfig => enemyConfig).FirstOrDefault();
         }
     }
 }

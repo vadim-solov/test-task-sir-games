@@ -19,11 +19,12 @@ namespace Game.Scripts.CompositeRoot
         private void Awake()
         {
             _inputService = new DesktopInput();
-            IEnemyGetter enemyGetter = new EnemyGetter(_gameConfig);
+            IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(_gameConfig);
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             IPlayerGameObject playerGameObject = new PlayerGameObject();
             GameObjectFactory gameObjectFactory =
-                new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection, playerGameObject, enemyGetter);
+                new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection, playerGameObject,
+                    enemyConfigGetter);
             _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject);
             _appStateChanger.StartApp();
         }
