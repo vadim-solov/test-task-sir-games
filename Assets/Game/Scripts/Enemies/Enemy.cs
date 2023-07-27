@@ -34,6 +34,11 @@ namespace Game.Scripts.Enemies
             _health.Die -= OnDie;
         }
 
+        private void Update()
+        {
+            _stateMachine.CurrentState.Run();
+        }
+
         private void OnDie()
         {
             _stateMachine.ChangeStateIfNewStateDifferent(_dieState);
