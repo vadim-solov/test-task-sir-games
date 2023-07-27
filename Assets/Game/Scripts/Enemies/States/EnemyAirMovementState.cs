@@ -1,29 +1,20 @@
-﻿using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.StateMachine;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
-    public class EnemyAirMovementState : MonoBehaviour, IState
+    public class EnemyAirMovementState : EnemyMovementState
     {
-        private IPlayerGameObject _target;
-
-        public void Init(IPlayerGameObject target)
-        {
-            _target = target;
-        }
-
-        public void Enter()
+        public override void Enter()
         {
         }
 
-        public void Run()
+        public override void Run()
         {
             MoveToTarget();
             RotateToTarget();
         }
 
-        public void Exit()
+        public override void Exit()
         {
         }
 
@@ -33,11 +24,6 @@ namespace Game.Scripts.Enemies.States
             directionToPlayer.y = 0f;
             directionToPlayer.Normalize();
             transform.position += directionToPlayer * 1f * Time.deltaTime;
-        }
-
-        private void RotateToTarget()
-        {
-            transform.LookAt(_target.Instance.transform);
         }
     }
 }
