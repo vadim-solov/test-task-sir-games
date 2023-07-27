@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.Scripts
 {
@@ -7,15 +8,21 @@ namespace Game.Scripts
         private float _maxHP;
         private float _currentHP;
 
+        public event Action Die;
+
         public void Init(float maxHP)
         {
             _maxHP = maxHP;
+            _currentHP = _maxHP;
         }
 
         public void TakeDamage(float damage)
         {
-            _maxHP -= damage;
-            Debug.Log(_maxHP);
+            _currentHP -= damage;
+            if (_currentHP <= 0)
+            {
+                Die?.Invoke();
+            }
         }
     }
 }

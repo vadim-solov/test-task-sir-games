@@ -1,8 +1,9 @@
 ﻿using Game.Scripts.StateMachine;
+using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
-    public class EnemyIdleState : IState
+    public class EnemyIdleState : MonoBehaviour, IState
     {
         public void Enter()
         {

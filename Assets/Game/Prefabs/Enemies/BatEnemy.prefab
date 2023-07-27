@@ -91,8 +91,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6878008443950006446}
   - component: {fileID: 5545282130432631375}
-  - component: {fileID: 4932913199257032519}
   - component: {fileID: 5444154478638530973}
+  - component: {fileID: 4932913199257032519}
+  - component: {fileID: 2013323945156357401}
+  - component: {fileID: 7357670096133461543}
   m_Layer: 0
   m_Name: BatEnemy
   m_TagString: Untagged
@@ -128,6 +130,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5444154478638530973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268428898977429072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ad64085d814b869933bf578aca2d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4932913199257032519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda1ca113b8e4cfba8fc7165c243f95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5444154478638530973
+  _idleState: {fileID: 2013323945156357401}
+  _dieState: {fileID: 7357670096133461543}
+--- !u!114 &2013323945156357401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +165,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268428898977429072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ad64085d814b869933bf578aca2d9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f33faa7857d4a2181298d2f7814b4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7357670096133461543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268428898977429072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f901d510b34f4043aa5e139ee7ea5b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3425232545686540307

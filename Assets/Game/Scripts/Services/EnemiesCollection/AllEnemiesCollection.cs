@@ -9,9 +9,14 @@ namespace Game.Scripts.Services.EnemiesCollection
     {
         private readonly List<Enemy> _allEnemies = new List<Enemy>();
 
-        public void AddEnemyToList(Enemy enemy)
+        public void AddEnemyToCollection(Enemy enemy)
         {
             _allEnemies.Add(enemy);
+        }
+
+        public void RemoveFromCollection(Enemy enemy)
+        {
+            _allEnemies.Remove(enemy);
         }
 
         public Enemy FindClosestEnemy(Vector3 position)
