@@ -58,8 +58,7 @@ namespace Game.Scripts
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
                 Enemy.Enemy enemy = Object.Instantiate(_enemyGetter.GetEnemyByType(enemySpawnPoint.EnemyType),
-                    enemySpawnPoint.transform.position,
-                    Quaternion.identity);
+                    enemySpawnPoint.transform.position, Quaternion.identity);
                 _allEnemiesCollection.AddEnemyToList(enemy);
             }
         }

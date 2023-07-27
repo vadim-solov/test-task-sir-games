@@ -27,5 +27,17 @@ namespace Game.Scripts
             Vector3 direction = (_targetTransform.position - transform.position).normalized;
             _rigidbody.velocity = direction * _projectileSpeed;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            other.TryGetComponent(out Health health);
+
+            if (health != null)
+            {
+                health.TakeDamage(_attackPower);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }
