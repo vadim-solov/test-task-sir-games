@@ -16,11 +16,14 @@ namespace Game.Scripts.Configs
         private float _attackSpeed;
         [SerializeField]
         private float _attackPower;
+        [SerializeField]
+        private float _weaponReloadTime;
 
         public Player.Player PlayerPrefab => _playerPrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;
         public float AttackSpeed => _attackSpeed;
         public float AttackPower => _attackPower;
+        public float WeaponReloadTime => _weaponReloadTime;
     }
 }

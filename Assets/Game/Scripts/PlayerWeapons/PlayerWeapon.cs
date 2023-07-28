@@ -15,13 +15,14 @@ namespace Game.Scripts.PlayerWeapons
         protected GameObjectFactory _gameObjectFactory;
 
         private float _timer;
-        private const float ReloadTime = 0.5f;
+        private float _reloadTime;
 
         public void Init(GameObjectFactory gameObjectFactory, GameConfig gameConfig)
         {
             _gameObjectFactory = gameObjectFactory;
             _attackPower = gameConfig.PlayerConfig.AttackPower;
             _attackSpeed = gameConfig.PlayerConfig.AttackSpeed;
+            _reloadTime = gameConfig.PlayerConfig.WeaponReloadTime;
         }
 
         protected abstract void Fire(Transform targetTransform);
@@ -33,7 +34,7 @@ namespace Game.Scripts.PlayerWeapons
 
         public void FireIfReloaded(Transform targetTransform)
         {
-            if (_timer >= ReloadTime)
+            if (_timer >= _reloadTime)
             {
                 Fire(targetTransform);
                 _timer = 0f;
