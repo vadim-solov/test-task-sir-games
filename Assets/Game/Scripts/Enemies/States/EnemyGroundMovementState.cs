@@ -32,7 +32,7 @@ namespace Game.Scripts.Enemies.States
 
         private void MoveToTarget()
         {
-            _navMeshAgent.SetDestination(_target.Instance.transform.position);
+            _navMeshAgent.SetDestination(_playerGameObject.Instance.transform.position);
         }
     }
 }

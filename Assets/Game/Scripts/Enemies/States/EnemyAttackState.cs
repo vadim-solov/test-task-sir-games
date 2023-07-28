@@ -10,60 +10,51 @@ namespace Game.Scripts.Enemies.States
     public class EnemyAttackState : MonoBehaviour, IState
     {
         private IPlayerGameObject _playerGameObject;
-        private float _timer;
-        private float _attackReloadTime;
-        private bool _isAttackedInProgress;
         private float _waitingTimeAfterAttack;
+
+        private const float RotationSpeed = 10f;
 
         public event Action AttackComplete;
 
         public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig)
         {
             _playerGameObject = playerGameObject;
-            _attackReloadTime = enemyConfig.AttackReloadTime;
             _waitingTimeAfterAttack = enemyConfig.WaitingTimeAfterAttack;
-        }
-
-        private void Update()
-        {
-            _timer += Time.deltaTime;
         }
 
         public void Enter()
         {
+            StartCoroutine(StartAttack());
         }
 
         public void Run()
         {
-            TryAttack();
+            TurnToTarget();
         }
 
         public void Exit()
         {
-        }
-
-        private void TryAttack()
-        {
-            if (_isAttackedInProgress)
-            {
-                return;
-            }
-
-            if (_timer < _attackReloadTime)
-            {
-                return;
-            }
-
-            StartCoroutine(StartAttack());
+            StopCoroutine(StartAttack());
         }
 
         private IEnumerator StartAttack()
         {
-            _isAttackedInProgress = true;
+            Attack();
             yield return new WaitForSeconds(_waitingTimeAfterAttack);
-            _timer = 0f;
-            _isAttackedInProgress = false;
             AttackComplete?.Invoke();
+        }
+
+        private void Attack()
+        {
+            Debug.Log("attack");
+        }
+
+        private void TurnToTarget()
+        {
+            Vector3 directionToTarget = _playerGameObject.Instance.transform.position - transform.position;
+            directionToTarget.y = 0f;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
         }
     }
 }

@@ -8,9 +8,11 @@ namespace Game.Scripts.Enemies.States
 {
     public abstract class EnemyMovementState : MonoBehaviour, IState
     {
-        protected IPlayerGameObject _target;
+        protected IPlayerGameObject _playerGameObject;
         protected float _movementSpeed;
         protected float _stoppingDistance;
+
+        private const float RotationSpeed = 10f;
 
         public event Action StoppingDistanceAchieved;
 
@@ -18,21 +20,24 @@ namespace Game.Scripts.Enemies.States
         public abstract void Run();
         public abstract void Exit();
 
-        public void Init(IPlayerGameObject target, EnemyConfig enemyConfig)
+        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig)
         {
-            _target = target;
+            _playerGameObject = playerGameObject;
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
         }
 
         protected void RotateToTarget()
         {
-            transform.LookAt(_target.Instance.transform);
+            Vector3 directionToTarget = _playerGameObject.Instance.transform.position - transform.position;
+            directionToTarget.y = 0f;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
         }
 
         protected void CheckStoppingDistance()
         {
-            float distance = Vector3.Distance(_target.Instance.transform.position, transform.position);
+            float distance = Vector3.Distance(_playerGameObject.Instance.transform.position, transform.position);
 
             if (_stoppingDistance >= distance)
             {

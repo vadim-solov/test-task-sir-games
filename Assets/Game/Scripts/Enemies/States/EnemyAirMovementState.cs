@@ -21,7 +21,7 @@ namespace Game.Scripts.Enemies.States
 
         private void MoveToTarget()
         {
-            Vector3 directionToPlayer = _target.Instance.transform.position - transform.position;
+            Vector3 directionToPlayer = _playerGameObject.Instance.transform.position - transform.position;
             directionToPlayer.y = 0f;
             directionToPlayer.Normalize();
             transform.position += directionToPlayer * _movementSpeed * Time.deltaTime;
