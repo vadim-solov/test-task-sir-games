@@ -17,6 +17,12 @@ namespace Game.Scripts.CompositeRoot
 
         private void Awake()
         {
+            Init();
+            _appStateChanger.StartApp();
+        }
+
+        private void Init()
+        {
             IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(_gameConfig);
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             IPlayerGameObject playerGameObject = new PlayerGameObject();
@@ -28,8 +34,8 @@ namespace Game.Scripts.CompositeRoot
                 new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject, allEnemiesCollection,
                     coinSpawner);
             UIFactory uiFactory = new UIFactory();
-            uiFactory.CreateGameplayCanvas();
-            _appStateChanger.StartApp();
+            GameplayUI gameplayUI = uiFactory.CreateGameplayCanvas();
+            gameplayUI.Init(_appStateChanger, _gameConfig);
         }
 
         private void OnDisable()

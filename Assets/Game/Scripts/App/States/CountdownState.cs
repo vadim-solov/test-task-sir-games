@@ -11,6 +11,8 @@ namespace Game.Scripts.App.States
 
         private readonly float _waitingTimeForLevelActivation;
 
+        public float Timer => _timer;
+
         public event Action CountdownIsOver;
 
         public CountdownState(GameConfig gameConfig)

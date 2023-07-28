@@ -4,11 +4,11 @@ namespace Game.Scripts.UI
 {
     public class UIFactory
     {
-        private readonly Canvas _canvas = Resources.Load<Canvas>("Canvas");
+        private readonly GameplayUI _canvas = Resources.Load<GameplayUI>("Canvas");
 
-        public void CreateGameplayCanvas()
+        public GameplayUI CreateGameplayCanvas()
         {
-            Object.Instantiate(_canvas);
+            return Object.Instantiate(_canvas);
         }
     }
 }
