@@ -31,12 +31,14 @@ namespace Game.Scripts.Enemies
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
             _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;
+            _attackState.AttackComplete += OnAttackComplete;
         }
 
         private void OnDisable()
         {
             _health.Die -= OnDie;
-            _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;
+            _movementState.StoppingDistanceAchieved -= OnStoppingDistanceAchieved;
+            _attackState.AttackComplete -= OnAttackComplete;
         }
 
         private void Update()
@@ -52,6 +54,11 @@ namespace Game.Scripts.Enemies
         private void OnStoppingDistanceAchieved()
         {
             _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
+        }
+
+        private void OnAttackComplete()
+        {
+            _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
         }
     }
 }
