@@ -76,7 +76,7 @@ namespace Game.Scripts
             playerWeaponComponent.SetWeapon(playerWeapon);
         }
 
-        public Projectile CreateProjectilePlayerWeapon(Projectile projectile,
+        public Projectile CreateProjectile(Projectile projectile,
             Vector3 attackPointPosition)
         {
             return Object.Instantiate(projectile, attackPointPosition, Quaternion.identity);

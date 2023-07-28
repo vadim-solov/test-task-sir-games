@@ -8,7 +8,7 @@ namespace Game.Scripts.PlayerWeapons
         protected override void Fire(Transform targetTransform)
         {
             Projectile projectile =
-                _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab, _attackPoint.position);
+                _gameObjectFactory.CreateProjectile(_projectilePrefab, _attackPoint.position);
             projectile.Init(targetTransform, _projectileSpeed, _attackPower);
             projectile.MoveToTarget();
         }
