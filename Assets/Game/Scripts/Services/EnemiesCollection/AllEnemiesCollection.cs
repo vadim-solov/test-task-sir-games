@@ -13,6 +13,7 @@ namespace Game.Scripts.Services.EnemiesCollection
         public List<Enemy> AllEnemies => new List<Enemy>(_allEnemies);
 
         public event Action<Enemy> EnemyRemoved;
+        public event Action CollectionIsEmpty;
 
         public void AddEnemyToCollection(Enemy enemy)
         {
@@ -23,6 +24,15 @@ namespace Game.Scripts.Services.EnemiesCollection
         {
             _allEnemies.Remove(enemy);
             EnemyRemoved?.Invoke(enemy);
+            CheckEnemiesCount();
+        }
+
+        private void CheckEnemiesCount()
+        {
+            if (_allEnemies.Count <= 0)
+            {
+                CollectionIsEmpty?.Invoke();
+            }
         }
 
         public Enemy FindClosestEnemy(Vector3 position)

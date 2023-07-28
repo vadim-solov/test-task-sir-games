@@ -79,9 +79,9 @@ namespace Game.Scripts
             return Object.Instantiate(projectile, attackPointPosition, Quaternion.identity);
         }
 
-        public void CreateCoin(Vector3 position)
+        public Coin CreateCoin(Vector3 position)
         {
-            Object.Instantiate(_gameConfig.CoinPrefab, position, Quaternion.identity);
+            return Object.Instantiate(_gameConfig.CoinPrefab, position, Quaternion.identity);
         }
     }
 }

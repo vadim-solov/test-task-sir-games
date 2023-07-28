@@ -14,12 +14,12 @@ namespace Game.Scripts.App
         private readonly StateMachine.StateMachine _stateMachine;
 
         public AppStateChanger(GameObjectFactory gameObjectFactory, GameConfig gameConfig,
-            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection)
+            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner)
         {
             _appLoadingState = new AppLoadingState();
             _levelLoaderState = new LevelLoaderState(gameObjectFactory, gameConfig);
             _countdownState = new CountdownState(gameConfig);
-            _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection, gameObjectFactory);
+            _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection, coinSpawner);
             _stateMachine = new StateMachine.StateMachine();
             _countdownState.CountdownIsOver += OnCountdownIsOver;
         }

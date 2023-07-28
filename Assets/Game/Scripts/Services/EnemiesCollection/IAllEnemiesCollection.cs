@@ -10,6 +10,7 @@ namespace Game.Scripts.Services.EnemiesCollection
         public List<Enemy> AllEnemies { get; }
 
         public event Action<Enemy> EnemyRemoved;
+        public event Action CollectionIsEmpty;
 
         public void AddEnemyToCollection(Enemy enemy);
         public void RemoveFromCollection(Enemy enemy);

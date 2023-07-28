@@ -23,8 +23,10 @@ namespace Game.Scripts.CompositeRoot
             GameObjectFactory gameObjectFactory =
                 new GameObjectFactory(_gameConfig, allEnemiesCollection, playerGameObject,
                     enemyConfigGetter);
+            CoinSpawner coinSpawner = new CoinSpawner(gameObjectFactory);
             _appStateChanger =
-                new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject, allEnemiesCollection);
+                new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject, allEnemiesCollection,
+                    coinSpawner);
             UIFactory uiFactory = new UIFactory();
             uiFactory.CreateGameplayCanvas();
             _appStateChanger.StartApp();
