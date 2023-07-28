@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Projectiles
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerWeaponProjectile : MonoBehaviour
+    public abstract class Projectile : MonoBehaviour
     {
         private Rigidbody _rigidbody;
-        private float _attackPower;
+        protected float _attackPower;
         private Transform _targetTransform;
         private float _projectileSpeed;
 
@@ -26,18 +26,6 @@ namespace Game.Scripts
         {
             Vector3 direction = (_targetTransform.position - transform.position).normalized;
             _rigidbody.velocity = direction * _projectileSpeed;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            other.TryGetComponent(out Health health);
-
-            if (health != null)
-            {
-                health.TakeDamage(_attackPower);
-            }
-
-            Destroy(gameObject);
         }
     }
 }

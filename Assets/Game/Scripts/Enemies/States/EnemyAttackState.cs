@@ -9,17 +9,23 @@ namespace Game.Scripts.Enemies.States
 {
     public class EnemyAttackState : MonoBehaviour, IState
     {
+        [SerializeField]
+        private Transform _attackPoint;
+
         private IPlayerGameObject _playerGameObject;
         private float _waitingTimeAfterAttack;
+        private GameObjectFactory _gameObjectFactory;
 
         private const float RotationSpeed = 10f;
 
         public event Action AttackComplete;
 
-        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig)
+        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig,
+            GameObjectFactory gameObjectFactory)
         {
             _playerGameObject = playerGameObject;
             _waitingTimeAfterAttack = enemyConfig.WaitingTimeAfterAttack;
+            _gameObjectFactory = gameObjectFactory;
         }
 
         public void Enter()
@@ -47,6 +53,7 @@ namespace Game.Scripts.Enemies.States
         private void Attack()
         {
             Debug.Log("attack");
+            //_gameObjectFactory.CreateProjectilePlayerWeapon()
         }
 
         private void TurnToTarget()

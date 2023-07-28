@@ -2,6 +2,7 @@ using Game.Scripts.Configs;
 using Game.Scripts.Enemies;
 using Game.Scripts.Player;
 using Game.Scripts.PlayerWeapons;
+using Game.Scripts.Projectiles;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Input;
@@ -62,9 +63,7 @@ namespace Game.Scripts
                 EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
                 Enemy enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
                     enemySpawnPoint.transform.rotation);
-                Health healthComponent = enemy.GetComponent<Health>();
-                healthComponent.Init(enemyConfig.MaxHP);
-                enemy.Init(_allEnemiesCollection, _playerGameObject, enemyConfig);
+                enemy.Init(_allEnemiesCollection, _playerGameObject, enemyConfig, this);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }
@@ -77,10 +76,10 @@ namespace Game.Scripts
             playerWeaponComponent.SetWeapon(playerWeapon);
         }
 
-        public PlayerWeaponProjectile CreateProjectilePlayerWeapon(PlayerWeaponProjectile playerWeaponProjectile,
+        public Projectile CreateProjectilePlayerWeapon(Projectile projectile,
             Vector3 attackPointPosition)
         {
-            return Object.Instantiate(playerWeaponProjectile, attackPointPosition, Quaternion.identity);
+            return Object.Instantiate(projectile, attackPointPosition, Quaternion.identity);
         }
     }
 }

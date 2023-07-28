@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Projectiles;
+using UnityEngine;
 
 namespace Game.Scripts.PlayerWeapons
 {
@@ -6,7 +7,7 @@ namespace Game.Scripts.PlayerWeapons
     {
         protected override void Fire(Transform targetTransform)
         {
-            PlayerWeaponProjectile projectile =
+            Projectile projectile =
                 _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab, _attackPoint.position);
             projectile.Init(targetTransform, _attackSpeed, _attackPower);
             projectile.MoveToTarget();

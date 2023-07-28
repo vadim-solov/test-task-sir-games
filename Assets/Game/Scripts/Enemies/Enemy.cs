@@ -22,13 +22,14 @@ namespace Game.Scripts.Enemies
         private StateMachine.StateMachine _stateMachine;
 
         public void Init(IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
-            EnemyConfig enemyConfig)
+            EnemyConfig enemyConfig, GameObjectFactory gameObjectFactory)
         {
             _health = GetComponent<Health>();
+            _health.Init(enemyConfig.MaxHP);
             _stateMachine = new StateMachine.StateMachine();
             _dieState.Init(this, allEnemiesCollection);
             _movementState.Init(playerGameObject, enemyConfig);
-            _attackState.Init(playerGameObject, enemyConfig);
+            _attackState.Init(playerGameObject, enemyConfig, gameObjectFactory);
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
             _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;

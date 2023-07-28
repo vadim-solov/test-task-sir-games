@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Configs;
+using Game.Scripts.Projectiles;
 using UnityEngine;
 
 namespace Game.Scripts.PlayerWeapons
@@ -6,7 +7,7 @@ namespace Game.Scripts.PlayerWeapons
     public abstract class PlayerWeapon : MonoBehaviour
     {
         [SerializeField]
-        protected PlayerWeaponProjectile _projectilePrefab;
+        protected Projectile _projectilePrefab;
         [SerializeField]
         protected Transform _attackPoint;
 
