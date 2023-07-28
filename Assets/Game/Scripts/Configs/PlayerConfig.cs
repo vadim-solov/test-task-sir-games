@@ -13,7 +13,7 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private float _maxHP;
         [SerializeField]
-        private float _attackSpeed;
+        private float _ProjectileSpeed;
         [SerializeField]
         private float _attackPower;
         [SerializeField]
@@ -22,7 +22,7 @@ namespace Game.Scripts.Configs
         public Player.Player PlayerPrefab => _playerPrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;
-        public float AttackSpeed => _attackSpeed;
+        public float ProjectileSpeed => _ProjectileSpeed;
         public float AttackPower => _attackPower;
         public float WeaponReloadTime => _weaponReloadTime;
     }

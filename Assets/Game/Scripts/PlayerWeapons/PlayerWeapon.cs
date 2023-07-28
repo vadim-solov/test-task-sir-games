@@ -11,7 +11,7 @@ namespace Game.Scripts.PlayerWeapons
         [SerializeField]
         protected Transform _attackPoint;
 
-        private protected float _attackSpeed;
+        private protected float _projectileSpeed;
         protected float _attackPower;
         protected GameObjectFactory _gameObjectFactory;
 
@@ -22,7 +22,7 @@ namespace Game.Scripts.PlayerWeapons
         {
             _gameObjectFactory = gameObjectFactory;
             _attackPower = gameConfig.PlayerConfig.AttackPower;
-            _attackSpeed = gameConfig.PlayerConfig.AttackSpeed;
+            _projectileSpeed = gameConfig.PlayerConfig.ProjectileSpeed;
             _reloadTime = gameConfig.PlayerConfig.WeaponReloadTime;
         }
 

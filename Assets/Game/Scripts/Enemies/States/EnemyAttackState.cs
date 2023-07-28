@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Game.Scripts.Configs;
+using Game.Scripts.Projectiles;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Game.Scripts.Enemies.States
         private IPlayerGameObject _playerGameObject;
         private float _waitingTimeAfterAttack;
         private GameObjectFactory _gameObjectFactory;
+        private EnemyConfig _enemyConfig;
 
         private const float RotationSpeed = 10f;
 
@@ -23,8 +25,9 @@ namespace Game.Scripts.Enemies.States
         public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig,
             GameObjectFactory gameObjectFactory)
         {
+            _enemyConfig = enemyConfig;
             _playerGameObject = playerGameObject;
-            _waitingTimeAfterAttack = enemyConfig.WaitingTimeAfterAttack;
+            _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
             _gameObjectFactory = gameObjectFactory;
         }
 
@@ -52,8 +55,11 @@ namespace Game.Scripts.Enemies.States
 
         private void Attack()
         {
-            Debug.Log("attack");
-            //_gameObjectFactory.CreateProjectilePlayerWeapon()
+            Projectile projectile =
+                _gameObjectFactory.CreateProjectilePlayerWeapon(_enemyConfig.ProjectilePrefab, _attackPoint.position);
+            projectile.Init(_playerGameObject.Instance.transform, _enemyConfig.ProjectileSpeed,
+                _enemyConfig.AttackPower);
+            projectile.MoveToTarget();
         }
 
         private void TurnToTarget()

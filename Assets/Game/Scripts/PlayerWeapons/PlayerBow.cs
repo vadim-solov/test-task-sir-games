@@ -9,7 +9,7 @@ namespace Game.Scripts.PlayerWeapons
         {
             Projectile projectile =
                 _gameObjectFactory.CreateProjectilePlayerWeapon(_projectilePrefab, _attackPoint.position);
-            projectile.Init(targetTransform, _attackSpeed, _attackPower);
+            projectile.Init(targetTransform, _projectileSpeed, _attackPower);
             projectile.MoveToTarget();
         }
     }
