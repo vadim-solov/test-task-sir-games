@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a89f6857784047b5bd05d5fa757c46, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  _waitingTimeForLevelActivation: 3
+  _waitingTimeForLevelActivation: 0.1
   _cameraPrefab: {fileID: 4928798379214481035, guid: aa6affde84972e74597abee19b3e7447, type: 3}
   _coinPrefab: {fileID: 7205214336831827234, guid: 5d3f74786f55b2040a92f97db8e1d2cc, type: 3}
   _allLevels:
   - {fileID: 8605206317570716812, guid: c98578bdd17be284cb7f9ec5e872cd78, type: 3}
   _playerConfig:
     _playerPrefab: {fileID: 3267587022310214094, guid: f1b778def46283b49a87a414c2dcab88, type: 3}
-    _movementSpeed: 5000
+    _movementSpeed: 3000
     _maxHP: 100
     _ProjectileSpeed: 10
     _attackPower: 10
