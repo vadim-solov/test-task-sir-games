@@ -37,7 +37,7 @@ namespace Game.Scripts.Player.States
             }
 
             TurnToClosestEnemy(closestEnemy.transform.position);
-            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform);
+            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform.position);
         }
 
         public void Exit()

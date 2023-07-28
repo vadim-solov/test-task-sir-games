@@ -22,7 +22,7 @@ MonoBehaviour:
     _movementSpeed: 3000
     _maxHP: 100
     _ProjectileSpeed: 10
-    _attackPower: 50
+    _attackPower: 10
     _weaponReloadTime: 0.5
   _playerWeaponsPrefabs:
   - {fileID: 7722925941066958692, guid: fa54249d3a64f4a4e9344b86b20adfbb, type: 3}
@@ -33,8 +33,8 @@ MonoBehaviour:
     _projectilePrefab: {fileID: 2923778090944866095, guid: d5bfd35acc4ae7344a49b1d61e02bbad, type: 3}
     _movementSpeed: 4
     _maxHP: 100
-    _stoppingDistance: 4
-    _waitingTimeAfterAttack: 2
+    _stoppingDistance: 10
+    _waitingTimeAfterAttack: 3
     _projectileSpeed: 5
     _attackPower: 10
   - _enemyType: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     _projectilePrefab: {fileID: 2923778090944866095, guid: d5bfd35acc4ae7344a49b1d61e02bbad, type: 3}
     _movementSpeed: 2
     _maxHP: 70
-    _stoppingDistance: 5
-    _waitingTimeAfterAttack: 3
+    _stoppingDistance: 10
+    _waitingTimeAfterAttack: 4
     _projectileSpeed: 7
     _attackPower: 5

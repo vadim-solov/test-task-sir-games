@@ -57,7 +57,7 @@ namespace Game.Scripts.Enemies.States
         {
             Projectile projectile =
                 _gameObjectFactory.CreateProjectile(_enemyConfig.ProjectilePrefab, _attackPoint.position);
-            projectile.Init(_playerGameObject.Instance.transform, _enemyConfig.ProjectileSpeed,
+            projectile.Init(_playerGameObject.Instance.transform.position, _enemyConfig.ProjectileSpeed,
                 _enemyConfig.AttackPower);
             projectile.MoveToTarget();
         }

@@ -26,18 +26,18 @@ namespace Game.Scripts.PlayerWeapons
             _reloadTime = gameConfig.PlayerConfig.WeaponReloadTime;
         }
 
-        protected abstract void Fire(Transform targetTransform);
+        protected abstract void Fire(Vector3 targetPosition);
 
         private void Update()
         {
             _timer += Time.deltaTime;
         }
 
-        public void FireIfReloaded(Transform targetTransform)
+        public void FireIfReloaded(Vector3 targetPosition)
         {
             if (_timer >= _reloadTime)
             {
-                Fire(targetTransform);
+                Fire(targetPosition);
                 _timer = 0f;
             }
         }
