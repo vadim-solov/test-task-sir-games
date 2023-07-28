@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -6,7 +7,9 @@ namespace Game.Scripts
     public class CoinSpawner
     {
         private readonly GameObjectFactory _gameObjectFactory;
-        private List<Coin> _allCoins = new List<Coin>();
+        private readonly List<Coin> _allCoins = new List<Coin>();
+
+        private const float TimeSummonMovement = 1f;
 
         public CoinSpawner(GameObjectFactory gameObjectFactory)
         {
@@ -21,6 +24,10 @@ namespace Game.Scripts
 
         public void SummonAllCoinsToPosition(Vector3 position)
         {
+            foreach (Coin coin in _allCoins)
+            {
+                coin.transform.DOMove(position, TimeSummonMovement).OnComplete(() => Object.Destroy(coin.gameObject));
+            }
         }
     }
 }
