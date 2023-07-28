@@ -17,11 +17,17 @@ namespace Game.Scripts.Configs
         private float _maxHP;
         [SerializeField]
         private float _stoppingDistance;
+        [SerializeField]
+        private float _attackReloadTime;
+        [SerializeField]
+        private float _waitingTimeAfterAttack;
 
         public EnemyType EnemyType => _enemyType;
         public Enemy EnemyPrefab => _enemyPrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;
         public float StoppingDistance => _stoppingDistance;
+        public float AttackReloadTime => _attackReloadTime;
+        public float WaitingTimeAfterAttack => _waitingTimeAfterAttack;
     }
 }

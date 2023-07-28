@@ -28,6 +28,7 @@ namespace Game.Scripts.Enemies
             _stateMachine = new StateMachine.StateMachine();
             _dieState.Init(this, allEnemiesCollection);
             _movementState.Init(playerGameObject, enemyConfig);
+            _attackState.Init(playerGameObject, enemyConfig);
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
             _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;

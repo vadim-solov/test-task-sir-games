@@ -32,8 +32,12 @@ MonoBehaviour:
     _movementSpeed: 4
     _maxHP: 100
     _stoppingDistance: 3
+    _attackReloadTime: 1
+    _waitingTimeAfterAttack: 2
   - _enemyType: 1
     _enemyPrefab: {fileID: 4932913199257032519, guid: ca37bb2deb21ce54bae119d320523eda, type: 3}
     _movementSpeed: 1.5
     _maxHP: 70
     _stoppingDistance: 5
+    _attackReloadTime: 3
+    _waitingTimeAfterAttack: 3

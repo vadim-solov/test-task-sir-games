@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Game.Scripts.Configs;
+using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
@@ -7,11 +9,20 @@ namespace Game.Scripts.Enemies.States
 {
     public class EnemyAttackState : MonoBehaviour, IState
     {
+        private IPlayerGameObject _playerGameObject;
         private float _timer;
-        private float _attackReloadTime = 0.5f;
+        private float _attackReloadTime;
         private bool _isAttackedInProgress;
+        private float _waitingTimeAfterAttack;
 
         public event Action AttackComplete;
+
+        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig)
+        {
+            _playerGameObject = playerGameObject;
+            _attackReloadTime = enemyConfig.AttackReloadTime;
+            _waitingTimeAfterAttack = enemyConfig.WaitingTimeAfterAttack;
+        }
 
         private void Update()
         {
@@ -49,7 +60,7 @@ namespace Game.Scripts.Enemies.States
         private IEnumerator StartAttack()
         {
             _isAttackedInProgress = true;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(_waitingTimeAfterAttack);
             _timer = 0f;
             _isAttackedInProgress = false;
             AttackComplete?.Invoke();
