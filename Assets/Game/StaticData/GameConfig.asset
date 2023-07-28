@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a89f6857784047b5bd05d5fa757c46, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  _waitingTimeForLevelActivation: 0.1
+  _waitingTimeForLevelActivation: 3
   _cameraPrefab: {fileID: 4928798379214481035, guid: aa6affde84972e74597abee19b3e7447, type: 3}
   _allLevels:
   - {fileID: 8605206317570716812, guid: c98578bdd17be284cb7f9ec5e872cd78, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
     _movementSpeed: 5000
     _maxHP: 100
     _ProjectileSpeed: 10
-    _attackPower: 0.1
+    _attackPower: 10
     _weaponReloadTime: 0.5
   _playerWeaponsPrefabs:
   - {fileID: 7722925941066958692, guid: fa54249d3a64f4a4e9344b86b20adfbb, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
     _projectilePrefab: {fileID: 2923778090944866095, guid: d5bfd35acc4ae7344a49b1d61e02bbad, type: 3}
     _movementSpeed: 4
     _maxHP: 100
-    _stoppingDistance: 3
+    _stoppingDistance: 4
     _waitingTimeAfterAttack: 2
     _projectileSpeed: 5
     _attackPower: 10

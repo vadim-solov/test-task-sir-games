@@ -25,7 +25,8 @@ namespace Game.Scripts.CompositeRoot
             GameObjectFactory gameObjectFactory =
                 new GameObjectFactory(_gameConfig, _inputService, allEnemiesCollection, playerGameObject,
                     enemyConfigGetter);
-            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject);
+            _appStateChanger =
+                new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject, allEnemiesCollection);
             _appStateChanger.StartApp();
         }
 

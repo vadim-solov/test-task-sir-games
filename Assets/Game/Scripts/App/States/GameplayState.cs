@@ -1,22 +1,25 @@
-﻿using Game.Scripts.Services.PlayerInstance;
+﻿using Game.Scripts.Enemies;
+using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
-using UnityEngine;
 
 namespace Game.Scripts.App.States
 {
     public class GameplayState : IState
     {
         private readonly IPlayerGameObject _playerGameObject;
+        private readonly IAllEnemiesCollection _allEnemiesCollection;
 
-        public GameplayState(IPlayerGameObject playerGameObject)
+        public GameplayState(IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection)
         {
             _playerGameObject = playerGameObject;
+            _allEnemiesCollection = allEnemiesCollection;
         }
 
         public void Enter()
         {
-            Debug.Log("enter in gameplay state");
-            _playerGameObject.Instance.SetAttackState();
+            ActivatePlayer();
+            ActivateEnemies();
         }
 
         public void Run()
@@ -25,6 +28,19 @@ namespace Game.Scripts.App.States
 
         public void Exit()
         {
+        }
+
+        private void ActivatePlayer()
+        {
+            _playerGameObject.Instance.SetAttackState();
+        }
+
+        private void ActivateEnemies()
+        {
+            foreach (Enemy enemy in _allEnemiesCollection.AllEnemies)
+            {
+                enemy.SetMovementState();
+            }
         }
     }
 }

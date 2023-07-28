@@ -30,7 +30,7 @@ namespace Game.Scripts.Enemies
             _dieState.Init(this, allEnemiesCollection);
             _movementState.Init(playerGameObject, enemyConfig);
             _attackState.Init(playerGameObject, enemyConfig, gameObjectFactory);
-            _stateMachine.Init(_movementState);
+            _stateMachine.Init(_idleState);
             _health.Die += OnDie;
             _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;
             _attackState.AttackComplete += OnAttackComplete;
@@ -46,6 +46,11 @@ namespace Game.Scripts.Enemies
         private void Update()
         {
             _stateMachine.CurrentState.Run();
+        }
+
+        public void SetMovementState()
+        {
+            _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
         }
 
         private void OnDie()

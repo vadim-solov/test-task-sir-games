@@ -9,6 +9,8 @@ namespace Game.Scripts.Services.EnemiesCollection
     {
         private readonly List<Enemy> _allEnemies = new List<Enemy>();
 
+        public List<Enemy> AllEnemies => new List<Enemy>(_allEnemies);
+
         public void AddEnemyToCollection(Enemy enemy)
         {
             _allEnemies.Add(enemy);
