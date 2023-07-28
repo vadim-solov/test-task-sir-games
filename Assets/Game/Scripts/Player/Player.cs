@@ -16,15 +16,13 @@ namespace Game.Scripts.Player
         [SerializeField]
         private PlayerMovementState _movementState;
 
-        private IInputService _inputService;
         private StateMachine.StateMachine _stateMachine;
         private Health _health;
 
-        public void Init(IInputService inputService, IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
+        public void Init(IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
         {
             _health = GetComponent<Health>();
             _health.Init(gameConfig.PlayerConfig.MaxHP);
-            _inputService = inputService;
             _stateMachine = new StateMachine.StateMachine();
             _stateMachine.Init(_idleState);
             _attacState.Init(allEnemiesCollection);
@@ -61,7 +59,7 @@ namespace Game.Scripts.Player
 
         private bool IsMove()
         {
-            return _inputService.Axis != Vector3.zero;
+            return InputService.Axis != Vector3.zero;
         }
     }
 }

@@ -5,7 +5,6 @@ using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Projectiles;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
-using Game.Scripts.Services.Input;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
@@ -15,17 +14,15 @@ namespace Game.Scripts
     public class GameObjectFactory
     {
         private readonly GameConfig _gameConfig;
-        private readonly IInputService _inputService;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
         private readonly IEnemyConfigGetter _enemyConfigGetter;
 
-        public GameObjectFactory(GameConfig gameConfig, IInputService inputService,
+        public GameObjectFactory(GameConfig gameConfig,
             IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
             IEnemyConfigGetter enemyConfigGetter)
         {
             _gameConfig = gameConfig;
-            _inputService = inputService;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
             _enemyConfigGetter = enemyConfigGetter;
@@ -51,7 +48,7 @@ namespace Game.Scripts
                 playerPosition.transform.position,
                 Quaternion.identity);
             player.GetComponent<Player.Player>();
-            player.Init(_inputService, _allEnemiesCollection, _gameConfig);
+            player.Init(_allEnemiesCollection, _gameConfig);
             _playerGameObject.SetPlayer(player);
             return player;
         }

@@ -4,11 +4,11 @@ namespace Game.Scripts.UI
 {
     public class UIFactory
     {
-        private readonly FixedJoystick _fixedJoystickPrefab = Resources.Load<FixedJoystick>("FixedJoystick");
+        private readonly Canvas _canvas = Resources.Load<Canvas>("Canvas");
 
-        public FixedJoystick CreateJoystick()
+        public void CreateGameplayCanvas()
         {
-            return Object.Instantiate(_fixedJoystickPrefab);
+            Object.Instantiate(_canvas);
         }
     }
 }

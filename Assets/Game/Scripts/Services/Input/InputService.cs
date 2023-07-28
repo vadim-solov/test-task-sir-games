@@ -2,9 +2,8 @@
 
 namespace Game.Scripts.Services.Input
 {
-    public abstract class InputService : IInputService
+    public static class InputService
     {
-        public abstract Vector3 Axis { get; protected set; }
-        public abstract void Update();
+        public static Vector3 Axis { get; set; }
     }
 }

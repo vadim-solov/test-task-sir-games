@@ -5,12 +5,10 @@ using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    [RequireComponent(typeof(RequireComponent))]
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementState : MonoBehaviour, IState
     {
         private CharacterController _characterController;
-        //TODO Fix this
-        private IInputService _inputService;
         private float _movementSpeed;
 
         private const float RotationSpeed = 10f;
@@ -41,15 +39,14 @@ namespace Game.Scripts.Player.States
 
         private void MoveToNextPosition()
         {
-            Vector3 nexPosition =
-                new Vector3(Input.GetAxis("Horizontal"), transform.position.y, Input.GetAxis("Vertical"));
+            Vector3 nexPosition = new Vector3(InputService.Axis.x, transform.position.y, InputService.Axis.z);
             nexPosition.Normalize();
             _characterController.SimpleMove(nexPosition * _movementSpeed * Time.deltaTime);
         }
 
         private void TurnToDirectionMovement()
         {
-            Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            Vector3 movementDirection = new Vector3(InputService.Axis.x, 0f, InputService.Axis.z);
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
         }
