@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waitingTimeForLevelActivation: 3
   _cameraPrefab: {fileID: 4928798379214481035, guid: aa6affde84972e74597abee19b3e7447, type: 3}
+  _coinPrefab: {fileID: 7205214336831827234, guid: 5d3f74786f55b2040a92f97db8e1d2cc, type: 3}
   _allLevels:
   - {fileID: 8605206317570716812, guid: c98578bdd17be284cb7f9ec5e872cd78, type: 3}
   _playerConfig:
@@ -39,7 +40,7 @@ MonoBehaviour:
   - _enemyType: 1
     _enemyPrefab: {fileID: 4932913199257032519, guid: ca37bb2deb21ce54bae119d320523eda, type: 3}
     _projectilePrefab: {fileID: 2923778090944866095, guid: d5bfd35acc4ae7344a49b1d61e02bbad, type: 3}
-    _movementSpeed: 1.5
+    _movementSpeed: 2
     _maxHP: 70
     _stoppingDistance: 5
     _waitingTimeAfterAttack: 3

@@ -19,7 +19,7 @@ namespace Game.Scripts.App
             _appLoadingState = new AppLoadingState();
             _levelLoaderState = new LevelLoaderState(gameObjectFactory, gameConfig);
             _countdownState = new CountdownState(gameConfig);
-            _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection);
+            _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection, gameObjectFactory);
             _stateMachine = new StateMachine.StateMachine();
             _countdownState.CountdownIsOver += OnCountdownIsOver;
         }

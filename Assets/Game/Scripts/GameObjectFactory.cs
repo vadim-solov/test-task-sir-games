@@ -81,5 +81,10 @@ namespace Game.Scripts
         {
             return Object.Instantiate(projectile, attackPointPosition, Quaternion.identity);
         }
+
+        public void CreateCoin(Vector3 position)
+        {
+            Object.Instantiate(_gameConfig.CoinPrefab, position, Quaternion.identity);
+        }
     }
 }

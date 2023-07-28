@@ -9,17 +9,21 @@ namespace Game.Scripts.App.States
     {
         private readonly IPlayerGameObject _playerGameObject;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
+        private readonly GameObjectFactory _gameObjectFactory;
 
-        public GameplayState(IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection)
+        public GameplayState(IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection,
+            GameObjectFactory gameObjectFactory)
         {
             _playerGameObject = playerGameObject;
             _allEnemiesCollection = allEnemiesCollection;
+            _gameObjectFactory = gameObjectFactory;
         }
 
         public void Enter()
         {
             ActivatePlayer();
             ActivateEnemies();
+            _allEnemiesCollection.EnemyRemoved += OnEnemyRemoved;
         }
 
         public void Run()
@@ -28,6 +32,7 @@ namespace Game.Scripts.App.States
 
         public void Exit()
         {
+            _allEnemiesCollection.EnemyRemoved -= OnEnemyRemoved;
         }
 
         private void ActivatePlayer()
@@ -41,6 +46,11 @@ namespace Game.Scripts.App.States
             {
                 enemy.SetMovementState();
             }
+        }
+
+        private void OnEnemyRemoved(Enemy enemy)
+        {
+            _gameObjectFactory.CreateCoin(enemy.transform.position);
         }
     }
 }

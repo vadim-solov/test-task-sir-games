@@ -13,6 +13,8 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private Camera _cameraPrefab;
         [SerializeField]
+        private Coin _coinPrefab;
+        [SerializeField]
         private List<Level> _allLevels;
         [Header("Player")]
         [SerializeField]
@@ -24,6 +26,7 @@ namespace Game.Scripts.Configs
         private List<EnemyConfig> _enemiesConfig;
 
         public Camera CameraPrefab => _cameraPrefab;
+        public Coin CoinPrefab => _coinPrefab;
         public List<Level> AllLevels => _allLevels;
         public PlayerConfig PlayerConfig => _playerConfig;
         public List<PlayerWeapon> PlayerWeaponsPrefabs => _playerWeaponsPrefabs;

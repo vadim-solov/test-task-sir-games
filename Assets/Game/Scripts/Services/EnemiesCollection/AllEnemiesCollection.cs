@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Enemies;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Game.Scripts.Services.EnemiesCollection
 
         public List<Enemy> AllEnemies => new List<Enemy>(_allEnemies);
 
+        public event Action<Enemy> EnemyRemoved;
+
         public void AddEnemyToCollection(Enemy enemy)
         {
             _allEnemies.Add(enemy);
@@ -19,6 +22,7 @@ namespace Game.Scripts.Services.EnemiesCollection
         public void RemoveFromCollection(Enemy enemy)
         {
             _allEnemies.Remove(enemy);
+            EnemyRemoved?.Invoke(enemy);
         }
 
         public Enemy FindClosestEnemy(Vector3 position)
