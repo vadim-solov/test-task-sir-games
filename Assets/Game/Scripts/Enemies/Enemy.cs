@@ -15,6 +15,8 @@ namespace Game.Scripts.Enemies
         private EnemyDieState _dieState;
         [SerializeField]
         private EnemyMovementState _movementState;
+        [SerializeField]
+        private EnemyAttackState _attackState;
 
         private Health _health;
         private StateMachine.StateMachine _stateMachine;
@@ -28,11 +30,13 @@ namespace Game.Scripts.Enemies
             _movementState.Init(playerGameObject, enemyConfig);
             _stateMachine.Init(_movementState);
             _health.Die += OnDie;
+            _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;
         }
 
         private void OnDisable()
         {
             _health.Die -= OnDie;
+            _movementState.StoppingDistanceAchieved += OnStoppingDistanceAchieved;
         }
 
         private void Update()
@@ -43,6 +47,11 @@ namespace Game.Scripts.Enemies
         private void OnDie()
         {
             _stateMachine.ChangeStateIfNewStateDifferent(_dieState);
+        }
+
+        private void OnStoppingDistanceAchieved()
+        {
+            _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
         }
     }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 664945683569011114}
   - component: {fileID: -3294286929755135700}
   - component: {fileID: 9178764462130381337}
+  - component: {fileID: 3356465252398187573}
   m_Layer: 0
   m_Name: SpiderEnemy
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   _idleState: {fileID: 664945683569011114}
   _dieState: {fileID: -3294286929755135700}
   _movementState: {fileID: 9178764462130381337}
+  _attackState: {fileID: 3356465252398187573}
 --- !u!114 &664945683569011114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +136,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3cd05245bb646c7bcb6b15a7b2c1dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3356465252398187573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781636414133200109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230a35cfe43c4bd98a3a4972bc8aec97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1086892331737833021

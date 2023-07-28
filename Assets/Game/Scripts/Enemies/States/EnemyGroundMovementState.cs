@@ -21,6 +21,7 @@ namespace Game.Scripts.Enemies.States
 
         public override void Run()
         {
+            CheckStoppingDistance();
             MoveToTarget();
             RotateToTarget();
         }
