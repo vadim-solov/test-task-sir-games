@@ -13,8 +13,6 @@ namespace Game.Scripts.App
         private readonly GameplayState _gameplayState;
         private readonly StateMachine.StateMachine _stateMachine;
 
-        public CountdownState CountdownState => _countdownState;
-
         public AppStateChanger(GameObjectFactory gameObjectFactory, GameConfig gameConfig,
             IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner)
         {

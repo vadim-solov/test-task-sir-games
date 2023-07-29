@@ -1,5 +1,4 @@
-﻿using Game.Scripts.App;
-using Game.Scripts.Configs;
+﻿using Game.Scripts.Configs;
 using Game.Scripts.Services.Input;
 using TMPro;
 using UnityEngine;
@@ -13,19 +12,23 @@ namespace Game.Scripts.UI
         [SerializeField]
         private FixedJoystick _fixedJoystick;
 
-        private AppStateChanger _appStateChanger;
-        private float _waitingTimeForLevelActivation;
+        private float _countdownTime;
 
-        public void Init(AppStateChanger appStateChanger, GameConfig gameConfig)
+        public void Init(GameConfig gameConfig)
         {
-            _appStateChanger = appStateChanger;
-            _waitingTimeForLevelActivation = gameConfig.WaitingTimeForLevelActivation;
+            _countdownTime = gameConfig.WaitingTimeForLevelActivation;
         }
 
         private void Update()
         {
+            ReduceCountdownTime();
             SetInputAxis();
-            SetCountdownTimer();
+            CheckAndSetCountdownTimer();
+        }
+
+        private void ReduceCountdownTime()
+        {
+            _countdownTime -= Time.deltaTime;
         }
 
         private void SetInputAxis()
@@ -33,17 +36,15 @@ namespace Game.Scripts.UI
             InputService.Axis = new Vector3(_fixedJoystick.Horizontal, 0f, _fixedJoystick.Vertical);
         }
 
-        private void SetCountdownTimer()
+        private void CheckAndSetCountdownTimer()
         {
-            float countdownTimerValue = _waitingTimeForLevelActivation - _appStateChanger.CountdownState.Timer;
-
-            if (countdownTimerValue <= 0f)
+            if (_countdownTime <= 0f)
             {
                 RefreshCountdownTimerText();
                 return;
             }
 
-            _countdownTimer.text = countdownTimerValue.ToString("0");
+            _countdownTimer.text = _countdownTime.ToString("0");
         }
 
         private void RefreshCountdownTimerText()

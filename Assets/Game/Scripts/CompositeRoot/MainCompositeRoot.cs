@@ -35,7 +35,7 @@ namespace Game.Scripts.CompositeRoot
                     coinSpawner);
             UIFactory uiFactory = new UIFactory();
             GameplayUI gameplayUI = uiFactory.CreateGameplayCanvas();
-            gameplayUI.Init(_appStateChanger, _gameConfig);
+            gameplayUI.Init(_gameConfig);
         }
 
         private void OnDisable()
