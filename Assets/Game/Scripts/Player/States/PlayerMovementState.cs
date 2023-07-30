@@ -33,7 +33,7 @@ namespace Game.Scripts.Player.States
         {
             ChangeStateIfNotMove();
             MoveToNextPosition();
-            TurnToDirectionMovement();
+            TryTurnToDirectionMovement();
         }
 
         public void Exit()
@@ -60,9 +60,15 @@ namespace Game.Scripts.Player.States
             _characterController.SimpleMove(nexPosition * _movementSpeed * Time.deltaTime);
         }
 
-        private void TurnToDirectionMovement()
+        private void TryTurnToDirectionMovement()
         {
             Vector3 movementDirection = new Vector3(InputService.Axis.x, 0f, InputService.Axis.z);
+
+            if (movementDirection == Vector3.zero)
+            {
+                return;
+            }
+
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
         }
