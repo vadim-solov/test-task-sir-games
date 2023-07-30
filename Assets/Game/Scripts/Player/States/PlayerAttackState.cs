@@ -49,15 +49,10 @@ namespace Game.Scripts.Player.States
 
         private void ChangeStateIfMove()
         {
-            if (IsMove())
+            if (InputService.IsMove())
             {
                 _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
             }
-        }
-
-        private bool IsMove()
-        {
-            return InputService.Axis != Vector3.zero;
         }
 
         private void TurnToClosestEnemy(Vector3 enemyPosition)

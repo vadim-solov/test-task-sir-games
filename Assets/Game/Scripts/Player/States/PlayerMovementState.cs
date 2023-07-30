@@ -42,15 +42,10 @@ namespace Game.Scripts.Player.States
 
         private void ChangeStateIfNotMove()
         {
-            if (!IsMove())
+            if (!InputService.IsMove())
             {
                 _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
             }
-        }
-
-        private bool IsMove()
-        {
-            return InputService.Axis != Vector3.zero;
         }
 
         private void MoveToNextPosition()
