@@ -31,25 +31,22 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            ChangeStateIfMove();
-            GameObject closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
-
-            if (closestEnemy == null)
-            {
-                return;
-            }
-
-            TurnToClosestEnemy(closestEnemy.transform.position);
-            _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform.position);
+            AttackClosestEnemyOrChangeState();
         }
 
         public void Exit()
         {
         }
 
-        private void ChangeStateIfMove()
+        private void AttackClosestEnemyOrChangeState()
         {
-            if (InputService.IsMove())
+            if (!InputService.IsMove() && !_allEnemiesCollection.IsCollectionEmpty)
+            {
+                GameObject closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
+                TurnToClosestEnemy(closestEnemy.transform.position);
+                _currentPlayerWeapon.CurrentWeapon.FireIfReloaded(closestEnemy.transform.position);
+            }
+            else
             {
                 _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
             }

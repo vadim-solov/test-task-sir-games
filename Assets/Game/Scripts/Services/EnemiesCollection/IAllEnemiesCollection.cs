@@ -7,6 +7,7 @@ namespace Game.Scripts.Services.EnemiesCollection
     public interface IAllEnemiesCollection
     {
         public List<GameObject> AllEnemies { get; }
+        public bool IsCollectionEmpty { get; }
 
         public event Action<GameObject> EnemyRemoved;
         public event Action CollectionIsEmpty;

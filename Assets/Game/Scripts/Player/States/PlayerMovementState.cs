@@ -1,4 +1,5 @@
 using Game.Scripts.Configs;
+using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -14,12 +15,14 @@ namespace Game.Scripts.Player.States
         private MonoBehaviourStateMachine _stateMachine;
         private PlayerAttackState _attackState;
         private CharacterController _characterController;
+        private IAllEnemiesCollection _allEnemiesCollection;
 
         private const float RotationSpeed = 10f;
 
-        public void Init(GameConfig gameConfig)
+        public void Init(GameConfig gameConfig, IAllEnemiesCollection allEnemiesCollection)
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
+            _allEnemiesCollection = allEnemiesCollection;
             _stateMachine = GetComponent<MonoBehaviourStateMachine>();
             _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
@@ -31,18 +34,21 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            ChangeStateIfNotMove();
-            MoveToNextPosition();
-            TryTurnToDirectionMovement();
+            MoveOrChangeState();
         }
 
         public void Exit()
         {
         }
 
-        private void ChangeStateIfNotMove()
+        private void MoveOrChangeState()
         {
-            if (!InputService.IsMove())
+            if (InputService.IsMove() || _allEnemiesCollection.IsCollectionEmpty)
+            {
+                MoveToNextPosition();
+                TryTurnToDirectionMovement();
+            }
+            else
             {
                 _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
             }

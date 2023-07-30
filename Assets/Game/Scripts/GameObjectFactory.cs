@@ -49,7 +49,7 @@ namespace Game.Scripts
             GameObject player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
                 playerPosition.transform.position, Quaternion.identity);
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
-            player.GetComponent<PlayerMovementState>().Init(_gameConfig);
+            player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection);
             player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection);
             return player;
         }
