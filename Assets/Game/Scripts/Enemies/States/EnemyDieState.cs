@@ -6,18 +6,16 @@ namespace Game.Scripts.Enemies.States
 {
     public class EnemyDieState : MonoBehaviour, IState
     {
-        private Enemy _enemy;
         private IAllEnemiesCollection _enemiesCollection;
 
-        public void Init(Enemy enemy, IAllEnemiesCollection enemiesCollection)
+        public void Init(IAllEnemiesCollection enemiesCollection)
         {
-            _enemy = enemy;
             _enemiesCollection = enemiesCollection;
         }
 
         public void Enter()
         {
-            _enemiesCollection.RemoveFromCollection(_enemy);
+            _enemiesCollection.RemoveFromCollection(gameObject);
             Destroy(gameObject);
         }
 

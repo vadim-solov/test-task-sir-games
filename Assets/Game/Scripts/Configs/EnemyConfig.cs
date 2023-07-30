@@ -11,7 +11,7 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private EnemyType _enemyType;
         [SerializeField]
-        private Enemy _enemyPrefab;
+        private GameObject _enemyPrefab;
         [SerializeField]
         private Projectile _projectilePrefab;
         [SerializeField]
@@ -28,7 +28,7 @@ namespace Game.Scripts.Configs
         private float _attackPower;
 
         public EnemyType EnemyType => _enemyType;
-        public Enemy EnemyPrefab => _enemyPrefab;
+        public GameObject EnemyPrefab => _enemyPrefab;
         public Projectile ProjectilePrefab => _projectilePrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;

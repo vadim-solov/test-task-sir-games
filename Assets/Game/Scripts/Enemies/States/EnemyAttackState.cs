@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
 using Game.Scripts.Services.PlayerInstance;
@@ -8,6 +7,8 @@ using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(EnemyMovementState))]
     public class EnemyAttackState : MonoBehaviour, IState
     {
         [SerializeField]
@@ -17,10 +18,10 @@ namespace Game.Scripts.Enemies.States
         private float _waitingTimeAfterAttack;
         private GameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
+        private MonoBehaviourStateMachine _stateMachine;
+        private EnemyMovementState _movementState;
 
         private const float RotationSpeed = 10f;
-
-        public event Action AttackComplete;
 
         public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig,
             GameObjectFactory gameObjectFactory)
@@ -29,11 +30,13 @@ namespace Game.Scripts.Enemies.States
             _playerGameObject = playerGameObject;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
             _gameObjectFactory = gameObjectFactory;
+            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _movementState = GetComponent<EnemyMovementState>();
         }
 
         public void Enter()
         {
-            StartCoroutine(StartAttack());
+            StartCoroutine(AttackAndChangeState());
         }
 
         public void Run()
@@ -43,14 +46,14 @@ namespace Game.Scripts.Enemies.States
 
         public void Exit()
         {
-            StopCoroutine(StartAttack());
+            StopCoroutine(AttackAndChangeState());
         }
 
-        private IEnumerator StartAttack()
+        private IEnumerator AttackAndChangeState()
         {
             Attack();
             yield return new WaitForSeconds(_waitingTimeAfterAttack);
-            AttackComplete?.Invoke();
+            _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
         }
 
         private void Attack()

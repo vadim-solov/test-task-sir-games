@@ -1,14 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Scripts
 {
-    public class Health : MonoBehaviour
+    public abstract class Health : MonoBehaviour
     {
         private float _maxHP;
         private float _currentHP;
 
-        public event Action Die;
+        protected abstract void Die();
 
         public void Init(float maxHP)
         {
@@ -21,7 +20,7 @@ namespace Game.Scripts
             _currentHP -= damage;
             if (_currentHP <= 0)
             {
-                Die?.Invoke();
+                Die();
             }
         }
     }

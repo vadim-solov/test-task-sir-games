@@ -1,7 +1,8 @@
-﻿using Game.Scripts.Enemies;
+﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
+using UnityEngine;
 
 namespace Game.Scripts.App.States
 {
@@ -44,13 +45,15 @@ namespace Game.Scripts.App.States
 
         private void ActivateEnemies()
         {
-            foreach (Enemy enemy in _allEnemiesCollection.AllEnemies)
+            foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                enemy.SetMovementState();
+                MonoBehaviourStateMachine stateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
+                EnemyMovementState movementState = enemy.GetComponent<EnemyMovementState>();
+                stateMachine.ChangeStateIfNewStateDifferent(movementState);
             }
         }
 
-        private void OnEnemyRemoved(Enemy enemy)
+        private void OnEnemyRemoved(GameObject enemy)
         {
             _coinSpawner.CreateAndAddToCollection(enemy.transform.position);
         }

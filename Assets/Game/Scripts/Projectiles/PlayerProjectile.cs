@@ -7,12 +7,11 @@ namespace Game.Scripts.Projectiles
     {
         private void OnTriggerEnter(Collider other)
         {
-            other.TryGetComponent(out Enemy enemy);
+            other.TryGetComponent(out EnemyHealth enemyHealth);
 
-            if (enemy != null)
+            if (enemyHealth != null)
             {
-                Health health = enemy.GetComponent<Health>();
-                health.TakeDamage(_attackPower);
+                enemyHealth.TakeDamage(_attackPower);
             }
 
             Destroy(gameObject);

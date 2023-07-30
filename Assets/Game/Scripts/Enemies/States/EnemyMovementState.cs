@@ -1,20 +1,22 @@
-﻿using System;
-using Game.Scripts.Configs;
+﻿using Game.Scripts.Configs;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(EnemyAttackState))]
     public abstract class EnemyMovementState : MonoBehaviour, IState
     {
         protected IPlayerGameObject _playerGameObject;
         protected float _movementSpeed;
         protected float _stoppingDistance;
 
-        private const float RotationSpeed = 10f;
+        private MonoBehaviourStateMachine _stateMachine;
+        private EnemyAttackState _attackState;
 
-        public event Action StoppingDistanceAchieved;
+        private const float RotationSpeed = 10f;
 
         public abstract void Enter();
         public abstract void Run();
@@ -25,6 +27,8 @@ namespace Game.Scripts.Enemies.States
             _playerGameObject = playerGameObject;
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
+            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _attackState = GetComponent<EnemyAttackState>();
         }
 
         protected void RotateToTarget()
@@ -41,7 +45,7 @@ namespace Game.Scripts.Enemies.States
 
             if (_stoppingDistance >= distance)
             {
-                StoppingDistanceAchieved?.Invoke();
+                _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
             }
         }
     }

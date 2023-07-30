@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Player;
+using UnityEngine;
 
 namespace Game.Scripts.Projectiles
 {
@@ -6,12 +7,11 @@ namespace Game.Scripts.Projectiles
     {
         private void OnTriggerEnter(Collider other)
         {
-            other.TryGetComponent(out Player.Player player);
+            other.TryGetComponent(out PlayerHealth playerHealth);
 
-            if (player != null)
+            if (playerHealth != null)
             {
-                Health health = player.GetComponent<Health>();
-                health.TakeDamage(_attackPower);
+                playerHealth.TakeDamage(_attackPower);
             }
 
             Destroy(gameObject);

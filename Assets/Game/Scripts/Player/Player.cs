@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Player
 {
-    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(PlayerHealth))]
     public class Player : MonoBehaviour
     {
         [SerializeField]
@@ -17,11 +17,11 @@ namespace Game.Scripts.Player
         private PlayerMovementState _movementState;
 
         private StateMachine.StateMachine _stateMachine;
-        private Health _health;
+        private PlayerHealth _health;
 
         public void Init(IAllEnemiesCollection allEnemiesCollection, GameConfig gameConfig)
         {
-            _health = GetComponent<Health>();
+            _health = GetComponent<PlayerHealth>();
             _health.Init(gameConfig.PlayerConfig.MaxHP);
             _stateMachine = new StateMachine.StateMachine();
             _stateMachine.Init(_idleState);

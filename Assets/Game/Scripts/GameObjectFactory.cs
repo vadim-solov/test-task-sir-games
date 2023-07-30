@@ -1,5 +1,6 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Enemies;
+using Game.Scripts.Enemies.States;
 using Game.Scripts.Player;
 using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Projectiles;
@@ -58,9 +59,12 @@ namespace Game.Scripts
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
                 EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
-                Enemy enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
+                GameObject enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
                     enemySpawnPoint.transform.rotation);
-                enemy.Init(_allEnemiesCollection, _playerGameObject, enemyConfig, this);
+                enemy.GetComponent<EnemyHealth>().Init(enemyConfig.MaxHP);
+                enemy.GetComponent<EnemyAttackState>().Init(_playerGameObject, enemyConfig, this);
+                enemy.GetComponent<EnemyMovementState>().Init(_playerGameObject, enemyConfig);
+                enemy.GetComponent<EnemyDieState>().Init(_allEnemiesCollection);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }

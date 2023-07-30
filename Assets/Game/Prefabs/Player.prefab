@@ -173,8 +173,8 @@ GameObject:
   - component: {fileID: 1893308999285619372}
   - component: {fileID: 143702530743972091}
   - component: {fileID: 822906073889916640}
-  - component: {fileID: 3838675724120679669}
   - component: {fileID: 3267587022310214094}
+  - component: {fileID: 6129565992172793863}
   - component: {fileID: 2534959054739236141}
   - component: {fileID: 5685905889383936344}
   - component: {fileID: 2013623227001815413}
@@ -233,18 +233,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3838675724120679669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2893863150793551480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ad64085d814b869933bf578aca2d9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3267587022310214094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +248,18 @@ MonoBehaviour:
   _idleState: {fileID: 2534959054739236141}
   _attacState: {fileID: 5685905889383936344}
   _movementState: {fileID: 2013623227001815413}
+--- !u!114 &6129565992172793863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2893863150793551480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea401fffa9f4fbb93a7350f4d5f9b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2534959054739236141
 MonoBehaviour:
   m_ObjectHideFlags: 0

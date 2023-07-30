@@ -1,4 +1,3 @@
-using Game.Scripts.Enemies;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
-            Enemy closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
+            GameObject closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
 
             if (closestEnemy == null)
             {

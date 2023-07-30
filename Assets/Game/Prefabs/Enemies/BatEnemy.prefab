@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6878008443950006446}
   - component: {fileID: 5545282130432631375}
-  - component: {fileID: 5444154478638530973}
-  - component: {fileID: 4932913199257032519}
+  - component: {fileID: 4881035434634157528}
+  - component: {fileID: 5940711145983669428}
   - component: {fileID: 2013323945156357401}
   - component: {fileID: 7357670096133461543}
   - component: {fileID: 3307659979277527999}
@@ -133,7 +133,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &5444154478638530973
+--- !u!114 &4881035434634157528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +142,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268428898977429072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ad64085d814b869933bf578aca2d9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dadeaf420bd4c969b81f654e897eba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4932913199257032519
+--- !u!114 &5940711145983669428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,13 +154,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268428898977429072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda1ca113b8e4cfba8fc7165c243f95b, type: 3}
+  m_Script: {fileID: 11500000, guid: 702c9773f3eb4873bfba44a48e914c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleState: {fileID: 2013323945156357401}
-  _dieState: {fileID: 7357670096133461543}
-  _movementState: {fileID: 3307659979277527999}
-  _attackState: {fileID: 4611290161418456138}
 --- !u!114 &2013323945156357401
 MonoBehaviour:
   m_ObjectHideFlags: 0
