@@ -9,6 +9,7 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.SpawnPoint;
+using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -51,6 +52,8 @@ namespace Game.Scripts
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
             player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection);
             player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection);
+            PlayerIdleState idleState = player.GetComponent<PlayerIdleState>();
+            player.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
             return player;
         }
 
@@ -65,6 +68,8 @@ namespace Game.Scripts
                 enemy.GetComponent<EnemyAttackState>().Init(_playerGameObject, enemyConfig, this);
                 enemy.GetComponent<EnemyMovementState>().Init(_playerGameObject, enemyConfig);
                 enemy.GetComponent<EnemyDieState>().Init(_allEnemiesCollection);
+                EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
+                enemy.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }
