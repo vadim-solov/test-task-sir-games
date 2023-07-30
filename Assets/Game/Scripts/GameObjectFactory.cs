@@ -2,6 +2,7 @@ using Game.Scripts.Configs;
 using Game.Scripts.Enemies;
 using Game.Scripts.Enemies.States;
 using Game.Scripts.Player;
+using Game.Scripts.Player.States;
 using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Projectiles;
 using Game.Scripts.Services.EnemiesCollection;
@@ -42,15 +43,14 @@ namespace Game.Scripts
             Object.Instantiate(_gameConfig.AllLevels[0].LevelPrefab);
         }
 
-        public Player.Player CreatePlayerAndSetPosition()
+        public GameObject CreatePlayerAndSetPosition()
         {
             PlayerSpawnPoint playerPosition = _gameConfig.AllLevels[0].PlayerSpawnPoint;
-            Player.Player player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
-                playerPosition.transform.position,
-                Quaternion.identity);
-            player.GetComponent<Player.Player>();
-            player.Init(_allEnemiesCollection, _gameConfig);
-            _playerGameObject.SetPlayer(player);
+            GameObject player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
+                playerPosition.transform.position, Quaternion.identity);
+            player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
+            player.GetComponent<PlayerMovementState>().Init(_gameConfig);
+            player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection);
             return player;
         }
 
@@ -69,7 +69,7 @@ namespace Game.Scripts
             }
         }
 
-        public void CreateAndSetPlayerWeapon(Player.Player player)
+        public void CreateAndSetPlayerWeapon(GameObject player)
         {
             PlayerWeapon playerWeapon = Object.Instantiate(_gameConfig.PlayerWeaponsPrefabs[0]);
             playerWeapon.Init(this, _gameConfig);

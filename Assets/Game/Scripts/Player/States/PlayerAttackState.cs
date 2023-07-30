@@ -1,25 +1,28 @@
 using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.Input;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(PlayerMovementState))]
     [RequireComponent(typeof(CurrentPlayerWeapon))]
     public class PlayerAttackState : MonoBehaviour, IState
     {
         private IAllEnemiesCollection _allEnemiesCollection;
         private CurrentPlayerWeapon _currentPlayerWeapon;
+        private MonoBehaviourStateMachine _stateMachine;
+        private PlayerMovementState _movementState;
 
         private const float RotationSpeed = 10f;
-
-        private void Awake()
-        {
-            _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
-        }
 
         public void Init(IAllEnemiesCollection allEnemiesCollection)
         {
             _allEnemiesCollection = allEnemiesCollection;
+            _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
+            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _movementState = GetComponent<PlayerMovementState>();
         }
 
         public void Enter()
@@ -28,6 +31,7 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
+            ChangeStateIfMove();
             GameObject closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
 
             if (closestEnemy == null)
@@ -41,6 +45,19 @@ namespace Game.Scripts.Player.States
 
         public void Exit()
         {
+        }
+
+        private void ChangeStateIfMove()
+        {
+            if (IsMove())
+            {
+                _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
+            }
+        }
+
+        private bool IsMove()
+        {
+            return InputService.Axis != Vector3.zero;
         }
 
         private void TurnToClosestEnemy(Vector3 enemyPosition)

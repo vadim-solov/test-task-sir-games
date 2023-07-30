@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Enemies.States;
+using Game.Scripts.Player.States;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
@@ -22,8 +23,8 @@ namespace Game.Scripts.App.States
 
         public void Enter()
         {
-            ActivatePlayer();
-            ActivateEnemies();
+            SetMovementStateForPlayer();
+            SetMovementStateForAllEnemies();
             _allEnemiesCollection.EnemyRemoved += OnEnemyRemoved;
             _allEnemiesCollection.CollectionIsEmpty += OnEnemiesCollectionIsEmpty;
         }
@@ -38,12 +39,15 @@ namespace Game.Scripts.App.States
             _allEnemiesCollection.CollectionIsEmpty -= OnEnemiesCollectionIsEmpty;
         }
 
-        private void ActivatePlayer()
+        private void SetMovementStateForPlayer()
         {
-            _playerGameObject.Instance.SetAttackState();
+            MonoBehaviourStateMachine stateMachine =
+                _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
+            PlayerMovementState movementState = _playerGameObject.Instance.GetComponent<PlayerMovementState>();
+            stateMachine.ChangeStateIfNewStateDifferent(movementState);
         }
 
-        private void ActivateEnemies()
+        private void SetMovementStateForAllEnemies()
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {

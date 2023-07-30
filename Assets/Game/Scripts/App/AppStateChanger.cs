@@ -17,8 +17,8 @@ namespace Game.Scripts.App
             IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner)
         {
             _appLoadingState = new AppLoadingState();
-            _levelLoaderState = new LevelLoaderState(gameObjectFactory, gameConfig);
-            _countdownState = new CountdownState(gameConfig, allEnemiesCollection);
+            _levelLoaderState = new LevelLoaderState(gameObjectFactory, gameConfig, playerGameObject);
+            _countdownState = new CountdownState(gameConfig, allEnemiesCollection, playerGameObject);
             _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection, coinSpawner);
             _stateMachine = new StateMachine.StateMachine();
             _countdownState.CountdownIsOver += OnCountdownIsOver;

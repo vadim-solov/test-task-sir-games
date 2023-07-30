@@ -5,21 +5,23 @@ using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(PlayerAttackState))]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementState : MonoBehaviour, IState
     {
-        private CharacterController _characterController;
         private float _movementSpeed;
+        private MonoBehaviourStateMachine _stateMachine;
+        private PlayerAttackState _attackState;
+        private CharacterController _characterController;
 
         private const float RotationSpeed = 10f;
 
         public void Init(GameConfig gameConfig)
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
-        }
-
-        private void Awake()
-        {
+            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
         }
 
@@ -29,12 +31,26 @@ namespace Game.Scripts.Player.States
 
         public void Run()
         {
+            ChangeStateIfNotMove();
             MoveToNextPosition();
             TurnToDirectionMovement();
         }
 
         public void Exit()
         {
+        }
+
+        private void ChangeStateIfNotMove()
+        {
+            if (!IsMove())
+            {
+                _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
+            }
+        }
+
+        private bool IsMove()
+        {
+            return InputService.Axis != Vector3.zero;
         }
 
         private void MoveToNextPosition()

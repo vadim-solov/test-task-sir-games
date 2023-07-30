@@ -7,7 +7,7 @@ namespace Game.Scripts.Configs
     public class PlayerConfig
     {
         [SerializeField]
-        private Player.Player _playerPrefab;
+        private GameObject _playerPrefab;
         [SerializeField]
         private float _movementSpeed;
         [SerializeField]
@@ -19,7 +19,7 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private float _weaponReloadTime;
 
-        public Player.Player PlayerPrefab => _playerPrefab;
+        public GameObject PlayerPrefab => _playerPrefab;
         public float MovementSpeed => _movementSpeed;
         public float MaxHP => _maxHP;
         public float ProjectileSpeed => _ProjectileSpeed;

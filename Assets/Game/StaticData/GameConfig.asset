@@ -18,7 +18,7 @@ MonoBehaviour:
   _allLevels:
   - {fileID: 7639729716544114613, guid: 9cc722adb444b734aa87d30e6c1d4cac, type: 3}
   _playerConfig:
-    _playerPrefab: {fileID: 3267587022310214094, guid: f1b778def46283b49a87a414c2dcab88, type: 3}
+    _playerPrefab: {fileID: 2893863150793551480, guid: f1b778def46283b49a87a414c2dcab88, type: 3}
     _movementSpeed: 3000
     _maxHP: 100
     _ProjectileSpeed: 10
