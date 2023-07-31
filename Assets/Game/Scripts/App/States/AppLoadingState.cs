@@ -1,4 +1,4 @@
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States

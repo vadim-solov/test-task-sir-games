@@ -1,11 +1,11 @@
 ﻿using Game.Scripts.Configs;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
-    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(IStateMachine))]
     [RequireComponent(typeof(EnemyAttackState))]
     public abstract class EnemyMovementState : MonoBehaviour, IState
     {
@@ -13,7 +13,7 @@ namespace Game.Scripts.Enemies.States
         protected float _movementSpeed;
         protected float _stoppingDistance;
 
-        private MonoBehaviourStateMachine _stateMachine;
+        private IStateMachine _stateMachine;
         private EnemyAttackState _attackState;
 
         private const float RotationSpeed = 10f;
@@ -27,7 +27,7 @@ namespace Game.Scripts.Enemies.States
             _playerGameObject = playerGameObject;
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
-            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _stateMachine = GetComponent<IStateMachine>();
             _attackState = GetComponent<EnemyAttackState>();
         }
 

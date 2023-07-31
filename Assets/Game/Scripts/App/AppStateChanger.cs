@@ -3,6 +3,7 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
+using Game.Scripts.Services.StateMachine;
 
 namespace Game.Scripts.App
 {
@@ -12,16 +13,17 @@ namespace Game.Scripts.App
         private readonly LevelLoaderState _levelLoaderState;
         private readonly CountdownState _countdownState;
         private readonly GameplayState _gameplayState;
-        private readonly StateMachine.StateMachine _stateMachine;
+        private readonly IStateMachine _stateMachine;
 
         public AppStateChanger(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig,
-            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner)
+            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner,
+            IStateMachine stateMachine)
         {
             _appLoadingState = new AppLoadingState();
             _levelLoaderState = new LevelLoaderState(gameObjectFactory, playerGameObject);
             _countdownState = new CountdownState(gameConfig, allEnemiesCollection, playerGameObject);
             _gameplayState = new GameplayState(playerGameObject, allEnemiesCollection, coinSpawner);
-            _stateMachine = new StateMachine.StateMachine();
+            _stateMachine = stateMachine;
             _countdownState.CountdownIsOver += OnCountdownIsOver;
         }
 

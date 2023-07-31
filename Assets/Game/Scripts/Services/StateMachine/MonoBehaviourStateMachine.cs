@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Game.Scripts.StateMachine
+namespace Game.Scripts.Services.StateMachine
 {
-    public class MonoBehaviourStateMachine : MonoBehaviour
+    public class MonoBehaviourStateMachine : MonoBehaviour, IStateMachine
     {
         public IState CurrentState { get; private set; }
 

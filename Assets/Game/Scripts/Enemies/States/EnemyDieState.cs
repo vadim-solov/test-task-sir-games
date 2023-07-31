@@ -1,5 +1,5 @@
 ﻿using Game.Scripts.Services.EnemiesCollection;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Enemies.States

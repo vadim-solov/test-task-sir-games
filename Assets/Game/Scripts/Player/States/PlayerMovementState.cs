@@ -1,18 +1,18 @@
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.Input;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(IStateMachine))]
     [RequireComponent(typeof(PlayerAttackState))]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementState : MonoBehaviour, IState
     {
         private float _movementSpeed;
-        private MonoBehaviourStateMachine _stateMachine;
+        private IStateMachine _stateMachine;
         private PlayerAttackState _attackState;
         private CharacterController _characterController;
         private IAllEnemiesCollection _allEnemiesCollection;
@@ -23,7 +23,7 @@ namespace Game.Scripts.Player.States
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
             _allEnemiesCollection = allEnemiesCollection;
-            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _stateMachine = GetComponent<IStateMachine>();
             _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
         }

@@ -1,16 +1,16 @@
 using Game.Scripts.Enemies.States;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 
 namespace Game.Scripts.Enemies
 {
     public class EnemyHealth : Health
     {
-        private MonoBehaviourStateMachine _stateMachine;
+        private IStateMachine _stateMachine;
         private EnemyDieState _dieState;
 
         private void Start()
         {
-            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _stateMachine = GetComponent<IStateMachine>();
             _dieState = GetComponent<EnemyDieState>();
         }
 

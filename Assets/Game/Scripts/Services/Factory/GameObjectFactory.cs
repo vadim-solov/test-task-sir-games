@@ -9,8 +9,8 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
+using Game.Scripts.Services.StateMachine;
 using Game.Scripts.SpawnPoint;
-using Game.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Services.Factory
@@ -53,7 +53,7 @@ namespace Game.Scripts.Services.Factory
             player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection);
             player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection);
             PlayerIdleState idleState = player.GetComponent<PlayerIdleState>();
-            player.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
+            player.GetComponent<IStateMachine>().Init(idleState);
             return player;
         }
 
@@ -69,7 +69,7 @@ namespace Game.Scripts.Services.Factory
                 enemy.GetComponent<EnemyMovementState>().Init(_playerGameObject, enemyConfig);
                 enemy.GetComponent<EnemyDieState>().Init(_allEnemiesCollection);
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
-                enemy.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
+                enemy.GetComponent<IStateMachine>().Init(idleState);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }

@@ -1,18 +1,18 @@
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Player.States
 {
-    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(IStateMachine))]
     [RequireComponent(typeof(PlayerMovementState))]
     [RequireComponent(typeof(CurrentPlayerWeapon))]
     public class PlayerAttackState : MonoBehaviour, IState
     {
         private IAllEnemiesCollection _allEnemiesCollection;
         private CurrentPlayerWeapon _currentPlayerWeapon;
-        private MonoBehaviourStateMachine _stateMachine;
+        private IStateMachine _stateMachine;
         private PlayerMovementState _movementState;
 
         private const float RotationSpeed = 10f;
@@ -21,7 +21,7 @@ namespace Game.Scripts.Player.States
         {
             _allEnemiesCollection = allEnemiesCollection;
             _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
-            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _stateMachine = GetComponent<IStateMachine>();
             _movementState = GetComponent<PlayerMovementState>();
         }
 

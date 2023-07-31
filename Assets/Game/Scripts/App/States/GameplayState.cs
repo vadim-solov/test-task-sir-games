@@ -2,7 +2,7 @@
 using Game.Scripts.Player.States;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States
@@ -41,8 +41,7 @@ namespace Game.Scripts.App.States
 
         private void SetMovementStateForPlayer()
         {
-            MonoBehaviourStateMachine stateMachine =
-                _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
+            IStateMachine stateMachine = _playerGameObject.Instance.GetComponent<IStateMachine>();
             PlayerMovementState movementState = _playerGameObject.Instance.GetComponent<PlayerMovementState>();
             stateMachine.ChangeStateIfNewStateDifferent(movementState);
         }
@@ -51,7 +50,7 @@ namespace Game.Scripts.App.States
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                MonoBehaviourStateMachine stateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
+                IStateMachine stateMachine = enemy.GetComponent<IStateMachine>();
                 EnemyMovementState movementState = enemy.GetComponent<EnemyMovementState>();
                 stateMachine.ChangeStateIfNewStateDifferent(movementState);
             }

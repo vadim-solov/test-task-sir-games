@@ -1,6 +1,6 @@
-﻿namespace Game.Scripts.StateMachine
+﻿namespace Game.Scripts.Services.StateMachine
 {
-    public class StateMachine
+    public class StateMachine : IStateMachine
     {
         public IState CurrentState { get; private set; }
 

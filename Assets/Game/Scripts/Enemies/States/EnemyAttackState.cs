@@ -3,12 +3,12 @@ using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.Enemies.States
 {
-    [RequireComponent(typeof(MonoBehaviourStateMachine))]
+    [RequireComponent(typeof(IStateMachine))]
     [RequireComponent(typeof(EnemyMovementState))]
     public class EnemyAttackState : MonoBehaviour, IState
     {
@@ -19,7 +19,7 @@ namespace Game.Scripts.Enemies.States
         private float _waitingTimeAfterAttack;
         private IGameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
-        private MonoBehaviourStateMachine _stateMachine;
+        private IStateMachine _stateMachine;
         private EnemyMovementState _movementState;
 
         private const float RotationSpeed = 10f;
@@ -31,7 +31,7 @@ namespace Game.Scripts.Enemies.States
             _playerGameObject = playerGameObject;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
             _gameObjectFactory = gameObjectFactory;
-            _stateMachine = GetComponent<MonoBehaviourStateMachine>();
+            _stateMachine = GetComponent<IStateMachine>();
             _movementState = GetComponent<EnemyMovementState>();
         }
 

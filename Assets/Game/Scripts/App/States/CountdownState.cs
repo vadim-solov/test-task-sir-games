@@ -4,7 +4,7 @@ using Game.Scripts.Player.States;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.StateMachine;
+using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States
@@ -51,8 +51,8 @@ namespace Game.Scripts.App.States
 
         private void SetIdleStateForPlayer()
         {
-            MonoBehaviourStateMachine stateMachine =
-                _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
+            IStateMachine stateMachine =
+                _playerGameObject.Instance.GetComponent<IStateMachine>();
             PlayerIdleState idleState = _playerGameObject.Instance.GetComponent<PlayerIdleState>();
             stateMachine.ChangeStateIfNewStateDifferent(idleState);
         }
@@ -61,7 +61,7 @@ namespace Game.Scripts.App.States
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                MonoBehaviourStateMachine stateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
+                IStateMachine stateMachine = enemy.GetComponent<IStateMachine>();
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
                 stateMachine.ChangeStateIfNewStateDifferent(idleState);
             }
