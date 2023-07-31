@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
+using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Game.Scripts.Enemies.States
 
         private IPlayerGameObject _playerGameObject;
         private float _waitingTimeAfterAttack;
-        private GameObjectFactory _gameObjectFactory;
+        private IGameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
         private MonoBehaviourStateMachine _stateMachine;
         private EnemyMovementState _movementState;
@@ -24,7 +25,7 @@ namespace Game.Scripts.Enemies.States
         private const float RotationSpeed = 10f;
 
         public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig,
-            GameObjectFactory gameObjectFactory)
+            IGameObjectFactory gameObjectFactory)
         {
             _enemyConfig = enemyConfig;
             _playerGameObject = playerGameObject;

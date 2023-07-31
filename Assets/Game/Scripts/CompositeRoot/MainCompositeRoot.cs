@@ -2,6 +2,7 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
+using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.UI;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace Game.Scripts.CompositeRoot
             IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(_gameConfig);
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             IPlayerGameObject playerGameObject = new PlayerGameObject();
-            GameObjectFactory gameObjectFactory =
+            IGameObjectFactory gameObjectFactory =
                 new GameObjectFactory(_gameConfig, allEnemiesCollection, playerGameObject, enemyConfigGetter);
             CoinSpawner coinSpawner = new CoinSpawner(gameObjectFactory);
             _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfig, playerGameObject,

@@ -12,18 +12,17 @@ using Game.Scripts.SpawnPoint;
 using Game.Scripts.StateMachine;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Services.Factory
 {
-    public class GameObjectFactory
+    public class GameObjectFactory : IGameObjectFactory
     {
         private readonly GameConfig _gameConfig;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
         private readonly IEnemyConfigGetter _enemyConfigGetter;
 
-        public GameObjectFactory(GameConfig gameConfig,
-            IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
-            IEnemyConfigGetter enemyConfigGetter)
+        public GameObjectFactory(GameConfig gameConfig, IAllEnemiesCollection allEnemiesCollection,
+            IPlayerGameObject playerGameObject, IEnemyConfigGetter enemyConfigGetter)
         {
             _gameConfig = gameConfig;
             _allEnemiesCollection = allEnemiesCollection;
