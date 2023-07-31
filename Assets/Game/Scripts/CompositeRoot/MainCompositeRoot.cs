@@ -4,6 +4,7 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.GameDataProvider;
+using Game.Scripts.Services.Input;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using Game.Scripts.UI;
@@ -31,7 +32,7 @@ namespace Game.Scripts.CompositeRoot
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             IPlayerGameObject playerGameObject = new PlayerGameObject();
             IGameObjectFactory gameObjectFactory = new GameObjectFactory(gameConfigDataProvider, allEnemiesCollection,
-                playerGameObject, enemyConfigGetter);
+                playerGameObject, enemyConfigGetter, GetInputService());
             CoinSpawner coinSpawner = new CoinSpawner(gameObjectFactory);
             _appStateChanger = new AppStateChanger(gameObjectFactory, gameConfigDataProvider, playerGameObject,
                 allEnemiesCollection, coinSpawner, new StateMachine());
@@ -48,6 +49,11 @@ namespace Game.Scripts.CompositeRoot
         private void Update()
         {
             _appStateChanger.Update();
+        }
+
+        private IInputService GetInputService()
+        {
+            return Application.isEditor ? (IInputService)new DesktopInput() : new MobileInput();
         }
     }
 }

@@ -14,12 +14,14 @@ namespace Game.Scripts.Player.States
         private CurrentPlayerWeapon _currentPlayerWeapon;
         private IStateMachine _stateMachine;
         private PlayerMovementState _movementState;
+        private IInputService _inputService;
 
         private const float RotationSpeed = 10f;
 
-        public void Init(IAllEnemiesCollection allEnemiesCollection)
+        public void Init(IAllEnemiesCollection allEnemiesCollection, IInputService inputService)
         {
             _allEnemiesCollection = allEnemiesCollection;
+            _inputService = inputService;
             _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
             _stateMachine = GetComponent<IStateMachine>();
             _movementState = GetComponent<PlayerMovementState>();
@@ -40,7 +42,7 @@ namespace Game.Scripts.Player.States
 
         private void AttackClosestEnemyOrChangeState()
         {
-            if (!InputService.IsMove() && !_allEnemiesCollection.IsCollectionEmpty)
+            if (!_inputService.IsMove() && !_allEnemiesCollection.IsCollectionEmpty)
             {
                 GameObject closestEnemy = _allEnemiesCollection.FindClosestEnemy(transform.position);
                 TurnToClosestEnemy(closestEnemy.transform.position);

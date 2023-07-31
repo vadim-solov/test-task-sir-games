@@ -8,6 +8,7 @@ using Game.Scripts.Projectiles;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.GameDataProvider;
+using Game.Scripts.Services.Input;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using Game.Scripts.SpawnPoint;
@@ -21,14 +22,16 @@ namespace Game.Scripts.Services.Factory
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
         private readonly IEnemyConfigGetter _enemyConfigGetter;
+        private readonly IInputService _inputService;
 
         public GameObjectFactory(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
-            IPlayerGameObject playerGameObject, IEnemyConfigGetter enemyConfigGetter)
+            IPlayerGameObject playerGameObject, IEnemyConfigGetter enemyConfigGetter, IInputService inputService)
         {
             _gameConfig = gameConfig;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
             _enemyConfigGetter = enemyConfigGetter;
+            _inputService = inputService;
         }
 
         public Camera CreateCamera(Transform cameraTargetTransform)
@@ -50,8 +53,8 @@ namespace Game.Scripts.Services.Factory
             GameObject player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
                 playerPosition.transform.position, Quaternion.identity);
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
-            player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection);
-            player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection);
+            player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection, _inputService);
+            player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection, _inputService);
             PlayerIdleState idleState = player.GetComponent<PlayerIdleState>();
             player.GetComponent<IStateMachine>().Init(idleState);
             return player;

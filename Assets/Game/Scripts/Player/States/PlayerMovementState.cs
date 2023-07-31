@@ -16,13 +16,16 @@ namespace Game.Scripts.Player.States
         private PlayerAttackState _attackState;
         private CharacterController _characterController;
         private IAllEnemiesCollection _allEnemiesCollection;
+        private IInputService _inputService;
 
         private const float RotationSpeed = 10f;
 
-        public void Init(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection)
+        public void Init(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
+            IInputService inputService)
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
             _allEnemiesCollection = allEnemiesCollection;
+            _inputService = inputService;
             _stateMachine = GetComponent<IStateMachine>();
             _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
@@ -43,7 +46,7 @@ namespace Game.Scripts.Player.States
 
         private void MoveOrChangeState()
         {
-            if (InputService.IsMove() || _allEnemiesCollection.IsCollectionEmpty)
+            if (_inputService.IsMove() || _allEnemiesCollection.IsCollectionEmpty)
             {
                 MoveToNextPosition();
                 TryTurnToDirectionMovement();
@@ -56,14 +59,14 @@ namespace Game.Scripts.Player.States
 
         private void MoveToNextPosition()
         {
-            Vector3 nexPosition = new Vector3(InputService.Axis.x, transform.position.y, InputService.Axis.z);
+            Vector3 nexPosition = new Vector3(_inputService.Axis.x, transform.position.y, _inputService.Axis.y);
             nexPosition.Normalize();
             _characterController.SimpleMove(nexPosition * _movementSpeed * Time.deltaTime);
         }
 
         private void TryTurnToDirectionMovement()
         {
-            Vector3 movementDirection = new Vector3(InputService.Axis.x, 0f, InputService.Axis.z);
+            Vector3 movementDirection = new Vector3(_inputService.Axis.x, 0f, _inputService.Axis.y);
 
             if (movementDirection == Vector3.zero)
             {

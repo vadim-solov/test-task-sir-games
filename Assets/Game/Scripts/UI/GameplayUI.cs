@@ -1,5 +1,4 @@
 ﻿using Game.Scripts.Services.GameDataProvider;
-using Game.Scripts.Services.Input;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +8,6 @@ namespace Game.Scripts.UI
     {
         [SerializeField]
         private TextMeshProUGUI _countdownTimer;
-        [SerializeField]
-        private FixedJoystick _fixedJoystick;
 
         private float _countdownTime;
 
@@ -22,18 +19,12 @@ namespace Game.Scripts.UI
         private void Update()
         {
             ReduceCountdownTime();
-            SetInputAxis();
             CheckAndSetCountdownTimer();
         }
 
         private void ReduceCountdownTime()
         {
             _countdownTime -= Time.deltaTime;
-        }
-
-        private void SetInputAxis()
-        {
-            InputService.Axis = new Vector3(_fixedJoystick.Horizontal, 0f, _fixedJoystick.Vertical);
         }
 
         private void CheckAndSetCountdownTimer()

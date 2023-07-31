@@ -2,13 +2,20 @@
 
 namespace Game.Scripts.Services.Input
 {
-    public static class InputService
+    public abstract class InputService : IInputService
     {
-        public static Vector3 Axis { get; set; }
+        private const float Epsilon = 0.001f;
 
-        public static bool IsMove()
+        public abstract Vector2 Axis { get; }
+
+        public bool IsMove()
         {
-            return Axis != Vector3.zero;
+            return Axis.sqrMagnitude > Epsilon;
+        }
+
+        protected Vector2 SimpleInputAxis()
+        {
+            return new Vector2(SimpleInput.GetAxis("Horizontal"), SimpleInput.GetAxis("Vertical"));
         }
     }
 }
