@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using Game.Scripts.Configs;
 using Game.Scripts.Enemies;
+using Game.Scripts.Services.GameDataProvider;
 
 namespace Game.Scripts.Services.EnemiesGetter
 {
     public class EnemyConfigGetter : IEnemyConfigGetter
     {
-        private readonly GameConfig _gameConfig;
+        private readonly IGameConfigDataProvider _gameConfig;
 
-        public EnemyConfigGetter(GameConfig gameConfig)
+        public EnemyConfigGetter(IGameConfigDataProvider gameConfig)
         {
             _gameConfig = gameConfig;
         }

@@ -1,5 +1,5 @@
-using Game.Scripts.Configs;
 using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.Input;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -19,7 +19,7 @@ namespace Game.Scripts.Player.States
 
         private const float RotationSpeed = 10f;
 
-        public void Init(GameConfig gameConfig, IAllEnemiesCollection allEnemiesCollection)
+        public void Init(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection)
         {
             _movementSpeed = gameConfig.PlayerConfig.MovementSpeed;
             _allEnemiesCollection = allEnemiesCollection;

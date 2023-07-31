@@ -1,4 +1,4 @@
-﻿using Game.Scripts.Configs;
+﻿using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.Input;
 using TMPro;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace Game.Scripts.UI
 
         private float _countdownTime;
 
-        public void Init(GameConfig gameConfig)
+        public void Init(IGameConfigDataProvider gameConfig)
         {
             _countdownTime = gameConfig.WaitingTimeForLevelActivation;
         }

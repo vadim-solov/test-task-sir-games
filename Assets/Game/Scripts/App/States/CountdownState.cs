@@ -1,8 +1,8 @@
 ﻿using System;
-using Game.Scripts.Configs;
 using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
 using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -19,7 +19,7 @@ namespace Game.Scripts.App.States
 
         public event Action CountdownIsOver;
 
-        public CountdownState(GameConfig gameConfig, IAllEnemiesCollection allEnemiesCollection,
+        public CountdownState(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
             IPlayerGameObject playerGameObject)
         {
             _waitingTimeForLevelActivation = gameConfig.WaitingTimeForLevelActivation;

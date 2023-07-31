@@ -1,5 +1,4 @@
-﻿using Game.Scripts.Configs;
-using Game.Scripts.Services.Factory;
+﻿using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.StateMachine;
 using UnityEngine;
@@ -9,14 +8,11 @@ namespace Game.Scripts.App.States
     public class LevelLoaderState : IState
     {
         private readonly IGameObjectFactory _gameObjectFactory;
-        private readonly GameConfig _gameConfig;
         private readonly IPlayerGameObject _playerGameObject;
 
-        public LevelLoaderState(IGameObjectFactory gameObjectFactory, GameConfig gameConfig,
-            IPlayerGameObject playerGameObject)
+        public LevelLoaderState(IGameObjectFactory gameObjectFactory, IPlayerGameObject playerGameObject)
         {
             _gameObjectFactory = gameObjectFactory;
-            _gameConfig = gameConfig;
             _playerGameObject = playerGameObject;
         }
 

@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Configs;
-using Game.Scripts.Projectiles;
+﻿using Game.Scripts.Projectiles;
 using Game.Scripts.Services.Factory;
+using Game.Scripts.Services.GameDataProvider;
 using UnityEngine;
 
 namespace Game.Scripts.PlayerWeapons
@@ -19,7 +19,7 @@ namespace Game.Scripts.PlayerWeapons
         private float _timer;
         private float _reloadTime;
 
-        public void Init(IGameObjectFactory gameObjectFactory, GameConfig gameConfig)
+        public void Init(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig)
         {
             _gameObjectFactory = gameObjectFactory;
             _attackPower = gameConfig.PlayerConfig.AttackPower;
