@@ -1,5 +1,4 @@
 ﻿using Game.Scripts.App;
-using Game.Scripts.Configs;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factory;
@@ -9,14 +8,13 @@ using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using Game.Scripts.UI;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.CompositeRoot
 {
     public class MainCompositeRoot : MonoBehaviour
     {
-        [SerializeField]
-        private GameConfig _gameConfig;
-
+        private IGameConfigDataProvider _gameConfigDataProvider;
         private AppStateChanger _appStateChanger;
 
         private void Awake()
@@ -25,20 +23,25 @@ namespace Game.Scripts.CompositeRoot
             _appStateChanger.StartApp();
         }
 
+        [Inject]
+        private void Construct(IGameConfigDataProvider gameConfigDataProvider)
+        {
+            _gameConfigDataProvider = gameConfigDataProvider;
+        }
+
         private void Init()
         {
-            IGameConfigDataProvider gameConfigDataProvider = new GameConfigDataProvider(_gameConfig);
-            IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(gameConfigDataProvider);
+            IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(_gameConfigDataProvider);
             IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
             IPlayerGameObject playerGameObject = new PlayerGameObject();
-            IGameObjectFactory gameObjectFactory = new GameObjectFactory(gameConfigDataProvider, allEnemiesCollection,
+            IGameObjectFactory gameObjectFactory = new GameObjectFactory(_gameConfigDataProvider, allEnemiesCollection,
                 playerGameObject, enemyConfigGetter, GetInputService());
             CoinSpawner coinSpawner = new CoinSpawner(gameObjectFactory);
-            _appStateChanger = new AppStateChanger(gameObjectFactory, gameConfigDataProvider, playerGameObject,
+            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfigDataProvider, playerGameObject,
                 allEnemiesCollection, coinSpawner, new StateMachine());
             UIFactory uiFactory = new UIFactory();
             GameplayUI gameplayUI = uiFactory.CreateGameplayCanvas();
-            gameplayUI.Init(gameConfigDataProvider);
+            gameplayUI.Init(_gameConfigDataProvider);
         }
 
         private void OnDisable()
