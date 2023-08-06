@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.Scripts.Installers
 {
-    public class SceneInstaller : MonoInstaller
+    public class GameSceneInstaller : MonoInstaller
     {
         [SerializeField]
         private GameConfig _gameConfig;
