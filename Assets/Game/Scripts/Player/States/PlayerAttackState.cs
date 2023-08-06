@@ -2,6 +2,7 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
 using Game.Scripts.Services.StateMachine;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Player.States
 {
@@ -18,10 +19,16 @@ namespace Game.Scripts.Player.States
 
         private const float RotationSpeed = 10f;
 
-        public void Init(IAllEnemiesCollection allEnemiesCollection, IInputService inputService)
+
+        [Inject]
+        private void Construct(IInputService inputService, IAllEnemiesCollection allEnemiesCollection)
         {
-            _allEnemiesCollection = allEnemiesCollection;
             _inputService = inputService;
+            _allEnemiesCollection = allEnemiesCollection;
+        }
+
+        public void Awake()
+        {
             _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
             _stateMachine = GetComponent<IStateMachine>();
             _movementState = GetComponent<PlayerMovementState>();

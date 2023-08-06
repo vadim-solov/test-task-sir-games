@@ -8,11 +8,10 @@ using Game.Scripts.Projectiles;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.GameDataProvider;
-using Game.Scripts.Services.Input;
-using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using Game.Scripts.SpawnPoint;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Services.Factory
 {
@@ -20,18 +19,17 @@ namespace Game.Scripts.Services.Factory
     {
         private readonly IGameConfigDataProvider _gameConfig;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
-        private readonly IPlayerGameObject _playerGameObject;
         private readonly IEnemyConfigGetter _enemyConfigGetter;
-        private readonly IInputService _inputService;
+        private readonly DiContainer _diContainer;
+
 
         public GameObjectFactory(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
-            IPlayerGameObject playerGameObject, IEnemyConfigGetter enemyConfigGetter, IInputService inputService)
+            IEnemyConfigGetter enemyConfigGetter, DiContainer diContainer)
         {
             _gameConfig = gameConfig;
             _allEnemiesCollection = allEnemiesCollection;
-            _playerGameObject = playerGameObject;
             _enemyConfigGetter = enemyConfigGetter;
-            _inputService = inputService;
+            _diContainer = diContainer;
         }
 
         public Camera CreateCamera(Transform cameraTargetTransform)
@@ -50,11 +48,10 @@ namespace Game.Scripts.Services.Factory
         public GameObject CreatePlayerAndSetPosition()
         {
             PlayerSpawnPoint playerPosition = _gameConfig.AllLevels[0].PlayerSpawnPoint;
-            GameObject player = Object.Instantiate(_gameConfig.PlayerConfig.PlayerPrefab,
-                playerPosition.transform.position, Quaternion.identity);
+
+            GameObject player = _diContainer.InstantiatePrefab(_gameConfig.PlayerConfig.PlayerPrefab,
+                playerPosition.transform.position, Quaternion.identity, null);
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
-            player.GetComponent<PlayerMovementState>().Init(_gameConfig, _allEnemiesCollection, _inputService);
-            player.GetComponent<PlayerAttackState>().Init(_allEnemiesCollection, _inputService);
             PlayerIdleState idleState = player.GetComponent<PlayerIdleState>();
             player.GetComponent<IStateMachine>().Init(idleState);
             return player;
@@ -65,12 +62,14 @@ namespace Game.Scripts.Services.Factory
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
                 EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
-                GameObject enemy = Object.Instantiate(enemyConfig.EnemyPrefab, enemySpawnPoint.transform.position,
-                    enemySpawnPoint.transform.rotation);
+
+                GameObject enemy = _diContainer.InstantiatePrefab(enemyConfig.EnemyPrefab,
+                    enemySpawnPoint.transform.position,
+                    enemySpawnPoint.transform.rotation, null);
+
                 enemy.GetComponent<EnemyHealth>().Init(enemyConfig.MaxHP);
-                enemy.GetComponent<EnemyAttackState>().Init(_playerGameObject, enemyConfig, this);
-                enemy.GetComponent<EnemyMovementState>().Init(_playerGameObject, enemyConfig);
-                enemy.GetComponent<EnemyDieState>().Init(_allEnemiesCollection);
+                enemy.GetComponent<EnemyAttackState>().Init(enemyConfig);
+                enemy.GetComponent<EnemyMovementState>().Init(enemyConfig);
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
                 enemy.GetComponent<IStateMachine>().Init(idleState);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
@@ -79,8 +78,8 @@ namespace Game.Scripts.Services.Factory
 
         public void CreateAndSetPlayerWeapon(GameObject player)
         {
-            PlayerWeapon playerWeapon = Object.Instantiate(_gameConfig.PlayerWeaponsPrefabs[0]);
-            playerWeapon.Init(this, _gameConfig);
+            PlayerWeapon playerWeapon =
+                _diContainer.InstantiatePrefabForComponent<PlayerWeapon>(_gameConfig.PlayerWeaponsPrefabs[0]);
             CurrentPlayerWeapon playerWeaponComponent = player.GetComponent<CurrentPlayerWeapon>();
             playerWeaponComponent.SetWeapon(playerWeapon);
         }

@@ -5,6 +5,7 @@ using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
@@ -24,13 +25,17 @@ namespace Game.Scripts.Enemies.States
 
         private const float RotationSpeed = 10f;
 
-        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig,
-            IGameObjectFactory gameObjectFactory)
+        [Inject]
+        private void Construct(IPlayerGameObject playerGameObject, IGameObjectFactory gameObjectFactory)
+        {
+            _playerGameObject = playerGameObject;
+            _gameObjectFactory = gameObjectFactory;
+        }
+
+        public void Init(EnemyConfig enemyConfig)
         {
             _enemyConfig = enemyConfig;
-            _playerGameObject = playerGameObject;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
-            _gameObjectFactory = gameObjectFactory;
             _stateMachine = GetComponent<IStateMachine>();
             _movementState = GetComponent<EnemyMovementState>();
         }

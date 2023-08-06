@@ -2,6 +2,7 @@
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
@@ -22,9 +23,14 @@ namespace Game.Scripts.Enemies.States
         public abstract void Run();
         public abstract void Exit();
 
-        public void Init(IPlayerGameObject playerGameObject, EnemyConfig enemyConfig)
+        [Inject]
+        private void Construct(IPlayerGameObject playerGameObject)
         {
             _playerGameObject = playerGameObject;
+        }
+
+        public void Init(EnemyConfig enemyConfig)
+        {
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
             _stateMachine = GetComponent<IStateMachine>();

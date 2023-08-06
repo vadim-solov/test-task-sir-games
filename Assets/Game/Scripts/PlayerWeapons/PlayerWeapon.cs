@@ -2,6 +2,7 @@
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.GameDataProvider;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.PlayerWeapons
 {
@@ -19,7 +20,8 @@ namespace Game.Scripts.PlayerWeapons
         private float _timer;
         private float _reloadTime;
 
-        public void Init(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig)
+        [Inject]
+        public void Construct(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig)
         {
             _gameObjectFactory = gameObjectFactory;
             _attackPower = gameConfig.PlayerConfig.AttackPower;

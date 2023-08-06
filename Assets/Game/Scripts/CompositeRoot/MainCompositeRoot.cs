@@ -3,7 +3,6 @@ using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.GameDataProvider;
-using Game.Scripts.Services.Input;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
 using Game.Scripts.UI;
@@ -16,6 +15,10 @@ namespace Game.Scripts.CompositeRoot
     {
         private IGameConfigDataProvider _gameConfigDataProvider;
         private AppStateChanger _appStateChanger;
+        private IEnemyConfigGetter _enemyConfigGetter;
+        private IAllEnemiesCollection _allEnemiesCollection;
+        private IPlayerGameObject _playerGameObject;
+        private IGameObjectFactory _gameObjectFactory;
 
         private void Awake()
         {
@@ -24,21 +27,22 @@ namespace Game.Scripts.CompositeRoot
         }
 
         [Inject]
-        private void Construct(IGameConfigDataProvider gameConfigDataProvider)
+        private void Construct(IGameConfigDataProvider gameConfigDataProvider, IEnemyConfigGetter enemyConfigGetter,
+            IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
+            IGameObjectFactory gameObjectFactory)
         {
             _gameConfigDataProvider = gameConfigDataProvider;
+            _enemyConfigGetter = enemyConfigGetter;
+            _allEnemiesCollection = allEnemiesCollection;
+            _playerGameObject = playerGameObject;
+            _gameObjectFactory = gameObjectFactory;
         }
 
         private void Init()
         {
-            IEnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(_gameConfigDataProvider);
-            IAllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
-            IPlayerGameObject playerGameObject = new PlayerGameObject();
-            IGameObjectFactory gameObjectFactory = new GameObjectFactory(_gameConfigDataProvider, allEnemiesCollection,
-                playerGameObject, enemyConfigGetter, GetInputService());
-            CoinSpawner coinSpawner = new CoinSpawner(gameObjectFactory);
-            _appStateChanger = new AppStateChanger(gameObjectFactory, _gameConfigDataProvider, playerGameObject,
-                allEnemiesCollection, coinSpawner, new StateMachine());
+            CoinSpawner coinSpawner = new CoinSpawner(_gameObjectFactory);
+            _appStateChanger = new AppStateChanger(_gameObjectFactory, _gameConfigDataProvider, _playerGameObject,
+                _allEnemiesCollection, coinSpawner, new StateMachine());
             UIFactory uiFactory = new UIFactory();
             GameplayUI gameplayUI = uiFactory.CreateGameplayCanvas();
             gameplayUI.Init(_gameConfigDataProvider);
@@ -52,11 +56,6 @@ namespace Game.Scripts.CompositeRoot
         private void Update()
         {
             _appStateChanger.Update();
-        }
-
-        private IInputService GetInputService()
-        {
-            return Application.isEditor ? (IInputService)new DesktopInput() : new MobileInput();
         }
     }
 }

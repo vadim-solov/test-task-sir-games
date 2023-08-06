@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.StateMachine;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
@@ -8,7 +9,8 @@ namespace Game.Scripts.Enemies.States
     {
         private IAllEnemiesCollection _enemiesCollection;
 
-        public void Init(IAllEnemiesCollection enemiesCollection)
+        [Inject]
+        public void Construct(IAllEnemiesCollection enemiesCollection)
         {
             _enemiesCollection = enemiesCollection;
         }
