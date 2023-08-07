@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
-    [RequireComponent(typeof(IStateMachine))]
+    [RequireComponent(typeof(IAppStateMachine))]
     [RequireComponent(typeof(EnemyMovementState))]
     public class EnemyAttackState : MonoBehaviour, IState
     {
@@ -20,7 +20,7 @@ namespace Game.Scripts.Enemies.States
         private float _waitingTimeAfterAttack;
         private IGameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
-        private IStateMachine _stateMachine;
+        private IAppStateMachine _appStateMachine;
         private EnemyMovementState _movementState;
 
         private const float RotationSpeed = 10f;
@@ -36,7 +36,7 @@ namespace Game.Scripts.Enemies.States
         {
             _enemyConfig = enemyConfig;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
-            _stateMachine = GetComponent<IStateMachine>();
+            _appStateMachine = GetComponent<IAppStateMachine>();
             _movementState = GetComponent<EnemyMovementState>();
         }
 
@@ -59,7 +59,7 @@ namespace Game.Scripts.Enemies.States
         {
             Attack();
             yield return new WaitForSeconds(_waitingTimeAfterAttack);
-            _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
+            _appStateMachine.ChangeStateIfNewStateDifferent(_movementState);
         }
 
         private void Attack()

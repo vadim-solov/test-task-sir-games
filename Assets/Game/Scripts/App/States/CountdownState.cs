@@ -1,10 +1,9 @@
-﻿using System;
-using Game.Scripts.Enemies.States;
+﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States
@@ -12,17 +11,18 @@ namespace Game.Scripts.App.States
     public class CountdownState : IState
     {
         private float _timer;
+        private readonly AppStateMachine _appStateMachine;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
 
         private readonly float _waitingTimeForLevelActivation;
 
-        public event Action CountdownIsOver;
-
-        public CountdownState(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
+        public CountdownState(AppStateMachine appStateMachine, IGameConfigDataProvider gameConfig,
+            IAllEnemiesCollection allEnemiesCollection,
             IPlayerGameObject playerGameObject)
         {
             _waitingTimeForLevelActivation = gameConfig.WaitingTimeForLevelActivation;
+            _appStateMachine = appStateMachine;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
         }
@@ -51,19 +51,19 @@ namespace Game.Scripts.App.States
 
         private void SetIdleStateForPlayer()
         {
-            IStateMachine stateMachine =
-                _playerGameObject.Instance.GetComponent<IStateMachine>();
+            IAppStateMachine appStateMachine =
+                _playerGameObject.Instance.GetComponent<IAppStateMachine>();
             PlayerIdleState idleState = _playerGameObject.Instance.GetComponent<PlayerIdleState>();
-            stateMachine.ChangeStateIfNewStateDifferent(idleState);
+            appStateMachine.ChangeStateIfNewStateDifferent(idleState);
         }
 
         private void SetIdleStateForAllEnemies()
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                IStateMachine stateMachine = enemy.GetComponent<IStateMachine>();
+                IAppStateMachine appStateMachine = enemy.GetComponent<IAppStateMachine>();
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
-                stateMachine.ChangeStateIfNewStateDifferent(idleState);
+                appStateMachine.ChangeStateIfNewStateDifferent(idleState);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Game.Scripts.App.States
         {
             if (_timer >= _waitingTimeForLevelActivation)
             {
-                CountdownIsOver?.Invoke();
+                _appStateMachine.TryChangeState<GameplayState>();
             }
         }
     }

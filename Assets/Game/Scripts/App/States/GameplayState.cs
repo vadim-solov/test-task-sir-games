@@ -1,9 +1,9 @@
 ﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States
@@ -42,18 +42,18 @@ namespace Game.Scripts.App.States
 
         private void SetMovementStateForPlayer()
         {
-            IStateMachine stateMachine = _playerGameObject.Instance.GetComponent<IStateMachine>();
+            IAppStateMachine appStateMachine = _playerGameObject.Instance.GetComponent<IAppStateMachine>();
             PlayerMovementState movementState = _playerGameObject.Instance.GetComponent<PlayerMovementState>();
-            stateMachine.ChangeStateIfNewStateDifferent(movementState);
+            appStateMachine.ChangeStateIfNewStateDifferent(movementState);
         }
 
         private void SetMovementStateForAllEnemies()
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                IStateMachine stateMachine = enemy.GetComponent<IStateMachine>();
+                IAppStateMachine appStateMachine = enemy.GetComponent<IAppStateMachine>();
                 EnemyMovementState movementState = enemy.GetComponent<EnemyMovementState>();
-                stateMachine.ChangeStateIfNewStateDifferent(movementState);
+                appStateMachine.ChangeStateIfNewStateDifferent(movementState);
             }
         }
 

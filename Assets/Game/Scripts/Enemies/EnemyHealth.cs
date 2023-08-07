@@ -1,22 +1,22 @@
 using Game.Scripts.Enemies.States;
-using Game.Scripts.Services.StateMachine;
+using Game.Scripts.Services.AppStateMachine;
 
 namespace Game.Scripts.Enemies
 {
     public class EnemyHealth : Health
     {
-        private IStateMachine _stateMachine;
+        private IAppStateMachine _appStateMachine;
         private EnemyDieState _dieState;
 
         private void Start()
         {
-            _stateMachine = GetComponent<IStateMachine>();
+            _appStateMachine = GetComponent<IAppStateMachine>();
             _dieState = GetComponent<EnemyDieState>();
         }
 
         protected override void Die()
         {
-            _stateMachine.ChangeStateIfNewStateDifferent(_dieState);
+            _appStateMachine.ChangeStateIfNewStateDifferent(_dieState);
         }
     }
 }

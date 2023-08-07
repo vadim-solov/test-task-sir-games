@@ -1,19 +1,19 @@
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Input;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Player.States
 {
-    [RequireComponent(typeof(IStateMachine))]
+    [RequireComponent(typeof(IAppStateMachine))]
     [RequireComponent(typeof(PlayerMovementState))]
     [RequireComponent(typeof(CurrentPlayerWeapon))]
     public class PlayerAttackState : MonoBehaviour, IState
     {
         private IAllEnemiesCollection _allEnemiesCollection;
         private CurrentPlayerWeapon _currentPlayerWeapon;
-        private IStateMachine _stateMachine;
+        private IAppStateMachine _appStateMachine;
         private PlayerMovementState _movementState;
         private IInputService _inputService;
 
@@ -30,7 +30,7 @@ namespace Game.Scripts.Player.States
         public void Awake()
         {
             _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
-            _stateMachine = GetComponent<IStateMachine>();
+            _appStateMachine = GetComponent<IAppStateMachine>();
             _movementState = GetComponent<PlayerMovementState>();
         }
 
@@ -57,7 +57,7 @@ namespace Game.Scripts.Player.States
             }
             else
             {
-                _stateMachine.ChangeStateIfNewStateDifferent(_movementState);
+                _appStateMachine.ChangeStateIfNewStateDifferent(_movementState);
             }
         }
 

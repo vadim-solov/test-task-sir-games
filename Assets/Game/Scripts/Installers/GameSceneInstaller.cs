@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Configs;
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
@@ -25,6 +26,7 @@ namespace Game.Scripts.Installers
             BindInput();
             BindGameObjectFactory();
             BindCoinSpawner();
+            BindAppStateMachine();
         }
 
         private void BindGameConfigDataProvider()
@@ -61,6 +63,11 @@ namespace Game.Scripts.Installers
         private void BindCoinSpawner()
         {
             Container.Bind<ICoinSpawner>().To<CoinSpawner>().FromNew().AsSingle().NonLazy();
+        }
+
+        private void BindAppStateMachine()
+        {
+            Container.Bind<IAppStateMachine>().To<AppStateMachine>().FromNew().AsSingle().NonLazy();
         }
 
         // private IInputService GetInputService()

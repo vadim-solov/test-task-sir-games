@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Services.StateMachine
+﻿namespace Game.Scripts.Services.AppStateMachine
 {
     public interface IState
     {

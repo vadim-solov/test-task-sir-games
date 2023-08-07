@@ -1,6 +1,8 @@
-﻿namespace Game.Scripts.Services.StateMachine
+using UnityEngine;
+
+namespace Game.Scripts.Services.AppStateMachine
 {
-    public class StateMachine : IStateMachine
+    public class MonoBehaviourStateMachine : MonoBehaviour, IAppStateMachine
     {
         public IState CurrentState { get; private set; }
 
@@ -20,6 +22,15 @@
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();
+        }
+
+        public void TryChangeState<T>() where T : class, IState
+        {
+        }
+
+        private void Update()
+        {
+            CurrentState.Run();
         }
     }
 }

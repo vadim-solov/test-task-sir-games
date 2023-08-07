@@ -1,12 +1,12 @@
 ﻿using Game.Scripts.Configs;
+using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
-    [RequireComponent(typeof(IStateMachine))]
+    [RequireComponent(typeof(IAppStateMachine))]
     [RequireComponent(typeof(EnemyAttackState))]
     public abstract class EnemyMovementState : MonoBehaviour, IState
     {
@@ -14,7 +14,7 @@ namespace Game.Scripts.Enemies.States
         protected float _movementSpeed;
         protected float _stoppingDistance;
 
-        private IStateMachine _stateMachine;
+        private IAppStateMachine _appStateMachine;
         private EnemyAttackState _attackState;
 
         private const float RotationSpeed = 10f;
@@ -33,7 +33,7 @@ namespace Game.Scripts.Enemies.States
         {
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
-            _stateMachine = GetComponent<IStateMachine>();
+            _appStateMachine = GetComponent<IAppStateMachine>();
             _attackState = GetComponent<EnemyAttackState>();
         }
 
@@ -51,7 +51,7 @@ namespace Game.Scripts.Enemies.States
 
             if (_stoppingDistance >= distance)
             {
-                _stateMachine.ChangeStateIfNewStateDifferent(_attackState);
+                _appStateMachine.ChangeStateIfNewStateDifferent(_attackState);
             }
         }
     }

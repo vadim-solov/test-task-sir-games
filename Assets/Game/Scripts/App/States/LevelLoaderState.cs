@@ -1,17 +1,20 @@
-﻿using Game.Scripts.Services.Factory;
+﻿using Game.Scripts.Services.AppStateMachine;
+using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.PlayerInstance;
-using Game.Scripts.Services.StateMachine;
 using UnityEngine;
 
 namespace Game.Scripts.App.States
 {
     public class LevelLoaderState : IState
     {
+        private readonly AppStateMachine _appStateMachine;
         private readonly IGameObjectFactory _gameObjectFactory;
         private readonly IPlayerGameObject _playerGameObject;
 
-        public LevelLoaderState(IGameObjectFactory gameObjectFactory, IPlayerGameObject playerGameObject)
+        public LevelLoaderState(AppStateMachine appStateMachine, IGameObjectFactory gameObjectFactory,
+            IPlayerGameObject playerGameObject)
         {
+            _appStateMachine = appStateMachine;
             _gameObjectFactory = gameObjectFactory;
             _playerGameObject = playerGameObject;
         }
@@ -24,6 +27,7 @@ namespace Game.Scripts.App.States
             _gameObjectFactory.CreateAndSetPlayerWeapon(player);
             _gameObjectFactory.CreateCamera(player.transform);
             _gameObjectFactory.CreateEnemiesAndSetPositions();
+            _appStateMachine.TryChangeState<CountdownState>();
         }
 
         public void Run()
