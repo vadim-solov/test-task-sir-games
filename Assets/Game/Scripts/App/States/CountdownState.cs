@@ -51,8 +51,8 @@ namespace Game.Scripts.App.States
 
         private void SetIdleStateForPlayer()
         {
-            IAppStateMachine appStateMachine =
-                _playerGameObject.Instance.GetComponent<IAppStateMachine>();
+            MonoBehaviourStateMachine appStateMachine =
+                _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
             PlayerIdleState idleState = _playerGameObject.Instance.GetComponent<PlayerIdleState>();
             appStateMachine.ChangeStateIfNewStateDifferent(idleState);
         }
@@ -61,7 +61,7 @@ namespace Game.Scripts.App.States
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                IAppStateMachine appStateMachine = enemy.GetComponent<IAppStateMachine>();
+                MonoBehaviourStateMachine appStateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
                 appStateMachine.ChangeStateIfNewStateDifferent(idleState);
             }

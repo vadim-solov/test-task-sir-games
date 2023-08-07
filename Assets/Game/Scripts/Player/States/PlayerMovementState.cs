@@ -7,13 +7,13 @@ using Zenject;
 
 namespace Game.Scripts.Player.States
 {
-    [RequireComponent(typeof(IAppStateMachine))]
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
     [RequireComponent(typeof(PlayerAttackState))]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementState : MonoBehaviour, IState
     {
         private float _movementSpeed;
-        private IAppStateMachine _appStateMachine;
+        private MonoBehaviourStateMachine _monoBehaviourStateMachine;
         private PlayerAttackState _attackState;
         private CharacterController _characterController;
         private IAllEnemiesCollection _allEnemiesCollection;
@@ -32,7 +32,7 @@ namespace Game.Scripts.Player.States
 
         public void Awake()
         {
-            _appStateMachine = GetComponent<IAppStateMachine>();
+            _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
             _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
         }
@@ -59,7 +59,7 @@ namespace Game.Scripts.Player.States
             }
             else
             {
-                _appStateMachine.ChangeStateIfNewStateDifferent(_attackState);
+                _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_attackState);
             }
         }
 

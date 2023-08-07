@@ -5,7 +5,6 @@ using Game.Scripts.Player;
 using Game.Scripts.Player.States;
 using Game.Scripts.PlayerWeapons;
 using Game.Scripts.Projectiles;
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.GameDataProvider;
@@ -53,7 +52,7 @@ namespace Game.Scripts.Services.Factory
                 playerPosition.transform.position, Quaternion.identity, null);
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
             PlayerIdleState idleState = player.GetComponent<PlayerIdleState>();
-            player.GetComponent<IAppStateMachine>().Init(idleState);
+            player.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
             return player;
         }
 
@@ -71,7 +70,7 @@ namespace Game.Scripts.Services.Factory
                 enemy.GetComponent<EnemyAttackState>().Init(enemyConfig);
                 enemy.GetComponent<EnemyMovementState>().Init(enemyConfig);
                 EnemyIdleState idleState = enemy.GetComponent<EnemyIdleState>();
-                enemy.GetComponent<IAppStateMachine>().Init(idleState);
+                enemy.GetComponent<MonoBehaviourStateMachine>().Init(idleState);
                 _allEnemiesCollection.AddEnemyToCollection(enemy);
             }
         }

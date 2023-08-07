@@ -1,8 +1,9 @@
+using Game.Scripts.Services.AppStateMachine;
 using UnityEngine;
 
-namespace Game.Scripts.Services.AppStateMachine
+namespace Game.Scripts
 {
-    public class MonoBehaviourStateMachine : MonoBehaviour, IAppStateMachine
+    public class MonoBehaviourStateMachine : MonoBehaviour
     {
         public IState CurrentState { get; private set; }
 
@@ -22,10 +23,6 @@ namespace Game.Scripts.Services.AppStateMachine
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();
-        }
-
-        public void TryChangeState<T>() where T : class, IState
-        {
         }
 
         private void Update()

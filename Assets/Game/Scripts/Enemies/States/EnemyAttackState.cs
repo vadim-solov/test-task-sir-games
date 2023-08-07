@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Game.Scripts.Enemies.States
 {
-    [RequireComponent(typeof(IAppStateMachine))]
+    [RequireComponent(typeof(MonoBehaviourStateMachine))]
     [RequireComponent(typeof(EnemyMovementState))]
     public class EnemyAttackState : MonoBehaviour, IState
     {
@@ -20,7 +20,7 @@ namespace Game.Scripts.Enemies.States
         private float _waitingTimeAfterAttack;
         private IGameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
-        private IAppStateMachine _appStateMachine;
+        private MonoBehaviourStateMachine _monoBehaviourStateMachine;
         private EnemyMovementState _movementState;
 
         private const float RotationSpeed = 10f;
@@ -36,7 +36,7 @@ namespace Game.Scripts.Enemies.States
         {
             _enemyConfig = enemyConfig;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
-            _appStateMachine = GetComponent<IAppStateMachine>();
+            _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
             _movementState = GetComponent<EnemyMovementState>();
         }
 
@@ -59,7 +59,7 @@ namespace Game.Scripts.Enemies.States
         {
             Attack();
             yield return new WaitForSeconds(_waitingTimeAfterAttack);
-            _appStateMachine.ChangeStateIfNewStateDifferent(_movementState);
+            _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_movementState);
         }
 
         private void Attack()

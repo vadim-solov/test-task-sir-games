@@ -42,7 +42,8 @@ namespace Game.Scripts.App.States
 
         private void SetMovementStateForPlayer()
         {
-            IAppStateMachine appStateMachine = _playerGameObject.Instance.GetComponent<IAppStateMachine>();
+            MonoBehaviourStateMachine appStateMachine =
+                _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
             PlayerMovementState movementState = _playerGameObject.Instance.GetComponent<PlayerMovementState>();
             appStateMachine.ChangeStateIfNewStateDifferent(movementState);
         }
@@ -51,7 +52,7 @@ namespace Game.Scripts.App.States
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                IAppStateMachine appStateMachine = enemy.GetComponent<IAppStateMachine>();
+                MonoBehaviourStateMachine appStateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
                 EnemyMovementState movementState = enemy.GetComponent<EnemyMovementState>();
                 appStateMachine.ChangeStateIfNewStateDifferent(movementState);
             }
