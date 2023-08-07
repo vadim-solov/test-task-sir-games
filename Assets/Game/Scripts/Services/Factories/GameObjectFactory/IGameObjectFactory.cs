@@ -1,7 +1,7 @@
 ﻿using Game.Scripts.Projectiles;
 using UnityEngine;
 
-namespace Game.Scripts.Services.Factory
+namespace Game.Scripts.Services.Factories.GameObjectFactory
 {
     public interface IGameObjectFactory
     {

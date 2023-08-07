@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
-using Game.Scripts.Services.Factory;
+using Game.Scripts.Services.Factories.GameObjectFactory;
 using UnityEngine;
 using Zenject;
 

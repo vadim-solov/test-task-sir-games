@@ -1,5 +1,5 @@
 ﻿using Game.Scripts.Projectiles;
-using Game.Scripts.Services.Factory;
+using Game.Scripts.Services.Factories.GameObjectFactory;
 using Game.Scripts.Services.GameDataProvider;
 using UnityEngine;
 using Zenject;

@@ -2,7 +2,7 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
 using Game.Scripts.Services.AppStateMachine;
-using Game.Scripts.Services.Factory;
+using Game.Scripts.Services.Factories.GameObjectFactory;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 using Zenject;

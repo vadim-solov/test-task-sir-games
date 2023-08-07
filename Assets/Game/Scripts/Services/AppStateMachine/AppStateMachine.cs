@@ -4,7 +4,8 @@ using System.Linq;
 using Game.Scripts.App.States;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
-using Game.Scripts.Services.Factory;
+using Game.Scripts.Services.Factories.GameObjectFactory;
+using Game.Scripts.Services.Factories.UIFactory;
 using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
 using Zenject;
@@ -19,12 +20,13 @@ namespace Game.Scripts.Services.AppStateMachine
 
         [Inject]
         public AppStateMachine(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig,
-            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, ICoinSpawner coinSpawner)
+            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, ICoinSpawner coinSpawner,
+            IUIFactoryService uiFactoryService)
         {
             _states = new List<IState>
             {
                 new AppLoadingState(this),
-                new LevelLoaderState(this, gameObjectFactory, playerGameObject),
+                new LevelLoaderState(this, gameObjectFactory, playerGameObject, uiFactoryService),
                 new CountdownState(this, gameConfig, allEnemiesCollection, playerGameObject),
                 new GameplayState(playerGameObject, allEnemiesCollection, coinSpawner),
             };

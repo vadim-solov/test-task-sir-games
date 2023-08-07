@@ -12,7 +12,7 @@ using Game.Scripts.SpawnPoint;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Services.Factory
+namespace Game.Scripts.Services.Factories.GameObjectFactory
 {
     public class GameObjectFactory : IGameObjectFactory
     {
