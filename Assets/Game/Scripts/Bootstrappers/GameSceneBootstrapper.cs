@@ -3,7 +3,7 @@ using Game.Scripts.Services.AppStateMachine;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.CompositeRoot
+namespace Game.Scripts.Bootstrappers
 {
     public class GameSceneBootstrapper : MonoBehaviour
     {
