@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.App.States;
+using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Factory;
 using Game.Scripts.Services.GameDataProvider;
@@ -16,7 +17,7 @@ namespace Game.Scripts.App
         private readonly IStateMachine _stateMachine;
 
         public AppStateChanger(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig,
-            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, CoinSpawner coinSpawner,
+            IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, ICoinSpawner coinSpawner,
             IStateMachine stateMachine)
         {
             _appLoadingState = new AppLoadingState();

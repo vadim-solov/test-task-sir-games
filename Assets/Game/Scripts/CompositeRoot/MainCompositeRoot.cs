@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.App;
+using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factory;
@@ -19,6 +20,7 @@ namespace Game.Scripts.CompositeRoot
         private IAllEnemiesCollection _allEnemiesCollection;
         private IPlayerGameObject _playerGameObject;
         private IGameObjectFactory _gameObjectFactory;
+        private ICoinSpawner _coinSpawner;
 
         private void Awake()
         {
@@ -29,20 +31,20 @@ namespace Game.Scripts.CompositeRoot
         [Inject]
         private void Construct(IGameConfigDataProvider gameConfigDataProvider, IEnemyConfigGetter enemyConfigGetter,
             IAllEnemiesCollection allEnemiesCollection, IPlayerGameObject playerGameObject,
-            IGameObjectFactory gameObjectFactory)
+            IGameObjectFactory gameObjectFactory, ICoinSpawner coinSpawner)
         {
             _gameConfigDataProvider = gameConfigDataProvider;
             _enemyConfigGetter = enemyConfigGetter;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
             _gameObjectFactory = gameObjectFactory;
+            _coinSpawner = coinSpawner;
         }
 
         private void Init()
         {
-            CoinSpawner coinSpawner = new CoinSpawner(_gameObjectFactory);
             _appStateChanger = new AppStateChanger(_gameObjectFactory, _gameConfigDataProvider, _playerGameObject,
-                _allEnemiesCollection, coinSpawner, new StateMachine());
+                _allEnemiesCollection, _coinSpawner, new StateMachine());
             UIFactory uiFactory = new UIFactory();
             GameplayUI gameplayUI = uiFactory.CreateGameplayCanvas();
             gameplayUI.Init(_gameConfigDataProvider);

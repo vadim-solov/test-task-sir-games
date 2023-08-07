@@ -2,16 +2,18 @@
 using DG.Tweening;
 using Game.Scripts.Services.Factory;
 using UnityEngine;
+using Zenject;
 
-namespace Game.Scripts
+namespace Game.Scripts.Services.CoinsSpawners
 {
-    public class CoinSpawner
+    public class CoinSpawner : ICoinSpawner
     {
         private readonly IGameObjectFactory _gameObjectFactory;
         private readonly List<Coin> _allCoins = new List<Coin>();
 
         private const float TimeSummonMovement = 1f;
 
+        [Inject]
         public CoinSpawner(IGameObjectFactory gameObjectFactory)
         {
             _gameObjectFactory = gameObjectFactory;

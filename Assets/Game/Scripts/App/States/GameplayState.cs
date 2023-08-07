@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
+using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.PlayerInstance;
 using Game.Scripts.Services.StateMachine;
@@ -11,10 +12,10 @@ namespace Game.Scripts.App.States
     {
         private readonly IPlayerGameObject _playerGameObject;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
-        private readonly CoinSpawner _coinSpawner;
+        private readonly ICoinSpawner _coinSpawner;
 
         public GameplayState(IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection,
-            CoinSpawner coinSpawner)
+            ICoinSpawner coinSpawner)
         {
             _playerGameObject = playerGameObject;
             _allEnemiesCollection = allEnemiesCollection;

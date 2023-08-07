@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Configs;
+using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factory;
@@ -35,6 +36,8 @@ namespace Game.Scripts.Installers
 
             Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().FromNew().AsSingle().WithArguments(
                 gameConfigDataProvider, allEnemiesCollection, enemyConfigGetter, Container);
+
+            Container.Bind<ICoinSpawner>().To<CoinSpawner>().FromNew().AsSingle().NonLazy();
         }
 
         // private IInputService GetInputService()
