@@ -22,7 +22,7 @@ namespace Game.Scripts.Services.Factory
         private readonly IEnemyConfigGetter _enemyConfigGetter;
         private readonly DiContainer _diContainer;
 
-
+        [Inject]
         public GameObjectFactory(IGameConfigDataProvider gameConfig, IAllEnemiesCollection allEnemiesCollection,
             IEnemyConfigGetter enemyConfigGetter, DiContainer diContainer)
         {

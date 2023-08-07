@@ -2,6 +2,7 @@
 using Game.Scripts.Configs;
 using Game.Scripts.Enemies;
 using Game.Scripts.Services.GameDataProvider;
+using Zenject;
 
 namespace Game.Scripts.Services.EnemiesGetter
 {
@@ -9,6 +10,7 @@ namespace Game.Scripts.Services.EnemiesGetter
     {
         private readonly IGameConfigDataProvider _gameConfig;
 
+        [Inject]
         public EnemyConfigGetter(IGameConfigDataProvider gameConfig)
         {
             _gameConfig = gameConfig;

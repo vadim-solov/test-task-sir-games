@@ -18,25 +18,48 @@ namespace Game.Scripts.Installers
 
         public override void InstallBindings()
         {
+            BindGameConfigDataProvider();
+            BingEnemyConfigGetter();
+            BindAllEnemiesCollection();
+            BindPlayerGameObject();
+            BindInput();
+            BindGameObjectFactory();
+            BindCoinSpawner();
+        }
+
+        private void BindGameConfigDataProvider()
+        {
             IGameConfigDataProvider gameConfigDataProvider = new GameConfigDataProvider(_gameConfig);
             Container.Bind<IGameConfigDataProvider>().FromInstance(gameConfigDataProvider).AsSingle().NonLazy();
+        }
 
-            EnemyConfigGetter enemyConfigGetter = new EnemyConfigGetter(gameConfigDataProvider);
+        private void BingEnemyConfigGetter()
+        {
+            Container.Bind<IEnemyConfigGetter>().To<EnemyConfigGetter>().FromNew().AsSingle().NonLazy();
+        }
 
-            Container.Bind<IEnemyConfigGetter>().To<EnemyConfigGetter>().FromInstance(enemyConfigGetter).AsSingle()
-                .NonLazy();
+        private void BindAllEnemiesCollection()
+        {
+            Container.Bind<IAllEnemiesCollection>().To<AllEnemiesCollection>().FromNew().AsSingle().NonLazy();
+        }
 
-            AllEnemiesCollection allEnemiesCollection = new AllEnemiesCollection();
-            Container.Bind<IAllEnemiesCollection>().To<AllEnemiesCollection>().FromInstance(allEnemiesCollection)
-                .AsSingle().NonLazy();
-
+        private void BindPlayerGameObject()
+        {
             Container.Bind<IPlayerGameObject>().To<PlayerGameObject>().FromNew().AsSingle().NonLazy();
+        }
 
+        private void BindInput()
+        {
             Container.Bind<IInputService>().To<DesktopInput>().FromNew().AsSingle().NonLazy();
+        }
 
-            Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().FromNew().AsSingle().WithArguments(
-                gameConfigDataProvider, allEnemiesCollection, enemyConfigGetter, Container);
+        private void BindGameObjectFactory()
+        {
+            Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().FromNew().AsSingle().NonLazy();
+        }
 
+        private void BindCoinSpawner()
+        {
             Container.Bind<ICoinSpawner>().To<CoinSpawner>().FromNew().AsSingle().NonLazy();
         }
 
