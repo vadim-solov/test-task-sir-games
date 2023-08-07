@@ -37,7 +37,7 @@ namespace Game.Scripts.App.States
         public void Run()
         {
             IncreaseTimer();
-            CheckTimerAndTryInvokeEvent();
+            CheckTimerAndTryChangeState();
         }
 
         public void Exit()
@@ -72,7 +72,7 @@ namespace Game.Scripts.App.States
             _timer += Time.deltaTime;
         }
 
-        private void CheckTimerAndTryInvokeEvent()
+        private void CheckTimerAndTryChangeState()
         {
             if (_timer >= _waitingTimeForLevelActivation)
             {
