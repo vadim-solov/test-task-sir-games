@@ -23,7 +23,7 @@ namespace Game.Scripts.CompositeRoot
         private void Awake()
         {
             Init();
-            _appStateMachine.TryChangeState<AppLoadingState>();
+            _appStateMachine.ChangeState<AppLoadingState>();
         }
 
         private void Init()

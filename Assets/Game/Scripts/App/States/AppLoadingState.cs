@@ -15,7 +15,7 @@ namespace Game.Scripts.App.States
         public void Enter()
         {
             Debug.Log("loading files...");
-            _appStateMachine.TryChangeState<LevelLoaderState>();
+            _appStateMachine.ChangeState<LevelLoaderState>();
         }
 
         public void Run()

@@ -27,7 +27,7 @@ namespace Game.Scripts.App.States
             _gameObjectFactory.CreateAndSetPlayerWeapon(player);
             _gameObjectFactory.CreateCamera(player.transform);
             _gameObjectFactory.CreateEnemiesAndSetPositions();
-            _appStateMachine.TryChangeState<CountdownState>();
+            _appStateMachine.ChangeState<CountdownState>();
         }
 
         public void Run()

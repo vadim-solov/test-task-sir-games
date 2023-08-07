@@ -76,7 +76,7 @@ namespace Game.Scripts.App.States
         {
             if (_timer >= _waitingTimeForLevelActivation)
             {
-                _appStateMachine.TryChangeState<GameplayState>();
+                _appStateMachine.ChangeState<GameplayState>();
             }
         }
     }

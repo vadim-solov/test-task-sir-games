@@ -30,25 +30,7 @@ namespace Game.Scripts.Services.AppStateMachine
             };
         }
 
-        public void Init(IState startState)
-        {
-            CurrentState = startState;
-            CurrentState.Enter();
-        }
-
-        public void ChangeStateIfNewStateDifferent(IState newState)
-        {
-            if (newState.GetType() == CurrentState.GetType())
-            {
-                return;
-            }
-
-            CurrentState.Exit();
-            CurrentState = newState;
-            CurrentState.Enter();
-        }
-
-        public void TryChangeState<T>() where T : class, IState
+        public void ChangeState<T>() where T : class, IState
         {
             CurrentState?.Exit();
 
