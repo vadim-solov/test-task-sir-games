@@ -5,8 +5,7 @@ using Zenject;
 
 namespace Game.Scripts.CompositeRoot
 {
-    //bootstrap
-    public class MainCompositeRoot : MonoBehaviour
+    public class GameSceneBootstrapper : MonoBehaviour
     {
         private IAppStateMachine _appStateMachine;
 
