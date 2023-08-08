@@ -21,7 +21,6 @@ namespace Game.Scripts.Enemies.States
         private IGameObjectFactory _gameObjectFactory;
         private EnemyConfig _enemyConfig;
         private MonoBehaviourStateMachine _monoBehaviourStateMachine;
-        private EnemyMovementState _movementState;
 
         private const float RotationSpeed = 10f;
 
@@ -37,7 +36,6 @@ namespace Game.Scripts.Enemies.States
             _enemyConfig = enemyConfig;
             _waitingTimeAfterAttack = _enemyConfig.WaitingTimeAfterAttack;
             _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
-            _movementState = GetComponent<EnemyMovementState>();
         }
 
         public void Enter()
@@ -59,7 +57,7 @@ namespace Game.Scripts.Enemies.States
         {
             Attack();
             yield return new WaitForSeconds(_waitingTimeAfterAttack);
-            _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_movementState);
+            _monoBehaviourStateMachine.ChangeState<EnemyMovementState>();
         }
 
         private void Attack()

@@ -14,7 +14,6 @@ namespace Game.Scripts.Player.States
     {
         private float _movementSpeed;
         private MonoBehaviourStateMachine _monoBehaviourStateMachine;
-        private PlayerAttackState _attackState;
         private CharacterController _characterController;
         private IAllEnemiesCollection _allEnemiesCollection;
         private IInputService _inputService;
@@ -33,7 +32,6 @@ namespace Game.Scripts.Player.States
         public void Awake()
         {
             _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
-            _attackState = GetComponent<PlayerAttackState>();
             _characterController = GetComponent<CharacterController>();
         }
 
@@ -59,7 +57,7 @@ namespace Game.Scripts.Player.States
             }
             else
             {
-                _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_attackState);
+                _monoBehaviourStateMachine.ChangeState<PlayerAttackState>();
             }
         }
 

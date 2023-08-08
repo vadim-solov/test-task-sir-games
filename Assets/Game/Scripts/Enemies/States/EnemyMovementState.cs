@@ -15,7 +15,6 @@ namespace Game.Scripts.Enemies.States
         protected float _stoppingDistance;
 
         private MonoBehaviourStateMachine _monoBehaviourStateMachine;
-        private EnemyAttackState _attackState;
 
         private const float RotationSpeed = 10f;
 
@@ -34,7 +33,6 @@ namespace Game.Scripts.Enemies.States
             _movementSpeed = enemyConfig.MovementSpeed;
             _stoppingDistance = enemyConfig.StoppingDistance;
             _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
-            _attackState = GetComponent<EnemyAttackState>();
         }
 
         protected void RotateToTarget()
@@ -51,7 +49,7 @@ namespace Game.Scripts.Enemies.States
 
             if (_stoppingDistance >= distance)
             {
-                _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_attackState);
+                _monoBehaviourStateMachine.ChangeState<EnemyAttackState>();
             }
         }
     }

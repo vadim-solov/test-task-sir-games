@@ -1,3 +1,4 @@
+using System;
 using Game.Scripts.Services.AppStateMachine;
 using UnityEngine;
 
@@ -13,15 +14,17 @@ namespace Game.Scripts
             CurrentState.Enter();
         }
 
-        public void ChangeStateIfNewStateDifferent(IState newState)
+        public void ChangeState<T>() where T : MonoBehaviour, IState
         {
-            if (newState.GetType() == CurrentState.GetType())
+            CurrentState.Exit();
+            IState state = GetComponent<T>();
+
+            if (state == null)
             {
-                return;
+                throw new Exception("MonoBehaviour state not found");
             }
 
-            CurrentState.Exit();
-            CurrentState = newState;
+            CurrentState = GetComponent<T>();
             CurrentState.Enter();
         }
 

@@ -14,7 +14,6 @@ namespace Game.Scripts.Player.States
         private IAllEnemiesCollection _allEnemiesCollection;
         private CurrentPlayerWeapon _currentPlayerWeapon;
         private MonoBehaviourStateMachine _monoBehaviourStateMachine;
-        private PlayerMovementState _movementState;
         private IInputService _inputService;
 
         private const float RotationSpeed = 10f;
@@ -30,7 +29,6 @@ namespace Game.Scripts.Player.States
         {
             _currentPlayerWeapon = GetComponent<CurrentPlayerWeapon>();
             _monoBehaviourStateMachine = GetComponent<MonoBehaviourStateMachine>();
-            _movementState = GetComponent<PlayerMovementState>();
         }
 
         public void Enter()
@@ -56,7 +54,7 @@ namespace Game.Scripts.Player.States
             }
             else
             {
-                _monoBehaviourStateMachine.ChangeStateIfNewStateDifferent(_movementState);
+                _monoBehaviourStateMachine.ChangeState<PlayerMovementState>();
             }
         }
 

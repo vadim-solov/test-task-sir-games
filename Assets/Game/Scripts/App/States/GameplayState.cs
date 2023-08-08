@@ -42,19 +42,17 @@ namespace Game.Scripts.App.States
 
         private void SetMovementStateForPlayer()
         {
-            MonoBehaviourStateMachine appStateMachine =
+            MonoBehaviourStateMachine monoBehaviourStateMachine =
                 _playerGameObject.Instance.GetComponent<MonoBehaviourStateMachine>();
-            PlayerMovementState movementState = _playerGameObject.Instance.GetComponent<PlayerMovementState>();
-            appStateMachine.ChangeStateIfNewStateDifferent(movementState);
+            monoBehaviourStateMachine.ChangeState<PlayerMovementState>();
         }
 
         private void SetMovementStateForAllEnemies()
         {
             foreach (GameObject enemy in _allEnemiesCollection.AllEnemies)
             {
-                MonoBehaviourStateMachine appStateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
-                EnemyMovementState movementState = enemy.GetComponent<EnemyMovementState>();
-                appStateMachine.ChangeStateIfNewStateDifferent(movementState);
+                MonoBehaviourStateMachine monoBehaviourStateMachine = enemy.GetComponent<MonoBehaviourStateMachine>();
+                monoBehaviourStateMachine.ChangeState<EnemyMovementState>();
             }
         }
 
