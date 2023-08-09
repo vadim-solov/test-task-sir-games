@@ -1,5 +1,5 @@
-﻿using Game.Scripts.Services.AppStateMachine;
-using Game.Scripts.Services.EnemiesCollection;
+﻿using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.GameStateMachine;
 using UnityEngine;
 using Zenject;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Game.Scripts.App.States;
+using Game.Scripts.Game.States;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.Factories.GameObjectFactory;
@@ -10,22 +10,22 @@ using Game.Scripts.Services.GameDataProvider;
 using Game.Scripts.Services.PlayerInstance;
 using Zenject;
 
-namespace Game.Scripts.Services.AppStateMachine
+namespace Game.Scripts.Services.GameStateMachine
 {
-    public class AppStateMachine : IAppStateMachine
+    public class GameStateMachine : IStateMachine
     {
         private readonly List<IState> _states;
 
         public IState CurrentState { get; private set; }
 
         [Inject]
-        public AppStateMachine(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig,
+        public GameStateMachine(IGameObjectFactory gameObjectFactory, IGameConfigDataProvider gameConfig,
             IPlayerGameObject playerGameObject, IAllEnemiesCollection allEnemiesCollection, ICoinSpawner coinSpawner,
             IUIFactoryService uiFactoryService)
         {
             _states = new List<IState>
             {
-                new AppLoadingState(this),
+                new GameLoadingState(this),
                 new LevelLoaderState(this, gameObjectFactory, playerGameObject, uiFactoryService),
                 new CountdownState(this, gameConfig, allEnemiesCollection, playerGameObject),
                 new GameplayState(playerGameObject, allEnemiesCollection, coinSpawner),

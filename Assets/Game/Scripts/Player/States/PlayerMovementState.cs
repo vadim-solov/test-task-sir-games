@@ -1,6 +1,6 @@
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.GameDataProvider;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.Input;
 using UnityEngine;
 using Zenject;

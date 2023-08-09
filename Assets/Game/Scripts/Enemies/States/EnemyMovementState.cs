@@ -1,5 +1,5 @@
 ﻿using Game.Scripts.Configs;
-using Game.Scripts.Services.AppStateMachine;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 using Zenject;

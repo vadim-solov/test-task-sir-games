@@ -1,28 +1,28 @@
 ﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.GameDataProvider;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 
-namespace Game.Scripts.App.States
+namespace Game.Scripts.Game.States
 {
     public class CountdownState : IState
     {
         private float _timer;
-        private readonly AppStateMachine _appStateMachine;
+        private readonly GameStateMachine _gameStateMachine;
         private readonly IAllEnemiesCollection _allEnemiesCollection;
         private readonly IPlayerGameObject _playerGameObject;
 
         private readonly float _waitingTimeForLevelActivation;
 
-        public CountdownState(AppStateMachine appStateMachine, IGameConfigDataProvider gameConfig,
+        public CountdownState(GameStateMachine gameStateMachine, IGameConfigDataProvider gameConfig,
             IAllEnemiesCollection allEnemiesCollection,
             IPlayerGameObject playerGameObject)
         {
             _waitingTimeForLevelActivation = gameConfig.WaitingTimeForLevelActivation;
-            _appStateMachine = appStateMachine;
+            _gameStateMachine = gameStateMachine;
             _allEnemiesCollection = allEnemiesCollection;
             _playerGameObject = playerGameObject;
         }
@@ -74,7 +74,7 @@ namespace Game.Scripts.App.States
         {
             if (_timer >= _waitingTimeForLevelActivation)
             {
-                _appStateMachine.ChangeState<GameplayState>();
+                _gameStateMachine.ChangeState<GameplayState>();
             }
         }
     }

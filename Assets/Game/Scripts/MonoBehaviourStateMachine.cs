@@ -1,5 +1,5 @@
 using System;
-using Game.Scripts.Services.AppStateMachine;
+using Game.Scripts.Services.GameStateMachine;
 using UnityEngine;
 
 namespace Game.Scripts

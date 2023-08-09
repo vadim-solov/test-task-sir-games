@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using Game.Scripts.Configs;
 using Game.Scripts.Projectiles;
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.Factories.GameObjectFactory;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 using Zenject;

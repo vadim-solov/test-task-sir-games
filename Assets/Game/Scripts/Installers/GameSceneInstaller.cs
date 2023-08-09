@@ -1,11 +1,11 @@
 ﻿using Game.Scripts.Configs;
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
 using Game.Scripts.Services.EnemiesGetter;
 using Game.Scripts.Services.Factories.GameObjectFactory;
 using Game.Scripts.Services.Factories.UIFactory;
 using Game.Scripts.Services.GameDataProvider;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.Input;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
@@ -69,7 +69,7 @@ namespace Game.Scripts.Installers
 
         private void BindAppStateMachine()
         {
-            Container.Bind<IAppStateMachine>().To<AppStateMachine>().FromNew().AsSingle().NonLazy();
+            Container.Bind<IStateMachine>().To<GameStateMachine>().FromNew().AsSingle().NonLazy();
         }
 
         private void BindUIFactoryService()

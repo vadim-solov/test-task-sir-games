@@ -1,12 +1,12 @@
 ﻿using Game.Scripts.Enemies.States;
 using Game.Scripts.Player.States;
-using Game.Scripts.Services.AppStateMachine;
 using Game.Scripts.Services.CoinsSpawners;
 using Game.Scripts.Services.EnemiesCollection;
+using Game.Scripts.Services.GameStateMachine;
 using Game.Scripts.Services.PlayerInstance;
 using UnityEngine;
 
-namespace Game.Scripts.App.States
+namespace Game.Scripts.Game.States
 {
     public class GameplayState : IState
     {

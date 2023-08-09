@@ -1,5 +1,5 @@
-﻿using Game.Scripts.App.States;
-using Game.Scripts.Services.AppStateMachine;
+﻿using Game.Scripts.Game.States;
+using Game.Scripts.Services.GameStateMachine;
 using UnityEngine;
 using Zenject;
 
@@ -7,22 +7,22 @@ namespace Game.Scripts.Bootstrappers
 {
     public class GameSceneBootstrapper : MonoBehaviour
     {
-        private IAppStateMachine _appStateMachine;
+        private IStateMachine _gameStateMachine;
 
         [Inject]
-        private void Construct(IAppStateMachine appStateMachine)
+        private void Construct(IStateMachine gameStateMachine)
         {
-            _appStateMachine = appStateMachine;
+            _gameStateMachine = gameStateMachine;
         }
 
         private void Awake()
         {
-            _appStateMachine.ChangeState<AppLoadingState>();
+            _gameStateMachine.ChangeState<GameLoadingState>();
         }
 
         private void Update()
         {
-            _appStateMachine.CurrentState.Run();
+            _gameStateMachine.CurrentState.Run();
         }
     }
 }
