@@ -11,7 +11,7 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private float _waitingTimeForLevelActivation = 3f;
         [SerializeField]
-        private Camera _cameraPrefab;
+        private CameraFollowing _cameraPrefab;
         [SerializeField]
         private Coin _coinPrefab;
         [SerializeField]
@@ -25,7 +25,7 @@ namespace Game.Scripts.Configs
         [SerializeField]
         private List<EnemyConfig> _enemiesConfig;
 
-        public Camera CameraPrefab => _cameraPrefab;
+        public CameraFollowing CameraPrefab => _cameraPrefab;
         public Coin CoinPrefab => _coinPrefab;
         public List<Level> AllLevels => _allLevels;
         public PlayerConfig PlayerConfig => _playerConfig;

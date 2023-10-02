@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   _waitingTimeForLevelActivation: 0.1
-  _cameraPrefab: {fileID: 4928798379214481035, guid: aa6affde84972e74597abee19b3e7447, type: 3}
+  _cameraPrefab: {fileID: -759413297644289127, guid: aa6affde84972e74597abee19b3e7447, type: 3}
   _coinPrefab: {fileID: 7205214336831827234, guid: 5d3f74786f55b2040a92f97db8e1d2cc, type: 3}
   _allLevels:
   - {fileID: 7639729716544114613, guid: 9cc722adb444b734aa87d30e6c1d4cac, type: 3}

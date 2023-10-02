@@ -5,7 +5,7 @@ namespace Game.Scripts.Services.Factories.GameObjectFactory
 {
     public interface IGameObjectFactory
     {
-        public Camera CreateCamera(Transform cameraTargetTransform);
+        public CameraFollowing CreateCamera(Transform cameraTargetTransform);
         public void CreateLevel();
         public GameObject CreatePlayerAndSetPosition();
         public void CreateEnemiesAndSetPositions();

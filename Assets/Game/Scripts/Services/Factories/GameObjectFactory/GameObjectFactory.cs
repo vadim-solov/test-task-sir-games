@@ -31,12 +31,11 @@ namespace Game.Scripts.Services.Factories.GameObjectFactory
             _diContainer = diContainer;
         }
 
-        public Camera CreateCamera(Transform cameraTargetTransform)
+        public CameraFollowing CreateCamera(Transform cameraTargetTransform)
         {
-            Camera camera = Object.Instantiate(_gameConfig.CameraPrefab);
-            CameraFollowing cameraFollowing = camera.GetComponent<CameraFollowing>();
+            CameraFollowing cameraFollowing = Object.Instantiate(_gameConfig.CameraPrefab);
             cameraFollowing.Init(cameraTargetTransform.transform);
-            return camera;
+            return cameraFollowing;
         }
 
         public void CreateLevel()

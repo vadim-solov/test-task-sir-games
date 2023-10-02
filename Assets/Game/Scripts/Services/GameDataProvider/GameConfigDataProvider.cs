@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Game.Scripts.Configs;
 using Game.Scripts.PlayerWeapons;
-using UnityEngine;
 
 namespace Game.Scripts.Services.GameDataProvider
 {
     public class GameConfigDataProvider : IGameConfigDataProvider
     {
-        public Camera CameraPrefab { get; }
+        public CameraFollowing CameraPrefab { get; }
         public Coin CoinPrefab { get; }
         public List<Level> AllLevels { get; }
         public PlayerConfig PlayerConfig { get; }
