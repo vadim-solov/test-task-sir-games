@@ -46,7 +46,6 @@ namespace Game.Scripts.Services.Factories.GameObjectFactory
         public GameObject CreatePlayerAndSetPosition()
         {
             PlayerSpawnPoint playerPosition = _gameConfig.AllLevels[0].PlayerSpawnPoint;
-
             GameObject player = _diContainer.InstantiatePrefab(_gameConfig.PlayerConfig.PlayerPrefab,
                 playerPosition.transform.position, Quaternion.identity, null);
             player.GetComponent<PlayerHealth>().Init(_gameConfig.PlayerConfig.MaxHP);
@@ -60,11 +59,9 @@ namespace Game.Scripts.Services.Factories.GameObjectFactory
             foreach (EnemySpawnPoint enemySpawnPoint in _gameConfig.AllLevels[0].EnemySpawnPoints)
             {
                 EnemyConfig enemyConfig = _enemyConfigGetter.GetEnemyConfigByType(enemySpawnPoint.EnemyType);
-
                 GameObject enemy = _diContainer.InstantiatePrefab(enemyConfig.EnemyPrefab,
                     enemySpawnPoint.transform.position,
                     enemySpawnPoint.transform.rotation, null);
-
                 enemy.GetComponent<EnemyHealth>().Init(enemyConfig.MaxHP);
                 enemy.GetComponent<EnemyAttackState>().Init(enemyConfig);
                 enemy.GetComponent<EnemyMovementState>().Init(enemyConfig);
@@ -82,8 +79,7 @@ namespace Game.Scripts.Services.Factories.GameObjectFactory
             playerWeaponComponent.SetWeapon(playerWeapon);
         }
 
-        public Projectile CreateProjectile(Projectile projectile,
-            Vector3 attackPointPosition)
+        public Projectile CreateProjectile(Projectile projectile, Vector3 attackPointPosition)
         {
             return Object.Instantiate(projectile, attackPointPosition, Quaternion.identity);
         }
